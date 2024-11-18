@@ -2,7 +2,10 @@ import React from "react";
 
 function Hero() {
   return (
-    <div className="bg-gray-900 min-h-screen flex items-center justify-center">
+    <div
+      id="#intro"
+      className="bg-gray-900 min-h-screen flex items-center justify-center"
+    >
       <div className="text-center space-y-6">
         {/* Title */}
         <h1 className="text-5xl md:text-7xl font-bold text-gray-50">

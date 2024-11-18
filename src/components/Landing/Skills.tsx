@@ -48,7 +48,7 @@ function Skills() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="w-full min-h-screen">
+    <div id="skills" className="w-full min-h-screen">
       <h2 className="text-white text-4xl text-center">Skills</h2>
       <br />
       <div className="flex justify-center">
