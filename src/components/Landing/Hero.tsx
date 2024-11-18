@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function Hero() {
   return (
@@ -10,7 +10,8 @@ function Hero() {
         </h1>
         {/* Subtitle */}
         <p className="text-xl md:text-2xl text-gray-400">
-          <span className="text-blue-700">Inventor</span> at the core, specialist at making your ideas come alive.
+          <span className="text-blue-700">Inventor</span>{" "}
+          at the core, specialist at making your ideas come alive.
         </p>
         {/* Call-to-Action Button */}
         <button className="mt-6 px-6 py-3 bg-blue-700 text-gray-50 font-medium text-lg rounded-md hover:bg-blue-600 transition duration-300">

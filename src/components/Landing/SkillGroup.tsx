@@ -1,16 +1,23 @@
 import React from "react";
+import skills from "@/data/SkillsData";
+import SkillItem from "./SkillItem";
 
-interface SkillGroupProps {
-  title: string;
-  skills: JSX.Element[];
-}
-
-const SkillGroup: React.FC<SkillGroupProps> = ({ title, skills }) => {
+function SkillGroup() {
   return (
-
-    <p>item</p>
-
+    <div className="flex justify-center items-center">
+      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-4 w-full max-w-screen-lg mx-auto">
+        {skills.map((skill, index) => (
+          skill.items.map((subSkill, subIndex) => (
+            <SkillItem
+              key={subIndex}
+              icon={subSkill.icon}
+              title={subSkill.title}
+            />
+          ))
+        ))}
+      </div>
+    </div>
   );
-};
+}
 
 export default SkillGroup;
