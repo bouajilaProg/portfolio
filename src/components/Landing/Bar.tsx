@@ -3,7 +3,7 @@ import React from "react";
 function Bar() {
   return (
     <div>
-      <nav className="hidden md:flex flex justify-between items-center p-4">
+      <nav className="hidden md:flex justify-between items-center p-4">
         {/* Left side: "bouajilaProg" */}
         <div className="text-xl font-bold text-gray-800 dark:text-white transform transition-all duration-300 hover:scale-105">
           bouajilaProg
