@@ -13,7 +13,7 @@ function LandingPage() {
       <div>
         <Hero />
         <Skills />
-        {/*<ProjectSection />*/}
+        <ProjectSection />
         <EducationSection />
         <Contact />
       </div>

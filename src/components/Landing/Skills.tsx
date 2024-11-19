@@ -48,13 +48,22 @@ function Skills() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div id="skills" className="w-full min-h-screen">
-      <h2 className="text-white text-4xl text-center">Skills</h2>
-      <br />
-      <div className="flex justify-center">
-        <div className="flex flex-col justify-center gap-y-8 lg:m-0 lg:w-1/2">
-          <SkillTabs tabs={tabs} activeTab={activeTab} />
-          <SkillGroup />
+    <div id="skills" className="pt-80">
+      <div className="w-full min-h-screen ">
+        <h2 className="text-white text-4xl text-center">Skills</h2>
+        <br />
+        <div className="flex justify-center">
+          <div
+            id="skills"
+            className="flex flex-col justify-center gap-y-8 lg:m-0 lg:w-1/2"
+          >
+            <SkillTabs
+              tabs={tabs}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
+            <SkillGroup titleFilter={tabs.map((tab) => tab.title)[activeTab]} />
+          </div>
         </div>
       </div>
     </div>

@@ -29,7 +29,7 @@ import { title } from "process";
 
 const skills = [
   {
-    domain: "Frontend",
+    domain: "Front",
     items: [
       { icon: <SiHtml5 />, title: "HTML" },
       { icon: <SiCss3 />, title: "CSS" },
@@ -42,7 +42,7 @@ const skills = [
     ],
   },
   {
-    domain: "Backend",
+    domain: "Back",
     items: [
       { icon: <SiPostgresql />, title: "PostgreSQL" },
       { icon: <SiMongodb />, title: "MongoDB" },
@@ -74,7 +74,7 @@ const skills = [
     ],
   },
   {
-    domain: "Soft Skills",
+    domain: "Soft",
     items: [
       { icon: <FaHandsHelping />, title: "Leadership" },
       { icon: <FaRocket />, title: "Fast Learner" },

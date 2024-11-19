@@ -3,7 +3,7 @@ import CertItem from "./CertItem";
 
 function EducationSection() {
   return (
-    <div className="p-8 md:p-12 lg:p-16 max-w-5xl mx-auto text-center">
+    <div className="p-8 md:p-12 lg:p-16 max-w-5xl mx-auto text-center  min-h-screen">
       <h2 className="text-3xl font-semibold text-white mb-6">Education</h2>
       <p className="text-lg text-gray-400 mb-8">
         Here are my educational experiences and achievements.
