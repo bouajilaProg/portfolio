@@ -4,12 +4,10 @@ function Bar() {
   return (
     <>
       <nav className="hidden text-transparent md:flex right-0 justify-between items-center p-4 fixed top-0 w-full bg-white dark:bg-gray-900">
-        {/* Left side: "bouajilaProg" */}
         <div className="text-xl font-bold text-gray-800 dark:text-white">
           bouajilaProg
         </div>
 
-        {/* Right side: Links */}
         <div className="flex space-x-6">
           <a
             href="#intro"

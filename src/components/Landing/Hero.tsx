@@ -3,7 +3,7 @@ import React from "react";
 function Hero() {
   return (
     <div
-      id="#intro"
+      id="intro"
       className="bg-gray-900 min-h-screen flex items-center justify-center"
     >
       <div className="text-center space-y-6">
