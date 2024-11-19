@@ -71,7 +71,7 @@ const ProjectList: React.FC = () => {
       ],
     },
     {
-      "title": "AI Database Query Assistant",
+      "title": "DB QueryRod",
       "description":
         "A web application that allows users to interact with a database schema and query data through AI. Users can ask the AI to fetch data, and it will process the request using advanced AI capabilities.",
       "imageLink": "https://placehold.co/150",
@@ -85,7 +85,22 @@ const ProjectList: React.FC = () => {
         "React",
         "Tailwind CSS",
         "Postman",
-        "Database Schema",
+      ],
+    },
+    {
+      "title": "Developer Portfolio",
+      "description":
+        "A personal portfolio showcasing my skills, projects, and education as a full-stack developer with a passion for AI and DevOps. This portfolio highlights my technical expertise and includes sections on my experience, projects, and contact information.",
+      "imageLink": "https://placehold.co/150",
+      "domain": [
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "TypeScript",
+        "Node.js",
+        "AI",
+        "DevOps",
+        "Cloud Computing",
       ],
     },
   ];
