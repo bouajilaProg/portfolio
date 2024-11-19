@@ -7,7 +7,9 @@ function EducationSection() {
       id="education"
       className="lg:p-16 max-w-5xl mt-40 pt-40 mx-auto text-center  min-h-screen  md:min-h-[22 rem]"
     >
-      <h2 className="text-3xl font-semibold text-white mb-6">Education</h2>
+      <h2 className="text-white text-4xl text-center font-medium">
+        Education
+      </h2>
       <p className="text-lg text-gray-400 mb-8">
         Here are my educational experiences and achievements.
       </p>

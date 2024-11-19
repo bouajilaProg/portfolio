@@ -4,7 +4,7 @@ function Contact() {
   return (
     <div id="contact" className="flex items-center justify-center min-h-screen">
       <div className=" p-8 rounded-lg shadow-lg w-full max-w-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center text-white">
+        <h2 className="text-4xl mb-6 text-center text-white">
           Contact Me
         </h2>
         <form>

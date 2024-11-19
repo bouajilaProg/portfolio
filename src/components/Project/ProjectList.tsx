@@ -98,9 +98,6 @@ const ProjectList: React.FC = () => {
         "Tailwind CSS",
         "TypeScript",
         "Node.js",
-        "AI",
-        "DevOps",
-        "Cloud Computing",
       ],
     },
   ];
