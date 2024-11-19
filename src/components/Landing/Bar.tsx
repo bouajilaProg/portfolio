@@ -3,9 +3,9 @@ import React from "react";
 function Bar() {
   return (
     <>
-      <nav className="hidden text-transparent md:flex right-0 justify-between items-center p-4 fixed top-0 w-full bg-white dark:bg-gray-900 shadow-md z-50">
+      <nav className="hidden text-transparent md:flex right-0 justify-between items-center p-4 fixed top-0 w-full bg-white dark:bg-gray-900">
         {/* Left side: "bouajilaProg" */}
-        <div className="text-xl font-bold text-gray-800 dark:text-white transform transition-all duration-300 hover:scale-105">
+        <div className="text-xl font-bold text-gray-800 dark:text-white">
           bouajilaProg
         </div>
 
@@ -29,6 +29,13 @@ function Bar() {
           >
             Projects
           </a>
+          <a
+            href="#education"
+            className="text-gray-800 dark:text-white font-semibold transform transition-all duration-300 hover:scale-105 hover:text-primary-500"
+          >
+            Education
+          </a>
+
           <a
             href="#contact"
             className="text-gray-800 dark:text-white font-semibold transform transition-all duration-300 hover:scale-105 hover:text-primary-500"

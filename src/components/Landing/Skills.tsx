@@ -49,7 +49,7 @@ function Skills() {
 
   return (
     <div id="skills" className="pt-80">
-      <div className="w-full min-h-screen ">
+      <div className="w-full min-h-screen md:min-h-96">
         <h2 className="text-white text-4xl text-center">Skills</h2>
         <br />
         <div className="flex justify-center">
