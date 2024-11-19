@@ -2,8 +2,8 @@ import React from "react";
 
 function Bar() {
   return (
-    <div>
-      <nav className="hidden md:flex justify-between items-center p-4">
+    <>
+      <nav className="hidden text-transparent md:flex right-0 justify-between items-center p-4 fixed top-0 w-full bg-white dark:bg-gray-900 shadow-md z-50">
         {/* Left side: "bouajilaProg" */}
         <div className="text-xl font-bold text-gray-800 dark:text-white transform transition-all duration-300 hover:scale-105">
           bouajilaProg
@@ -37,7 +37,7 @@ function Bar() {
           </a>
         </div>
       </nav>
-    </div>
+    </>
   );
 }
 
