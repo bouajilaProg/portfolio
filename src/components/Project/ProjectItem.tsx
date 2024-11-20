@@ -1,11 +1,5 @@
 import React from "react";
-
-interface Project {
-  title: string;
-  description: string;
-  imageLink: string;
-  domain: string[];
-}
+import Project from "@/misc/types/project";
 
 interface ProjectItemProps {
   project: Project;
@@ -13,7 +7,11 @@ interface ProjectItemProps {
 
 const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
   return (
-    <div className="flex flex-col w-[300px] border border-gray-700 rounded-lg shadow-lg bg-gray-800">
+    <a
+      href={"projec"}
+      target="_blank"
+      className="flex flex-col cursor-pointer w-[300px] border border-gray-700 rounded-lg shadow-lg bg-gray-800 transform transition-transform hover:scale-105"
+    >
       {/* Image Section */}
       <div className="w-full">
         <img
@@ -37,17 +35,17 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
 
         {/* Domains */}
         <div className="mt-4 flex overflow-x-auto pb-3 gap-2">
-          {project.domain.map((dom, index) => (
+          {project.skills.map((skill, index) => (
             <span
               key={index}
               className="bg-gray-700 text-gray-100 px-3 py-1 text-[10px] rounded-full whitespace-nowrap"
             >
-              {dom}
+              {skill}
             </span>
           ))}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

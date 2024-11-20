@@ -5,7 +5,7 @@ function EducationSection() {
   return (
     <div
       id="education"
-      className="lg:p-16 max-w-5xl mt-40 pt-40 mx-auto text-center  min-h-screen  md:min-h-[22 rem]"
+      className="max-w-5xl mx-auto text-center min-h-screen pt-40  "
     >
       <h2 className="text-white text-4xl text-center font-medium">
         Education
