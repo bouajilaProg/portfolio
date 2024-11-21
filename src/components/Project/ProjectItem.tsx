@@ -10,7 +10,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
     <a
       href={"projec"}
       target="_blank"
-      className="flex flex-col cursor-pointer w-[300px] border border-gray-700 rounded-lg shadow-lg bg-gray-800 transform transition-transform hover:scale-105"
+      className="flex flex-col cursor-pointer w-[300px] border border-gray-700 rounded-lg shadow-lg bg-gray-800 h-96 transform transition-transform hover:scale-105"
     >
       {/* Image Section */}
       <div className="w-full">
@@ -29,7 +29,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-gray-300 mt-2 line-clamp-2 min-h-10 overflow-hidden">
+        <p className="text-sm text-gray-300 mt-2 line-clamp-4 min-h-20 overflow-hidden">
           {project.description}
         </p>
 

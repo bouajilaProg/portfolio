@@ -55,7 +55,7 @@ function Skills() {
         <div className="flex justify-center">
           <div
             id="skills"
-            className="flex flex-col justify-center gap-y-8 lg:m-0 lg:w-1/2"
+            className="flex flex-col align-middle w-full justify-center gap-y-8 lg:m-0 lg:w-1/2"
           >
             <SkillTabs
               tabs={tabs}

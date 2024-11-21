@@ -43,7 +43,7 @@ const projects: Project[] = [
       "Postman",
       "React",
     ],
-    domain: ["front", "back", "AI"],
+    domain: ["front", "back", "ai"],
   },
   {
     title: "Cars Hub",

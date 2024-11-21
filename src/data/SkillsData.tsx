@@ -24,8 +24,6 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import { FaBrain, FaHandsHelping, FaLightbulb, FaRocket } from "react-icons/fa";
-import { TbBulb } from "react-icons/tb";
-import { title } from "process";
 
 const skills = [
   {
