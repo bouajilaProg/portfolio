@@ -15,7 +15,6 @@ function LandingPage() {
         <Skills />
         <ProjectSection />
         <EducationSection />
-        <Contact />
       </div>
     </main>
   );

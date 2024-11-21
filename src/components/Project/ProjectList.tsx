@@ -6,7 +6,7 @@ interface ProjectListProps {
 }
 
 function ProjectList({ DomainFilter }: ProjectListProps) {
-  const arrayInclues = (arr1: String[], arr2: String[]) => {
+  const arrayInclues = (arr1: string[], arr2: string[]) => {
     console.log(arr1, arr2);
     return arr2.some((arr2Item) => arr1.includes(arr2Item.toLowerCase()));
   };
@@ -24,7 +24,7 @@ function ProjectList({ DomainFilter }: ProjectListProps) {
   }
 
   return (
-    <div className="flex  justify-center align-top min-h-screen">
+    <div className="flex  justify-center align-top">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4 ">
         {projects.map((project, index) => (
           arrayInclues(project.domain, DomainFilter)
