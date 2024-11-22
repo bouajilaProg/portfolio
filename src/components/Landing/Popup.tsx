@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaCopy } from "react-icons/fa";
 import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
@@ -15,15 +15,29 @@ const Popup: React.FC<PopupProps> = ({ setContactPopup }) => {
       .catch((err) => console.error("Failed to copy: ", err));
   };
 
+  const handleClickOutside = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains("fixed")) {
+      setContactPopup(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  });
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black z-50 bg-opacity-50">
       <div className="bg-gray-900 border border-gray-700 p-6 rounded shadow-lg mx-8">
         <h2 className="text-2xl text-white">Contact</h2>
-        <div className="mt-4 text-md flex justify-between items-center text-white">
-          <span>{email}</span>
+        <div className="mt-4 text-md border border-gray-700 flex justify-between rounded items-center text-white">
+          <span className="py-2 pl-2 ">{email}</span>
           <button
             onClick={handleCopyToClipboard}
-            className="ml-2 p-2 bg-gray-700 rounded hover:bg-gray-600 active:bg-gray-800"
+            className="ml-2 p-4 h-full bg-gray-700 hover:bg-gray-600 active:bg-gray-800"
           >
             <FaCopy />
           </button>

@@ -3,6 +3,7 @@ export default interface Project {
   description: string;
   imageLink: string;
   domain: string[];
-  link?: string;
+  githubLink?: string;
+  projectLink?: string;
   skills: string[];
 }

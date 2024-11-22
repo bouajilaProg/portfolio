@@ -36,12 +36,7 @@ function Bar() {
           >
             Contact
           </a>
-          <a
-            href="#intro"
-            className="text-gray-800 dark:text-white font-semibold transform transition-all duration-300 hover:scale-105 hover:text-primary-500"
-          >
-            Intro
-          </a>
+          {/* minified switch */}
         </div>
       </nav>
     </>

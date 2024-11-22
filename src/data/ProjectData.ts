@@ -5,7 +5,7 @@ const projects: Project[] = [
     title: "CRI Website",
     description:
       "Developed a website for the robotics club at ISIMM that enables users to borrow materials from the club",
-    imageLink: "https://placehold.co/150",
+    imageLink: "ProjectsImage/CRI.png",
     skills: [
       "React",
       "Express",
@@ -17,14 +17,16 @@ const projects: Project[] = [
       "JavaScript",
     ],
     domain: ["front", "back"],
+    githubLink: "https://github.com/bouajilaProg/CRI-website",
   },
   {
     title: "Cool Docs",
     description:
       "An offline tool built with Rust, Tauri, and React for competitive programmers to store and manage their docs and templates in XML format, providing a solution to the no Wi-Fi rule at competitions.",
-    imageLink: "https://placehold.co/150",
+    imageLink: "ProjectsImage/CoolDocs.png",
     skills: ["Rust", "Tauri", "React", "XML", "Offline Storage"],
     domain: ["desktop"],
+    githubLink: "https://github.com/bouajilaProg/cool-docs",
   },
   {
     title: "Good Talk",
@@ -34,7 +36,6 @@ const projects: Project[] = [
     skills: [
       "AWS Lambda",
       "AWS Cognito",
-      "AWS Amplify",
       "Next.js",
       "AWS DynamoDB",
       "S3",
@@ -52,6 +53,7 @@ const projects: Project[] = [
     imageLink: "https://placehold.co/150",
     skills: [
       "Next.js",
+      "github actions",
       "Drizzle",
       "Docker",
       "Docker Compose",
@@ -83,7 +85,7 @@ const projects: Project[] = [
     title: "Developer Portfolio",
     description:
       "A personal portfolio showcasing my skills, projects, and education as a full-stack developer with a passion for AI and DevOps. This portfolio highlights my technical expertise and includes sections on my experience, projects, and contact information.",
-    imageLink: "https://placehold.co/150",
+    imageLink: "ProjectsImage/Portfolio.png",
     skills: [
       "React",
       "Next.js",
@@ -92,6 +94,8 @@ const projects: Project[] = [
       "Node.js",
     ],
     domain: ["front", "back"],
+    githubLink: "https://github.com/bouajilaProg/portfolio",
+    projectLink: "/",
   },
 ];
 

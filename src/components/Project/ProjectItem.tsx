@@ -1,5 +1,6 @@
 import React from "react";
 import Project from "@/misc/types/project";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 interface ProjectItemProps {
   project: Project;
@@ -7,11 +8,7 @@ interface ProjectItemProps {
 
 const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
   return (
-    <a
-      href={"projec"}
-      target="_blank"
-      className="flex flex-col cursor-pointer w-[300px] border border-gray-700 rounded-lg shadow-lg bg-gray-800 h-96 transform transition-transform hover:scale-105"
-    >
+    <div className="flex flex-col cursor-pointer w-[300px] border border-gray-700 rounded-lg shadow-lg bg-gray-800 h-96 transform transition-transform hover:scale-105">
       {/* Image Section */}
       <div className="w-full">
         <img
@@ -24,8 +21,31 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
       {/* Content Section */}
       <div className="flex flex-col p-4 justify-between w-[300px]">
         {/* Title */}
-        <h3 className="text-lg font-bold text-white truncate">
+        <h3 className="text-lg flex justify-between font-bold text-white truncate">
           {project.title}
+
+          <div className="mt-2 flex gap-2 mx-1">
+            {project.projectLink && (
+              <a
+                className="transition-all text-white hover:scale-110"
+                href={project.projectLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaExternalLinkAlt size={"16px"} />
+              </a>
+            )}
+            {project.githubLink && (
+              <a
+                className="transition-all text-white hover:scale-[1.1]"
+                href={project.githubLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGithub />
+              </a>
+            )}
+          </div>
         </h3>
 
         {/* Description */}
@@ -45,7 +65,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
           ))}
         </div>
       </div>
-    </a>
+    </div>
   );
 };
 
