@@ -43,7 +43,7 @@ function ProjectFilter({ exportSelectedDomains }: ProjectFilterProps) {
   };
 
   return (
-    <div className="mt-4 flex flex-wrap justify-center gap-2">
+    <div className="mt-4 flex ml-2  w-full flex-wrap justify-center gap-2">
       <div className=" grid grid-cols-4 gap-2">
         {/* Filter by domain */}
         {domains.map((domain, index) => (

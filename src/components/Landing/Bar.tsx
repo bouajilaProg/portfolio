@@ -1,6 +1,10 @@
 import React from "react";
 
-function Bar() {
+interface Props {
+  setContactPopup: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Bar({ setContactPopup }: Props) {
   return (
     <>
       <nav className="hidden text-transparent z-40 md:flex right-0 justify-between items-center p-4 fixed top-0 w-full bg-white dark:bg-gray-900">
@@ -30,12 +34,12 @@ function Bar() {
             Education
           </a>
 
-          <a
-            href="#contact"
+          <button
+            onClick={() => setContactPopup(true)}
             className="text-gray-800 dark:text-white font-semibold transform transition-all duration-300 hover:scale-105 hover:text-primary-500"
           >
             Contact
-          </a>
+          </button>
           {/* minified switch */}
         </div>
       </nav>
