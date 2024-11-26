@@ -7,8 +7,8 @@ interface ProjectImageProps {
 
 function ProjectImage({ imageUrl, alt }: ProjectImageProps) {
   return (
-    <div>
-      <img src={imageUrl} alt={alt} />
+    <div className="relative">
+      <img className="object-cover w-full h-full" src={imageUrl} alt={alt} />
     </div>
   );
 }

@@ -10,11 +10,12 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
   return (
     <div className="flex flex-col cursor-pointer w-[300px] border border-gray-700 rounded-lg shadow-lg bg-gray-800 h-96 transform transition-transform hover:scale-105">
       {/* Image Section */}
-      <div className="w-full">
+
+      <div className="w-full aspect-w-16 aspect-h-9">
         <img
           src={project.imageLink}
           alt={project.title}
-          className="h-48 w-full object-cover rounded-t-lg"
+          className="object-cover w-full h-full rounded-t-lg"
         />
       </div>
 

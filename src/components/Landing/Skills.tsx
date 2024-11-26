@@ -2,54 +2,28 @@
 
 import { useState } from "react";
 import SkillTabs from "./SkillTabs";
-import {
-  FaCogs,
-  FaDatabase,
-  FaDev,
-  FaHandshake,
-  FaMobileAlt,
-  FaPaintBrush,
-  FaTools,
-} from "react-icons/fa";
-import { FaBrain, FaLaptopCode } from "react-icons/fa";
 import SkillGroup from "./SkillGroup";
-function Skills() {
-  const tabs = [
-    {
-      title: "all",
-      icon: <FaTools />,
-    },
-    {
-      title: "Front",
-      icon: <FaLaptopCode />,
-    },
-    {
-      title: "Back",
-      icon: <FaDatabase />,
-    },
-    {
-      title: "DevOps",
-      icon: <FaCogs />,
-    },
-    {
-      title: "AI",
-      icon: <FaBrain />,
-    },
-    {
-      title: "Soft",
-      icon: <FaHandshake />,
-    },
-  ];
+import skills from "@/data/SkillsData"; // Assuming the file path is correct
+import { FaTools } from "react-icons/fa";
 
-  type Tab = {
-    title: string;
-    icon: React.ReactNode;
-  };
+function Skills() {
+  // Create tabs from the skills data
+
+  let tabs = skills.map((skill) => ({
+    title: skill.domain,
+    icon: skill.icon,
+  }));
+
+  tabs = [{
+    title: "all",
+    icon: <FaTools />,
+  }, ...tabs];
+
   const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div id="skills" className="pt-40">
-      <div className="w-full min-h-screen ">
+      <div className="w-full min-h-screen">
         <h2 className="text-white text-4xl text-center">Skills</h2>
         <br />
         <div className="flex justify-center">
@@ -63,8 +37,11 @@ function Skills() {
               setActiveTab={setActiveTab}
             />
             <div>
+              {/* Filter the active skill group by domain */}
               <SkillGroup
-                titleFilter={tabs.map((tab) => tab.title)[activeTab]}
+                titleFilter={activeTab == 0
+                  ? "all"
+                  : skills[activeTab - 1].domain}
               />
             </div>
           </div>

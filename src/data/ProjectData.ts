@@ -24,7 +24,7 @@ const projects: Project[] = [
     description:
       "An offline tool built with Rust, Tauri, and React for competitive programmers to store and manage their docs and templates in XML format, providing a solution to the no Wi-Fi rule at competitions.",
     imageLink: "ProjectsImage/CoolDocs.png",
-    skills: ["Rust", "Tauri", "React", "XML", "Offline Storage"],
+    skills: ["Rust", "Tauri", "React", "XML"],
     domain: ["desktop"],
     githubLink: "https://github.com/bouajilaProg/cool-docs",
   },
@@ -32,20 +32,41 @@ const projects: Project[] = [
     title: "Good Talk",
     description:
       "A web application designed to enable users to chat seamlessly while incorporating an advanced censoring layer that detects and prevents bad words and abusive language, ensuring a safe and friendly communication environment.",
-    imageLink: "https://placehold.co/150",
+    imageLink: "ProjectsImage/GoodTalk.png",
     skills: [
-      "AWS Lambda",
-      "AWS Cognito",
-      "Next.js",
-      "AWS DynamoDB",
-      "S3",
+      "react",
+      "express",
       "AI",
       "NLP",
       "Postman",
       "React",
     ],
+    githubLink: "https://github.com/bouajilaProg/GoodTalk",
     domain: ["front", "back", "ai"],
   },
+
+  {
+    title: "Developer Portfolio",
+    description:
+      "A personal portfolio showcasing my skills, projects, and education as a full-stack developer with a passion for AI and DevOps. This portfolio highlights my technical expertise and includes sections on my experience, projects, and contact information.",
+    imageLink: "ProjectsImage/Portfolio.png",
+    skills: [
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "TypeScript",
+      "Node.js",
+    ],
+    domain: ["front", "back"],
+    githubLink: "https://github.com/bouajilaProg/portfolio",
+    projectLink: "/",
+  },
+];
+
+export default projects;
+
+{
+  /*
   {
     title: "Cars Hub",
     description:
@@ -81,22 +102,5 @@ const projects: Project[] = [
     ],
     domain: ["front", "back", "AI"],
   },
-  {
-    title: "Developer Portfolio",
-    description:
-      "A personal portfolio showcasing my skills, projects, and education as a full-stack developer with a passion for AI and DevOps. This portfolio highlights my technical expertise and includes sections on my experience, projects, and contact information.",
-    imageLink: "ProjectsImage/Portfolio.png",
-    skills: [
-      "React",
-      "Next.js",
-      "Tailwind CSS",
-      "TypeScript",
-      "Node.js",
-    ],
-    domain: ["front", "back"],
-    githubLink: "https://github.com/bouajilaProg/portfolio",
-    projectLink: "/",
-  },
-];
-
-export default projects;
+  */
+}

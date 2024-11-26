@@ -23,21 +23,11 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
-import {
-  FaBrain,
-  FaCogs,
-  FaDatabase,
-  FaHandshake,
-  FaHandsHelping,
-  FaLaptopCode,
-  FaLightbulb,
-  FaRocket,
-} from "react-icons/fa";
+import { FaBrain, FaHandsHelping, FaLightbulb, FaRocket } from "react-icons/fa";
 
 const skills = [
   {
     domain: "Front",
-    icon: <FaLaptopCode />,
     items: [
       { icon: <SiHtml5 />, title: "HTML" },
       { icon: <SiCss3 />, title: "CSS" },
@@ -51,28 +41,38 @@ const skills = [
   },
   {
     domain: "Back",
-    icon: <FaDatabase />,
     items: [
       { icon: <SiPostgresql />, title: "PostgreSQL" },
+      { icon: <SiMongodb />, title: "MongoDB" },
+      { icon: <SiSupabase />, title: "Supabase" },
+      { icon: <SiAwsamplify />, title: "AWS Amplify" },
       { icon: <SiExpress />, title: "Express" },
+      { icon: <SiFastapi />, title: "FastAPI" },
       { icon: <SiJest />, title: "Jest" },
     ],
   },
   {
     domain: "DevOps",
-    icon: <FaCogs />,
     items: [
       { icon: <SiGit />, title: "git" },
       { icon: <SiLinux />, title: "Linux" },
       { icon: <SiGnubash />, title: "Bash" },
       { icon: <SiDocker />, title: "Docker" },
+      { icon: <SiDocker />, title: "Compose" },
     ],
   },
-
+  {
+    domain: "AI",
+    items: [
+      { icon: <SiPython />, title: "Python" },
+      { icon: <SiPandas />, title: "Pandas" },
+      { icon: <SiKeras />, title: "Keras" },
+      { icon: <FaBrain />, title: "Llama" },
+      { icon: <SiOpencv />, title: "OpenCV" },
+    ],
+  },
   {
     domain: "Soft",
-
-    icon: <FaHandshake />,
     items: [
       { icon: <FaHandsHelping />, title: "Leadership" },
       { icon: <FaRocket />, title: "Fast Learner" },
