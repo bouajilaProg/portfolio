@@ -68,6 +68,14 @@ const skills = [
       { icon: <SiDocker />, title: "Docker" },
     ],
   },
+  {
+    domain: "AI",
+    icon: <FaBrain />,
+    items: [
+      { icon: <SiPython />, title: "Python" },
+      { icon: <SiOpencv />, title: "OpenCV" },
+    ],
+  },
 
   {
     domain: "Soft",
