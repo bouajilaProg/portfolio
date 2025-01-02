@@ -55,7 +55,7 @@ const skills = [
     items: [
       { icon: <SiPostgresql />, title: "PostgreSQL" },
       { icon: <SiExpress />, title: "Express" },
-      { icon: <SiJest />, title: "Jest" },
+      { icon: <SiMongodb />, title: "MongoDB" },
     ],
   },
   {
@@ -66,6 +66,7 @@ const skills = [
       { icon: <SiLinux />, title: "Linux" },
       { icon: <SiGnubash />, title: "Bash" },
       { icon: <SiDocker />, title: "Docker" },
+      { icon: <SiDocker />, title: "Compose" },
     ],
   },
   {
@@ -74,6 +75,7 @@ const skills = [
     items: [
       { icon: <SiPython />, title: "Python" },
       { icon: <SiOpencv />, title: "OpenCV" },
+      { icon: <FaBrain />, title: "YOLO" },
     ],
   },
 
@@ -83,7 +85,6 @@ const skills = [
     icon: <FaHandshake />,
     items: [
       { icon: <FaHandsHelping />, title: "Leadership" },
-      { icon: <FaRocket />, title: "Fast Learner" },
       { icon: <FaLightbulb />, title: "Listening" },
     ],
   },
