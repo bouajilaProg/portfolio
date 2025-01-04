@@ -57,7 +57,7 @@ const projects: Project[] = [
       "TypeScript",
       "Node.js",
     ],
-    domain: ["front", "back"],
+    domain: ["front"],
     githubLink: "https://github.com/bouajilaProg/portfolio",
     projectLink: "/",
   },

@@ -23,10 +23,6 @@ function ProjectFilter({ exportSelectedDomains }: ProjectFilterProps) {
       icon: <FaDatabase />,
     },
     {
-      title: "DevOps",
-      icon: <FaCogs />,
-    },
-    {
       title: "AI",
       icon: <FaBrain />,
     },
@@ -43,24 +39,25 @@ function ProjectFilter({ exportSelectedDomains }: ProjectFilterProps) {
   };
 
   return (
-    <div className="mt-4 flex ml-2  w-full flex-wrap justify-center gap-2">
-      <div className=" grid grid-cols-4 gap-2">
+    <div className="mt-4 flex ml-2 w-full flex-wrap justify-center gap-6">
+      <div className="grid grid-cols-3 gap-6">
         {/* Filter by domain */}
         {domains.map((domain, index) => (
-          <label key={index} className="flex items-center gap-1">
+          <label
+            key={index}
+            className="flex items-center justify-center gap-2"
+          >
             <input
               type="checkbox"
               checked={selectedDomains.includes(domain.title)}
-              onChange={() =>
-                handleCheckboxChange(domain.title)}
-              className="form-checkbox text-gray-700"
-              hidden
+              onChange={() => handleCheckboxChange(domain.title)}
+              className="hidden"
             />
             <span
-              className={`${selectedDomains.includes(domain.title) == false
-                  ? "border-gray-500 border text-white"
-                  : "bg-blue-400 text-blue-900 border-blue-400 border"
-                } text-xs font-medium px-2.5 py-0.5 w-16 md:w-24 text-center rounded-full cursor-pointer`}
+              className={`${selectedDomains.includes(domain.title)
+                  ? "bg-blue-600 text-white border-blue-600"
+                  : "bg-gray-800 text-gray-300 border-gray-700"
+                } text-xs font-medium px-4 py-2 w-20 md:w-28 text-center rounded-full transition-colors duration-300 cursor-pointer hover:bg-blue-500 hover:border-blue-500`}
             >
               {domain.title}
             </span>
