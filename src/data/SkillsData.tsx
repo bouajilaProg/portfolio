@@ -47,15 +47,19 @@ const skills = [
       { icon: <SiTypescript />, title: "TypeScript" },
       { icon: <SiReact />, title: "React" },
       { icon: <SiNextdotjs />, title: "Next.js" },
+      { icon: <SiGit />, title: "git" },
     ],
   },
   {
     domain: "Back",
     icon: <FaDatabase />,
     items: [
+      { icon: <SiJavascript />, title: "JavaScript" },
+      { icon: <SiTypescript />, title: "TypeScript" },
       { icon: <SiPostgresql />, title: "PostgreSQL" },
       { icon: <SiExpress />, title: "Express" },
       { icon: <SiMongodb />, title: "MongoDB" },
+      { icon: <SiGit />, title: "git" },
     ],
   },
   {
