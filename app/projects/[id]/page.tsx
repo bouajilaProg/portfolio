@@ -1,8 +1,25 @@
 import { notFound } from "next/navigation"
 import ProjectPage from "../../../components/ProjectPage"
 
+type SectionType = "image-text" | "text-image" | "text-only" | "image-only";
+
+interface Project {
+  id: number
+  title: string
+  description: string
+  image: string
+  technologies: string[]
+  fullDescription: string
+  sections: {
+    type: SectionType
+    image?: string
+    text: string
+  }[]
+
+}
+
 // This is a mock database. In a real application, you would fetch this data from an API or database.
-const projects = [
+const projects: Project[] = [
   {
     id: 1,
     title: "Project 1",
@@ -17,8 +34,7 @@ const projects = [
         text: "The frontend of this application is built with React, providing a smooth and responsive user interface.",
       },
       {
-        type: "image-text",
-        image: "/placeholder.svg?height=400&width=600",
+        type: "text-only",
         text: "The backend is powered by Node.js, handling data processing and API requests efficiently.",
       },
       {
@@ -36,7 +52,7 @@ const projects = [
     fullDescription: "This is an AI-powered tool that uses machine learning for data analysis.",
     sections: [
       {
-        type: "image-text",
+        type: "text-image",
         image: "/placeholder.svg?height=400&width=600",
         text: "The core of this project is built with Python, leveraging its powerful data processing capabilities.",
       },
@@ -55,7 +71,13 @@ const projects = [
 ]
 
 export default function Project({ params }: { params: { id: string } }) {
-  const project = projects.find((p) => p.id === Number.parseInt(params.id))
+  const projectId = Number.parseInt(params.id)
+
+  if (isNaN(projectId)) {
+    notFound()
+  }
+
+  const project = projects.find((p) => p.id === projectId)
 
   if (!project) {
     notFound()
@@ -63,4 +85,3 @@ export default function Project({ params }: { params: { id: string } }) {
 
   return <ProjectPage project={project} />
 }
-

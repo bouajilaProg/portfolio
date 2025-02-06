@@ -1,19 +1,20 @@
 "use client"
+import React, { ReactNode } from 'react'
+import { SiArduino, SiMqtt } from 'react-icons/si'
+import { FaDatabase } from 'react-icons/fa'
+import Image from 'next/image'
+import TextImage from '@/app/projects/[id]/sectionComponents/TextImage'
+import TextOnly from '@/app/projects/[id]/sectionComponents/TextOnly'
+import ImageOnly from '@/app/projects/[id]/sectionComponents/ImageOnly'
+import ImageText from '@/app/projects/[id]/sectionComponents/ImageText'
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { FaReact, FaNodeJs, FaPython, FaDatabase } from "react-icons/fa"
-import { SiTensorflow, SiArduino, SiMqtt } from "react-icons/si"
-
-const techIcons: { [key: string]: JSX.Element } = {
-  React: <FaReact />,
-  "Node.js": <FaNodeJs />,
-  Python: <FaPython />,
-  TensorFlow: <SiTensorflow />,
+const techIcons: Record<string, ReactNode> = {
   Arduino: <SiArduino />,
   MQTT: <SiMqtt />,
   Database: <FaDatabase />,
 }
+
+type SectionType = "image-text" | "text-image" | "text-only" | "image-only";
 
 interface ProjectPageProps {
   project: {
@@ -24,7 +25,7 @@ interface ProjectPageProps {
     technologies: string[]
     fullDescription: string
     sections: {
-      type: "image-text" | "text-only"
+      type: SectionType
       image?: string
       text: string
     }[]
@@ -55,31 +56,21 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         </div>
       </div>
       <p className="text-lg mb-8">{project.fullDescription}</p>
-      {project.sections.map((section, index) => (
-        <motion.div
-          key={index}
-          className={`mb-12 ${section.type === "image-text" ? "md:flex md:items-center md:space-x-8" : ""}`}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-        >
-          {section.type === "image-text" && section.image && (
-            <div className={`mb-4 md:mb-0 ${index % 2 === 0 ? "md:order-1" : "md:order-2"} md:w-1/2`}>
-              <Image
-                src={section.image || "/placeholder.svg"}
-                alt={`Project section ${index + 1}`}
-                width={600}
-                height={400}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
-          )}
-          <div className={section.type === "image-text" ? "md:w-1/2" : ""}>
-            <p className="text-lg">{section.text}</p>
-          </div>
-        </motion.div>
-      ))}
+      {project.sections.map((section, index) => {
+        switch (section.type) {
+          case "text-image":
+            return <TextImage key={index} section={section} index={index} />
+          case "text-only":
+            return <TextOnly key={index} section={section} index={index} />
+          case "image-only":
+            return <ImageOnly key={index} section={section} index={index} />
+          case "image-text":
+            return <ImageText key={index} section={section} index={index} />
+          default:
+            console.error("Unknown section type:", section.type);
+            return null;
+        }
+      })}
     </div>
   )
 }
-
