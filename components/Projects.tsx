@@ -2,48 +2,16 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import projects from "@/data/projects"
 import Link from "next/link"
 
-const projects = [
-  {
-    id: 1,
-    title: "Project 1",
-    description: "A web application",
-    domain: "Web",
-    image: "/placeholder.svg?height=200&width=300",
-    technologies: ["React", "Node.js"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-  },
-  {
-    id: 2,
-    title: "Project 2",
-    description: "An AI-powered tool",
-    domain: "AI",
-    image: "/placeholder.svg?height=200&width=300",
-    technologies: ["Python", "TensorFlow"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-  },
-  {
-    id: 3,
-    title: "Project 3",
-    description: "An IoT solution",
-    domain: "IoT",
-    image: "/placeholder.svg?height=200&width=300",
-    technologies: ["Arduino", "MQTT"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-  },
-  // Add more projects as needed
-]
 
 const domains = ["All", "Web", "AI", "IoT"]
 
 export default function Projects() {
   const [filter, setFilter] = useState("All")
 
-  const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.domain === filter)
+  const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.header.domain === filter)
 
   return (
     <section id="projects" className="py-20">
@@ -75,17 +43,17 @@ export default function Projects() {
               >
                 <Link href={`/projects/${project.id}`} className="block">
                   <motion.img
-                    src={project.image}
-                    alt={project.title}
+                    src={project.header.image}
+                    alt={project.header.title}
                     className="w-full h-48 object-cover"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   />
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-gray-400 mb-4">{project.description}</p>
+                    <h3 className="text-xl font-semibold mb-2">{project.header.title}</h3>
+                    <p className="text-gray-400 mb-4">{project.header.description}</p>
                     <div className="flex flex-wrap mb-4">
-                      {project.technologies.map((tech) => (
+                      {project.header.technologies.map((tech) => (
                         <span key={tech} className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-sm mr-2 mb-2">
                           {tech}
                         </span>

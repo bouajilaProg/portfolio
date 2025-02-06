@@ -3,20 +3,18 @@ import React from 'react'
 import { motion } from "framer-motion"
 
 interface SectionData {
+  index: number
   text: string
 }
 
-function TextOnly({ section, index }: { section: SectionData; index: number }) {
+function TextOnly({ index, text }: SectionData) {
   return (
-    <motion.div
+    <div
       key={index}
       className="mb-12"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <p className="text-lg">{section.text}</p>
-    </motion.div>
+      <p className="text-lg">{text}</p>
+    </div>
   )
 }
 
