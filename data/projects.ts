@@ -6,8 +6,8 @@ interface projectHeader {
   domain: string[],
   image: string,
   technologies: string[],
-  liveUrl: string,
-  githubUrl: string,
+  liveUrl?: string,
+  githubUrl?: string,
 }
 
 interface projectBody {
@@ -36,7 +36,7 @@ const projects: project[] = [
       title: "CRI Website",
       description:
         "Developed a website for the robotics club at ISIMM that enables users to borrow materials from the club",
-      domain: ["front", "back"],
+      domain: ["Front", "Back"],
       image: "ProjectsImage/CRI.png",
       technologies: [
         "React",
@@ -47,7 +47,6 @@ const projects: project[] = [
         "CSS",
         "JavaScript",
       ],
-      liveUrl: "", // Add live URL if available
       githubUrl: "https://github.com/bouajilaProg/CRI-website",
     },
     body: {
@@ -73,10 +72,9 @@ const projects: project[] = [
       title: "Cool Docs",
       description:
         "An offline tool built with Rust, Tauri, and React for competitive programmers to store and manage their docs and templates in XML format, providing a solution to the no Wi-Fi rule at competitions.",
-      domain: ["desktop"],
+      domain: ["Desktop"],
       image: "ProjectsImage/CoolDocs.png",
       technologies: ["Rust", "Tauri", "React", "XML"],
-      liveUrl: "", // Add live URL if available
       githubUrl: "https://github.com/bouajilaProg/cool-docs",
     },
     body: {
@@ -97,7 +95,7 @@ const projects: project[] = [
       title: "Good Talk",
       description:
         "A web application designed to enable users to chat seamlessly while incorporating an advanced censoring layer that detects and prevents bad words and abusive language, ensuring a safe and friendly communication environment.",
-      domain: ["front", "back", "ai"],
+      domain: ["Front", "Back", "AI"],
       image: "ProjectsImage/GoodTalk.png",
       technologies: [
         "react",
@@ -107,7 +105,6 @@ const projects: project[] = [
         "Postman",
         "React",
       ],
-      liveUrl: "", // Add live URL if available
       githubUrl: "https://github.com/bouajilaProg/GoodTalk",
     },
     body: {
@@ -116,9 +113,8 @@ const projects: project[] = [
         {
           type: "text-image",
           text: "Details about the AI model used and its training.",
-          image: "ProjectsImage/GoodTalk_ai.png" // Example image
+          image: "ProjectsImage/GoodTalk_ai.png"
         },
-        // ... more sections
       ],
     },
   },
@@ -128,7 +124,7 @@ const projects: project[] = [
       title: "Developer Portfolio",
       description:
         "A personal portfolio showcasing my skills, projects, and education as a full-stack developer with a passion for AI and DevOps. This portfolio highlights my technical expertise and includes sections on my experience, projects, and contact information.",
-      domain: ["front"],
+      domain: ["Front"],
       image: "ProjectsImage/Portfolio.png",
       technologies: [
         "React",
@@ -137,7 +133,7 @@ const projects: project[] = [
         "TypeScript",
         "Node.js",
       ],
-      liveUrl: "/", // Add live URL if available
+      liveUrl: "/",
       githubUrl: "https://github.com/bouajilaProg/portfolio",
     },
     body: {

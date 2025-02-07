@@ -38,17 +38,19 @@ const ProjectCard = ({ project }: { project: project }) => {
               {project.header.title}
             </h3>
             <div className="flex gap-2 text-white">
-              <a
-                href={project.header.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-blue-400 text-xl"
-                onClick={handleClick} // Added onClick handler
-              >
-                <SiGithub />
-              </a>
+              {(project.header.githubUrl != "") &&
+                <a
+                  href={project.header.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-blue-400 text-xl"
+                  onClick={handleClick} // Added onClick handler
+                >
+                  <SiGithub />
+                </a>
+              }
 
-              <a
+              {(project.header.liveUrl) && <a
                 href={project.header.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -57,12 +59,16 @@ const ProjectCard = ({ project }: { project: project }) => {
               >
                 <FaExternalLinkAlt />
               </a>
+              }
             </div>
           </div>
-          <p className="text-gray-400 mb-4">{project.header.description}</p>
-          <div className="flex flex-wrap mb-4">
+
+          <p className="text-gray-400 mb-4 line-clamp-4">
+            {project.header.description}
+          </p>
+          <div className="flex flex-nowrap overflow-x-auto mb-1">
             {project.header.technologies.map((tech) => (
-              <span key={tech} className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-sm mr-2 mb-2">
+              <span key={tech} className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-sm mr-2  whitespace-nowrap mb-3">
                 {tech}
               </span>
             ))}
