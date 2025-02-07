@@ -3,7 +3,7 @@
 interface projectHeader {
   title: string,
   description: string,
-  domain: string,
+  domain: string[],
   image: string,
   technologies: string[],
   liveUrl: string,
@@ -14,7 +14,7 @@ interface projectBody {
   fullDescription: string,
   sections: {
     title?: string,
-    type: string,
+    type: "title-only" | "text-image" | "image-text | image-only",
     image?: string,
     text?: string,
   }[]
@@ -29,73 +29,129 @@ interface project {
 
 export type { project, projectHeader, projectBody }
 
-/*
-{
-    id: 1,
-    header: {
-      title: "Project 1",
-      description: "A web application",
-      domain: "Web",
-      image: "/placeholder.svg?height=200&width=300",
-      technologies: ["React", "Node.js"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-    },
-    body: {
-      fullDescription: "This is a web application that does something cool.",
-      sections: [
-        {
-          type: "title",
-          title: "Section 1",
-        },
-        {
-          type: "text-image",
-          image: "/placeholder.svg?height=400&width=600",
-          text: "The core of this project is built with Python, leveraging its powerful data processing capabilities.",
-        },
-        {
-          type: "image-text",
-          image: "/placeholder.svg?height=400&width=600",
-          text: "The core of this project is built with Python, leveraging its powerful data processing capabilities.",
-        },
-      ],
-    }
-  }
-*/
-
 const projects: project[] = [
   {
     id: 1,
     header: {
-      title: "Project 1",
-      description: "A web application",
-      domain: "Web",
-      image: "/placeholder.svg?height=200&width=300",
-      technologies: ["React", "Node.js"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
+      title: "CRI Website",
+      description:
+        "Developed a website for the robotics club at ISIMM that enables users to borrow materials from the club",
+      domain: ["front", "back"],
+      image: "ProjectsImage/CRI.png",
+      technologies: [
+        "React",
+        "Express",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "HTML",
+        "CSS",
+        "JavaScript",
+      ],
+      liveUrl: "", // Add live URL if available
+      githubUrl: "https://github.com/bouajilaProg/CRI-website",
     },
     body: {
-      fullDescription: "This is a web application that does something cool.",
+      fullDescription: "A more detailed description of the CRI Website project.", // Add detailed description
       sections: [
         {
-          type: "title",
-          title: "Section 1",
+          type: "text-image",
+          text: "Explain a specific feature or challenge in this section.",
+          image: "ProjectsImage/CRI_specific_feature.png" // Example image
         },
         {
           type: "text-image",
-          image: "/placeholder.svg?height=400&width=600",
-          text: "The core of this project is built with Python, leveraging its powerful data processing capabilities.",
-        },
-        {
-          type: "image-text",
-          image: "/placeholder.svg?height=400&width=600",
-          text: "The core of this project is built with Python, leveraging its powerful data processing capabilities.",
-        },
+          text: "Another section with text and image.",
+          image: "ProjectsImage/CRI_another_feature.png" // Example image
+        }
+        // ... more sections as needed
       ],
-    }
-  }
-]
-
+    },
+  },
+  {
+    id: 2,
+    header: {
+      title: "Cool Docs",
+      description:
+        "An offline tool built with Rust, Tauri, and React for competitive programmers to store and manage their docs and templates in XML format, providing a solution to the no Wi-Fi rule at competitions.",
+      domain: ["desktop"],
+      image: "ProjectsImage/CoolDocs.png",
+      technologies: ["Rust", "Tauri", "React", "XML"],
+      liveUrl: "", // Add live URL if available
+      githubUrl: "https://github.com/bouajilaProg/cool-docs",
+    },
+    body: {
+      fullDescription: "Detailed description of Cool Docs and its functionalities.",
+      sections: [
+        {
+          type: "text-image",
+          text: "Discuss the benefits of using XML for document storage.",
+          image: "ProjectsImage/CoolDocs_xml.png" // Example image
+        },
+        // ... more sections
+      ],
+    },
+  },
+  {
+    id: 3,
+    header: {
+      title: "Good Talk",
+      description:
+        "A web application designed to enable users to chat seamlessly while incorporating an advanced censoring layer that detects and prevents bad words and abusive language, ensuring a safe and friendly communication environment.",
+      domain: ["front", "back", "ai"],
+      image: "ProjectsImage/GoodTalk.png",
+      technologies: [
+        "react",
+        "express",
+        "AI",
+        "NLP",
+        "Postman",
+        "React",
+      ],
+      liveUrl: "", // Add live URL if available
+      githubUrl: "https://github.com/bouajilaProg/GoodTalk",
+    },
+    body: {
+      fullDescription: "Explain the AI/NLP implementation for censoring.",
+      sections: [
+        {
+          type: "text-image",
+          text: "Details about the AI model used and its training.",
+          image: "ProjectsImage/GoodTalk_ai.png" // Example image
+        },
+        // ... more sections
+      ],
+    },
+  },
+  {
+    id: 4,
+    header: {
+      title: "Developer Portfolio",
+      description:
+        "A personal portfolio showcasing my skills, projects, and education as a full-stack developer with a passion for AI and DevOps. This portfolio highlights my technical expertise and includes sections on my experience, projects, and contact information.",
+      domain: ["front"],
+      image: "ProjectsImage/Portfolio.png",
+      technologies: [
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "TypeScript",
+        "Node.js",
+      ],
+      liveUrl: "/", // Add live URL if available
+      githubUrl: "https://github.com/bouajilaProg/portfolio",
+    },
+    body: {
+      fullDescription: "Details about the portfolio's architecture and design choices.",
+      sections: [
+        {
+          type: "text-image",
+          text: "Discuss the technologies used and why they were chosen.",
+          image: "ProjectsImage/Portfolio_tech.png" // Example image
+        },
+        // ... more sections
+      ],
+    },
+  },
+];
 
 export default projects;

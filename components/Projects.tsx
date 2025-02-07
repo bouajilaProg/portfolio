@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import projects from "@/data/projects"
+import projects, { project } from "@/data/projects"
 import Link from "next/link"
 import { SiGithub } from "react-icons/si"
 import { FaExternalLinkAlt } from "react-icons/fa"
@@ -13,8 +13,28 @@ import ProjectCard from "./ProjectCard"
 export default function Projects() {
   const [filter, setFilter] = useState("All")
 
-  const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.header.domain === filter)
-  const domains = ["All", ...new Set(projects.map((project) => project.header.domain))]
+  const getDomains = (projects: project[]): string[] => {
+    const domains = ["All"];
+
+    projects.forEach((project) => {
+      project.header.domain.forEach((domain) => {
+        if (!domains.includes(domain)) {
+          domains.push(domain);
+          console.log(domains);
+        }
+      });
+    });
+
+    return domains;
+  };
+
+  const getFilteredProjects = (projects: project[], filter: string): project[] => {
+    if (filter === "All") return projects;
+    return projects.filter((project) => project.header.domain.includes(filter));
+  };
+
+  const filteredProjects = getFilteredProjects(projects, filter);
+  const domains = getDomains(projects);
 
   return (
     <section id="projects" className="py-20">
