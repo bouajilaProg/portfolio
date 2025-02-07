@@ -11,18 +11,22 @@ interface Icertifications {
 }
 
 
+
 export const certifications: Icertifications[] = [
-  { name: "the bits and bytes of computer networking", issuer: "coursera google", year: "2024" },
-  { name: "operating systems and you : become a power user", issuer: "Coursera Google", year: "2024" },
-  { name: "Intro to git and github", issuer: "Coursera Google", year: "2024" },
-  { name: "Technical support fundomontals", issuer: "Coursera Google", year: "2024" },
-]
+  { name: "The Bits and Bytes of Computer Networking", issuer: "Coursera Google", year: "2024" },
+  { name: "Operating Systems and You: Become a Power User", issuer: "Coursera Google", year: "2024" },
+  { name: "Intro to Git and GitHub", issuer: "Coursera Google", year: "2024" },
+  { name: "Technical Support Fundamentals", issuer: "Coursera Google", year: "2024" },
+];
 
-
-export const education: Ieducation = {
-  university: "Institut of mathematics and computer science monastir",
+export const education: Ieducation[] = [{
+  university: "Institut of mathematics namend computer science monastir",
   degree: "Bachelor of Science in Computer Science",
   year: "2022 - now",
-}
-
+},
+{
+  university: "Habib Thameur high school",
+  degree: "Baccalaureate in computer science",
+  year: "2021 - 2022",
+}]
 

@@ -4,14 +4,17 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import projects from "@/data/projects"
 import Link from "next/link"
+import { SiGithub } from "react-icons/si"
+import { FaExternalLinkAlt } from "react-icons/fa"
+import ProjectCard from "./ProjectCard"
 
 
-const domains = ["All", "Web", "AI", "IoT"]
 
 export default function Projects() {
   const [filter, setFilter] = useState("All")
 
   const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.header.domain === filter)
+  const domains = ["All", ...new Set(projects.map((project) => project.header.domain))]
 
   return (
     <section id="projects" className="py-20">
@@ -33,40 +36,12 @@ export default function Projects() {
         <AnimatePresence>
           <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Link href={`/projects/${project.id}`} className="block">
-                  <motion.img
-                    src={project.header.image}
-                    alt={project.header.title}
-                    className="w-full h-48 object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{project.header.title}</h3>
-                    <p className="text-gray-400 mb-4">{project.header.description}</p>
-                    <div className="flex flex-wrap mb-4">
-                      {project.header.technologies.map((tech) => (
-                        <span key={tech} className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-sm mr-2 mb-2">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
+              <ProjectCard project={project} key={project.id} />
             ))}
           </motion.div>
         </AnimatePresence>
       </div>
-    </section>
+    </section >
   )
 }
 

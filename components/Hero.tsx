@@ -22,7 +22,7 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <Image
-              src="/placeholder.svg?height=400&width=400"
+              src="/profile-pic.png"
               alt="Profile"
               width={400}
               height={400}
