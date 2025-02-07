@@ -24,8 +24,8 @@ export default function Hero() {
             <Image
               src="/profile-pic.png"
               alt="Profile"
-              width={400}
-              height={400}
+              width={500}
+              height={500}
               className="rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
             />
           </motion.div>
@@ -35,10 +35,11 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h1 className="text-4xl font-bold mb-4">Your Name</h1>
-            <p className="text-xl text-gray-300 mb-6">
-              Full-stack developer specializing in web development, AI integration, and IoT solutions.
+            <h1 className="text-4xl font-bold mb-4">Mohamed Yessine Bouajila</h1>
+            <p className="text-xl text-gray-100 mb-6">
+              <span className="text-blue-700">Inventor</span>{" "}at heart, crafting innovative and practical solutions that seamlessly blend creativity with real-world utility.
             </p>
+
             <motion.button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200"
               whileHover={{ scale: 1.05 }}
