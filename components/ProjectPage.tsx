@@ -10,12 +10,9 @@ import ImageText from '@/app/projects/[id]/sectionComponents/ImageText'
 import { project } from '@/data/projects'
 import Title from '@/app/projects/[id]/sectionComponents/Title'
 import { motion } from 'framer-motion'
+import icons from '@/data/icons'
 
-const techIcons: Record<string, ReactNode> = {
-  Arduino: <SiArduino />,
-  MQTT: <SiMqtt />,
-  Database: <FaDatabase />,
-};
+
 
 type SectionType = "image-text" | "text-image" | "text-only" | "image-only" | "title";
 
@@ -56,7 +53,7 @@ export default function ProjectPage({ project }: { project: project }) {
               key={tech}
               className="flex items-center space-x-2 bg-gray-800 px-3 py-2 rounded-full"
             >
-              {techIcons[tech] || <span className="w-6 h-6" />}
+              {icons[tech] || <span className="w-6 h-6" />}
               <span>{tech}</span>
             </div>
           ))}

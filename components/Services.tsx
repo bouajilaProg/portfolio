@@ -1,15 +1,9 @@
 "use client"
 
+import { services } from "@/data/Services"
 import { motion } from "framer-motion"
 import { FaCode, FaServer, FaRobot, FaMicrochip, FaCloud } from "react-icons/fa"
 
-const services = [
-  { name: "Web Development", icon: FaCode },
-  { name: "API Integration", icon: FaServer },
-  { name: "AI Integration", icon: FaRobot },
-  { name: "IoT Integration", icon: FaMicrochip },
-  { name: "Infrastructure Setups", icon: FaCloud },
-]
 
 export default function Services() {
   return (
@@ -29,8 +23,7 @@ export default function Services() {
               <service.icon className="text-4xl text-blue-500 mb-4" />
               <h3 className="text-xl font-semibold mb-2">{service.name}</h3>
               <p className="text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
+                {service.description}
               </p>
             </motion.div>
           ))}

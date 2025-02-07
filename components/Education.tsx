@@ -1,18 +1,8 @@
 "use client"
 
+import { certifications, education } from "@/data/Education"
 import { motion } from "framer-motion"
 
-const education = {
-  university: "University Name",
-  degree: "Bachelor of Science in Computer Science",
-  year: "2018 - 2022",
-}
-
-const certifications = [
-  { name: "AWS Certified Developer", issuer: "Amazon Web Services", year: "2023" },
-  { name: "Google Cloud Professional Data Engineer", issuer: "Google Cloud", year: "2022" },
-  { name: "TensorFlow Developer Certificate", issuer: "Google", year: "2021" },
-]
 
 export default function Education() {
   return (
