@@ -39,15 +39,26 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12">Projects</h2>
+        <motion.h2
+          className="text-3xl font-bold text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          Projects
+        </motion.h2>
         <div className="flex justify-center space-x-4 mb-8">
           {domains.map((domain) => (
             <motion.button
               key={domain}
-              className={`px-4 py-2 rounded-full ${filter === domain ? "bg-blue-500 text-white" : "bg-gray-700 text-gray-300"}`}
+              className={`px-4 py-2 rounded-full ${filter === domain ? "bg-blue-500 text-white" : "bg-gray-700 text-gray-300"
+                }`}
               onClick={() => setFilter(domain)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             >
               {domain}
             </motion.button>
@@ -61,7 +72,7 @@ export default function Projects() {
           </motion.div>
         </AnimatePresence>
       </div>
-    </section >
-  )
+    </section>
+  );
 }
 
