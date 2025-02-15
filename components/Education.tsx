@@ -26,7 +26,7 @@ export default function Education() {
           }
           <div>
             <h3 className="text-2xl font-semibold mb-4">Certifications</h3>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="flex flex-col gap-4">
               {certifications.map((cert, index) => (
                 <motion.div
                   key={cert.name}

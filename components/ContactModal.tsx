@@ -86,7 +86,7 @@ function ContactModal() {
               </a>
             </div>
             <a
-              href="/resume.pdf"
+              href="/bouajila-mohamed-yessine.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-500 hover:bg-blue-600 block text-center mb-2 text-white font-bold py-2 px-4 rounded-full w-full transition-colors duration-200"

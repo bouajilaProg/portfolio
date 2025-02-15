@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Link from 'next/link';
 import { SiGithub } from "react-icons/si";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { project, projectHeader } from "@/data/projects";
+import { project } from "@/data/projects";
 
 const ProjectCard = ({ project }: { project: project }) => {
 
@@ -20,11 +20,8 @@ const ProjectCard = ({ project }: { project: project }) => {
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.3 }}
     >
-      {/* to use when i have a ready project page 
       <Link href={`/projects/${project.id}`} className="block">
-      */}
 
-      <Link href={"#projects"} className="block">
         <motion.img
           src={project.header.image}
           alt={project.header.title}
@@ -63,7 +60,7 @@ const ProjectCard = ({ project }: { project: project }) => {
             </div>
           </div>
 
-          <p className="text-gray-400 mb-4 line-clamp-4">
+          <p className="text-gray-400 mb-4 line-clamp-4 h-24">
             {project.header.description}
           </p>
           <div className="flex flex-nowrap overflow-x-auto mb-1">

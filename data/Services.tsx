@@ -1,4 +1,5 @@
 import { FaCloud, FaCode, FaMicrochip, FaRobot, FaServer } from "react-icons/fa"
+import { FaBugSlash } from "react-icons/fa6";
 
 interface IService {
   name: string
@@ -33,5 +34,10 @@ export const services: IService[] = [
     icon: FaCloud,
     description: "Deploying and optimizing cloud or on-premise infrastructure for scalability and security."
   },
+  {
+    name: "Quality Assurance",
+    icon: FaBugSlash,
+    description: "Ensuring the quality and reliability of your applications with automated testing and QA processes"
+  }
 ]
 

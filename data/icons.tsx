@@ -1,6 +1,8 @@
-import { FaReact, FaHtml5, FaCss3Alt, FaBootstrap, FaGitAlt, FaLinux, FaDocker } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript, SiJavascript, SiPostgresql, SiExpress, SiMongodb, SiTailwindcss, SiPython, SiOpencv, SiNodedotjs } from "react-icons/si";
+import { FaReact, FaHtml5, FaCss3Alt, FaBootstrap, FaGitAlt, FaLinux, FaDocker, FaBrain } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiJavascript, SiPostgresql, SiExpress, SiMongodb, SiTailwindcss, SiPython, SiOpencv, SiNodedotjs, SiRust, SiTauri, SiXml, SiPostman } from "react-icons/si";
 import { MdRecordVoiceOver, MdSupervisorAccount } from "react-icons/md";
+import { TbFileTypeXml } from "react-icons/tb";
+import { RiKakaoTalkLine } from "react-icons/ri";
 
 const icons: Record<string, JSX.Element> = {
   HTML: <FaHtml5 />,
@@ -22,6 +24,12 @@ const icons: Record<string, JSX.Element> = {
   Leadership: <MdSupervisorAccount />,
   Listening: <MdRecordVoiceOver />,
   "Node.js": <SiNodedotjs />,
+  Rust: <SiRust />,
+  Tauri: <SiTauri />,
+  XML: <TbFileTypeXml />,
+  NLP: <RiKakaoTalkLine />,
+  Postman: <SiPostman />,
+  AI: <FaBrain />,
 };
 
 export default icons;
