@@ -20,7 +20,6 @@ export default function Projects() {
       project.header.domain.forEach((domain) => {
         if (!domains.includes(domain)) {
           domains.push(domain);
-          console.log(domains);
         }
       });
     });
