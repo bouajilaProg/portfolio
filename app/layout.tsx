@@ -5,10 +5,9 @@ import Navbar from "../components/Navbar"
 import ContactModal from "@/components/ContactModal"
 import { ModalProvider } from "@/contexts/ModalContext"
 
-const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Your Portfolio",
+  title: "bouajilaProg ",
   description: "A showcase of my work and skills",
 }
 
