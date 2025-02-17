@@ -9,6 +9,7 @@ import { ModalProvider } from "@/contexts/ModalContext"
 export const metadata = {
   title: "bouajilaProg ",
   description: "A showcase of my work and skills",
+  icons: { icon: "/favicon.ico" }
 }
 
 export default function RootLayout({
