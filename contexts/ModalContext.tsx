@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { ModalContextType } from './ContextsTypes';
 
 interface ModalContextProps {
@@ -11,7 +11,6 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 function ModalProvider({ children }: ModalContextProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   return (
     <ModalContext.Provider value={{ isModalOpen, setIsModalOpen }}>
       {children}

@@ -35,13 +35,11 @@ export default function Navbar() {
 
         <div className=" space-x-6 hidden md:flex">
           {navItems.map((item) => (
-            <motion.div key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div key={item.name} whileTap={{ scale: 0.95 }}>
               <Link
                 href={item.href}
-                className={`px-3 py-2 rounded-md text-md font-medium ${activeItem === item.name
-                  ? "text-blue-500"
-                  : "text-gray-300 hover:text-gray-200"
-                  } transition-colors duration-200`}
+                className={`px-3 py-2 rounded-md text-md font-medium text-white hover:text-blue-500
+                   transition-colors duration-200`}
                 onClick={() => setActiveItem(item.name)}
               >
                 {item.name}

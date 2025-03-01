@@ -1,5 +1,5 @@
 "use client"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { FaLinkedin, FaGithub, FaCopy, FaEnvelope } from "react-icons/fa"
 import React from 'react'
@@ -12,6 +12,7 @@ interface ModalContextType {
 }
 function ContactModal() {
 
+
   if (ModalContext === undefined) {
     return <div>ModalContext is undefined</div>
   }
@@ -19,6 +20,18 @@ function ContactModal() {
   const modalContext = useContext(ModalContext);
   const { isModalOpen, setIsModalOpen } = modalContext as ModalContextType;
 
+  // click outside effect
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (e.target === document.querySelector(".fixed")) {
+        setIsModalOpen(false)
+      }
+    }
+    document.addEventListener("click", handleClickOutside)
+    return () => {
+      document.removeEventListener("click", handleClickOutside)
+    }
+  }, [isModalOpen])
 
   const [isCopied, setIsCopied] = useState(false)
   const email = "bouajilamedyessine@gmail.com"
