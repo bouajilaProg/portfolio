@@ -75,15 +75,10 @@ function ContactModal() {
                 <FaLinkedin />
               </a>
               <a
-
                 href="https://github.com/bouajilaprog"
-
                 target="_blank"
-
                 rel="noopener noreferrer"
-
                 className="text-blue-500 hover:text-blue-400 text-2xl"
-
               >
 
                 <FaGithub />
