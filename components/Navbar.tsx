@@ -167,7 +167,7 @@ export default function Navbar() {
                   onClick={handleContactClick}
                   className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-all duration-200"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <FiMessageCircle className="w-4 h-4" />
                   Contact Me
                 </button>
               </motion.div>

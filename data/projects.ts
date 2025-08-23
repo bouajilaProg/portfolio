@@ -132,30 +132,46 @@ const projects: project[] = [
     },
   },
 
-  // portfolio
+
+
+
   {
     "id": 4,
     "header": {
-      "title": "Developer Portfolio",
-      "description": "A personal portfolio showcasing my skills, projects, and education as a full-stack developer with a passion for AI and DevOps.",
-      "domain": ["Front"],
-      "image": "/ProjectsImage/Portfolio.png",
+      "title": "shead",
+      "description": "A powerful CLI utility that enhances the traditional `read` command with type verification, multiselect options, and advanced input handling for shell scripting.",
+      "domain": ["CLI", "DevOps", "Productivity"],
+      "image": "/ProjectsImage/Shead.png",
       "technologies": [
-        "React",
-        "Next.js",
-        "Tailwind",
-        "TypeScript",
-        "Node.js"
+        "Rust",
+        "Shell",
+        "CLI Tools"
       ],
-      "liveUrl": "/",
-      "githubUrl": "https://github.com/bouajilaProg/portfolio"
+      "githubUrl": "https://github.com/bouajilaProg/shead"
     },
     "body": {
-      "fullDescription": "This portfolio website serves as a central hub for showcasing my skills, projects, and experience as a full-stack developer.  It's designed to provide visitors with a clear and concise overview of my technical abilities and my passion for AI and DevOps.  The site is built using modern web technologies and emphasizes both functionality and a clean, professional design.",
+      "fullDescription": "Shead is a command-line tool designed to replace the traditional `read` command in shell scripts, offering robust input handling and advanced features. It includes type verification, multiselect inputs, default values, and better error handling, making scripting faster, safer, and more interactive. Shead is built in Rust for performance and reliability, while seamlessly integrating into existing shell environments.",
       "sections": [
+        {
+          "title": "Features",
+          "type": "text-only",
+          "text": "Type verification for integers, strings, and floats. Multiselect support for choosing multiple options in one prompt. Custom default values and input validation. Error handling and retry prompts for safer input. Lightweight and fast, written in Rust."
+        },
+        {
+          "title": "Use Cases",
+          "type": "text-only",
+          "text": "Interactive shell scripts that require safe user input. Automated scripts needing type-safe input. Developers who want a better replacement for `read` in Bash or Zsh."
+        },
+        {
+          "title": "Installation & Usage",
+          "type": "text-only",
+          "text": "Install via Cargo: `cargo install shead`. Replace `read` calls in your scripts with `shead`. Example: `shead --prompt 'Enter your age:' --type int`."
+        }
       ]
-    },
+    }
   }
+
+
 
   // tree quiz
   /*{
