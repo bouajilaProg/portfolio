@@ -139,20 +139,6 @@ function ContactModal() {
                   </motion.button>
                 </div>
 
-                {/* Copy confirmation */}
-                <AnimatePresence>
-                  {isCopied && (
-                    <motion.div
-                      className="absolute -bottom-8 left-0 text-green-400 text-sm flex items-center gap-1"
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -5 }}
-                    >
-                      <Check className="w-3 h-3" />
-                      Email copied to clipboard!
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
             </div>
 
