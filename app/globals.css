@@ -21,3 +21,11 @@ body {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+
+
+/* globals.css */
+html,
+body {
+  background-color: #111827;
+  /* tailwind gray-900 */
+}
