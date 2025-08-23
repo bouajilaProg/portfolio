@@ -19,7 +19,7 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            My <span className="text-blue-400 drop-shadow-[0_0_4px_rgba(59,130,246,0.3)]">Services</span>
+            My Services
           </motion.h2>
           <motion.p
             className="text-gray-400 text-lg max-w-2xl mx-auto"
