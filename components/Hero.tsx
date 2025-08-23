@@ -120,9 +120,8 @@ export default function Hero() {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setIsModalOpen(true)}
               >
-                <span className="flex items-center gap-2">
+                <span className=" ">
                   Let's Connect
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
                 </span>
               </motion.button>
 
