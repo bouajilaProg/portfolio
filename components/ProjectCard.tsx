@@ -5,8 +5,6 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { project } from "@/data/projects";
 
 const ProjectCard = ({ project }: { project: project }) => {
-
-  //this function is added so i can access the github and live link without opening the project page
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.stopPropagation();
   };
@@ -14,61 +12,74 @@ const ProjectCard = ({ project }: { project: project }) => {
   return (
     <motion.div
       key={project.id}
-      className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3 }}
+      className="group bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-700 hover:border-gray-600 transition-all duration-300 cursor-pointer"
+      whileHover={{ y: -5 }}
     >
-      <Link href={`/projects/${project.id}`} className="block">
+      <Link href={`/projects/${project.id}`} className="block h-full">
+        <div className="relative overflow-hidden">
+          <motion.img
+            src={project.header.image}
+            alt={project.header.title}
+            className="w-full h-48 object-cover"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
 
-        <motion.img
-          src={project.header.image}
-          alt={project.header.title}
-          className="w-full h-48 object-cover"
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.3 }}
-        />
-        <div className="p-6">
-          <div className="flex justify-between">
-            <h3 className="text-xl font-semibold mb-2 text-white hover:text-gray-100">
+        <div className="p-6 flex flex-col h-full">
+          <div className="flex justify-between items-start mb-3">
+            <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-200 leading-tight">
               {project.header.title}
             </h3>
-            <div className="flex gap-2 text-white">
-              {(project.header.githubUrl != "") &&
-                <a
+            <div className="flex gap-3 ml-4 flex-shrink-0">
+              {project.header.githubUrl && (
+                <motion.a
                   href={project.header.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-blue-400 text-xl"
-                  onClick={handleClick} // Added onClick handler
+                  className="text-gray-400 hover:text-white text-lg transition-colors duration-200"
+                  onClick={handleClick}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <SiGithub />
-                </a>
-              }
-
-              {(project.header.liveUrl) && <a
-                href={project.header.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-blue-400 text-xl"
-                onClick={handleClick} // Added onClick handler
-              >
-                <FaExternalLinkAlt />
-              </a>
-              }
+                </motion.a>
+              )}
+              {project.header.liveUrl && (
+                <motion.a
+                  href={project.header.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-400 text-lg transition-colors duration-200"
+                  onClick={handleClick}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaExternalLinkAlt />
+                </motion.a>
+              )}
             </div>
           </div>
 
-          <p className="text-gray-400 mb-4 line-clamp-4 h-24">
+          <p className="text-gray-300 mb-4 line-clamp-3 text-sm leading-relaxed flex-grow">
             {project.header.description}
           </p>
-          <div className="flex flex-nowrap overflow-x-auto mb-1">
-            {project.header.technologies.map((tech) => (
-              <span key={tech} className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-sm mr-2  whitespace-nowrap mb-3">
+
+          <div className="flex flex-wrap gap-2 mt-auto">
+            {project.header.technologies.slice(0, 4).map((tech) => (
+              <span
+                key={tech}
+                className="bg-gray-700/50 backdrop-blur-sm text-gray-300 px-3 py-1 rounded-full text-xs font-medium border border-gray-600/50"
+              >
                 {tech}
               </span>
             ))}
+            {project.header.technologies.length > 4 && (
+              <span className="text-gray-400 text-xs px-2 py-1 rounded-full bg-gray-700/30">
+                +{project.header.technologies.length - 4} more
+              </span>
+            )}
           </div>
         </div>
       </Link>
