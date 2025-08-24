@@ -100,7 +100,7 @@ export default function Education() {
               </div>
               <h3 className="text-2xl font-bold text-white">Professional Certifications</h3>
               <div className="ml-auto">
-                <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-sm font-medium border border-purple-500/20">
+                <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-sm font-medium border border-purple-500/20 text-nowrap flex items-center flex-nowrap">
                   {certifications.length} Certifications
                 </span>
               </div>

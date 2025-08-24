@@ -33,13 +33,30 @@ export default function ProjectPage({ project }: { project: project }) {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="mb-8"
       >
-        <Image
-          src={project.header.image || "/placeholder.svg"}
-          alt={project.header.title}
-          width={1200}
-          height={600}
-          className="w-full h-auto rounded-lg shadow-lg"
-        />
+
+        {
+          // check if video or image
+          (project.header.video) ?
+            <video
+              src={project.header.video}
+              autoPlay
+              loop
+              muted
+              className="w-full h-auto rounded-lg shadow-lg"
+
+            />
+
+
+            : (<Image
+              src={project.header.image || "/placeholder.svg"}
+              alt={project.header.title}
+              width={1200}
+              height={600}
+              className="w-full h-auto rounded-lg shadow-lg"
+            />)
+
+        }
+
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}

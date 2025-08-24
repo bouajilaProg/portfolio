@@ -138,7 +138,6 @@ function ContactModal() {
                     {isCopied ? <Check className="w-4 h-4 text-green-400" /> : <FaCopy className="w-4 h-4" />}
                   </motion.button>
                 </div>
-
               </div>
             </div>
 

@@ -2,7 +2,8 @@ interface projectHeader {
   title: string,
   description: string,
   domain: string[],
-  image: string,
+  image?: string,
+  video?: string,
   technologies: string[],
   liveUrl?: string,
   githubUrl?: string,
@@ -35,7 +36,7 @@ const projects: project[] = [
     "header": {
       "title": "CRI Website",
       "description": "Developed a full-stack web application for the ISIMM Robotics Club.",
-      "domain": ["Front", "Back"],
+      "domain": ["Web", "Back"],
       "image": "/ProjectsImage/CRI.png",
       "technologies": [
         "React",
@@ -106,7 +107,7 @@ const projects: project[] = [
     "header": {
       "title": "Good Talk",
       "description": "A web application designed to enable users to chat seamlessly while incorporating an advanced censoring layer that detects and prevents bad words and abusive language, ensuring a safe and friendly communication environment.",
-      "domain": ["Front", "Back", "AI"],
+      "domain": ["Web", "Back", "AI"],
       "image": "/ProjectsImage/GoodTalk.png",
       "technologies": [
         "React",
@@ -140,8 +141,9 @@ const projects: project[] = [
     "header": {
       "title": "shead",
       "description": "A powerful CLI utility that enhances the traditional `read` command with type verification, multiselect options, and advanced input handling for shell scripting.",
-      "domain": ["CLI", "DevOps", "Productivity"],
-      "image": "/ProjectsImage/Shead.png",
+      "domain": ["CLI", "Productivity"],
+      "video": "/ProjectsVideo/shead.mp4",
+      "image": "/ProjectsImage/shead.png",
       "technologies": [
         "Rust",
         "Shell",
@@ -150,23 +152,19 @@ const projects: project[] = [
       "githubUrl": "https://github.com/bouajilaProg/shead"
     },
     "body": {
-      "fullDescription": "Shead is a command-line tool designed to replace the traditional `read` command in shell scripts, offering robust input handling and advanced features. It includes type verification, multiselect inputs, default values, and better error handling, making scripting faster, safer, and more interactive. Shead is built in Rust for performance and reliability, while seamlessly integrating into existing shell environments.",
+      "fullDescription": "Shead is a command-line tool designed to replace the traditional `read` command in shell scripts, offering robust input handling and advanced features. It includes type verification, multiselect inputs and better error handling, making scripting faster, safer, and more interactive. Shead is built in Rust for performance and to not depand on an env like JVM or Node, while seamlessly integrating into existing shell environments.",
       "sections": [
         {
           "title": "Features",
           "type": "text-only",
-          "text": "Type verification for integers, strings, and floats. Multiselect support for choosing multiple options in one prompt. Custom default values and input validation. Error handling and retry prompts for safer input. Lightweight and fast, written in Rust."
+          "text": "Type verification for strings, and floats. Multiselect support for choosing multiple options in one prompt. Custom default values and input validation. Error handling and retry prompts for safer input. Lightweight and fast, written in Rust."
         },
         {
           "title": "Use Cases",
           "type": "text-only",
           "text": "Interactive shell scripts that require safe user input. Automated scripts needing type-safe input. Developers who want a better replacement for `read` in Bash or Zsh."
         },
-        {
-          "title": "Installation & Usage",
-          "type": "text-only",
-          "text": "Install via Cargo: `cargo install shead`. Replace `read` calls in your scripts with `shead`. Example: `shead --prompt 'Enter your age:' --type int`."
-        }
+
       ]
     }
   }

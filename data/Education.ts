@@ -20,7 +20,7 @@ export const certifications: Icertifications[] = [
 ];
 
 export const education: Ieducation[] = [{
-  university: "Institut of Mathematics and Computer Science Monastir",
+  university: "Higher Institute of Mathematics and Computer Science Monastir",
   degree: "Bachelor of Science in Computer Science",
   year: "2022 - 2025",
 },
