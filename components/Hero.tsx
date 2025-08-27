@@ -67,17 +67,6 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* Greeting */}
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 backdrop-blur-sm rounded-full border border-gray-700/50 mb-6"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <Sparkles className="w-4 h-4 text-yellow-400" />
-              <span className="text-gray-300 text-sm">Welcome to my digital space</span>
-            </motion.div>
-
             {/* Main heading */}
             <motion.h1
               className="text-5xl lg:text-6xl font-bold mb-6 leading-tight"
