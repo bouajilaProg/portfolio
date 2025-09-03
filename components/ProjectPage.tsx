@@ -12,13 +12,11 @@ import Title from '@/app/projects/[id]/sectionComponents/Title'
 import { motion } from 'framer-motion'
 import icons from '@/data/icons'
 
-
-
 type SectionType = "image-text" | "text-image" | "text-only" | "image-only" | "title";
 
 export default function ProjectPage({ project }: { project: project }) {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8">
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -33,30 +31,25 @@ export default function ProjectPage({ project }: { project: project }) {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="mb-8"
       >
-
         {
           // check if video or image
           (project.header.video) ?
             <video
               src={project.header.video}
+              controls
               autoPlay
               loop
               muted
-              className="w-full h-auto rounded-lg shadow-lg"
-
+              className="w-full h-auto rounded-lg shadow-lg max-h-[70vh]"
             />
-
-
             : (<Image
               src={project.header.image || "/placeholder.svg"}
               alt={project.header.title}
-              width={1200}
-              height={600}
-              className="w-full h-auto rounded-lg shadow-lg"
+              width={1400}
+              height={700}
+              className="w-full h-auto rounded-lg shadow-lg max-h-[70vh] object-cover"
             />)
-
         }
-
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}
@@ -64,15 +57,22 @@ export default function ProjectPage({ project }: { project: project }) {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="mb-8 overflow-x-auto"
       >
-        <div className="flex space-x-4 pb-2">
+        <div className="flex flex-wrap gap-3 pb-2">
           {project.header.technologies.map((tech) => (
-            <div
+            <motion.div
               key={tech}
-              className="flex items-center space-x-2 bg-gray-800 px-3 py-2 rounded-full"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
+              }}
+              transition={{ duration: 0.2 }}
+              className="flex items-center space-x-2 bg-gray-800 px-4 py-2 rounded-full hover:bg-gray-700 transition-colors duration-200 cursor-default"
             >
-              {icons[tech] || <span className="w-6 h-6" />}
-              <span>{tech}</span>
-            </div>
+              <div className="flex items-center justify-center w-5 h-5">
+                {icons[tech] || <div className="w-2 h-2 bg-gray-400 rounded-full"></div>}
+              </div>
+              <span className="text-sm font-medium">{tech}</span>
+            </motion.div>
           ))}
         </div>
       </motion.div>
@@ -80,17 +80,17 @@ export default function ProjectPage({ project }: { project: project }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.6 }}
-        className="text-lg mb-8"
+        className="text-lg mb-8 leading-relaxed"
       >
         {project.body.fullDescription}
       </motion.p>
 
       {project.body.sections.map((section, index) => {
-        const motionProps = index < project.body.sections.length - 1 ? {
+        const motionProps = {
           initial: { opacity: 0, y: 20 },
           animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.5, delay: 0.8 + index * 0.2 }, // Adjust delay as needed
-        } : {};
+          transition: { duration: 0.4, delay: 0.8 + index * 0.1 },
+        };
 
         switch (section.type) {
           case "text-image":
