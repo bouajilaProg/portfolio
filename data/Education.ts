@@ -12,12 +12,17 @@ interface Icertifications {
 
 
 
+
 export const certifications: Icertifications[] = [
-  { name: "The Bits and Bytes of Computer Networking", issuer: "Coursera Google", year: "2024" },
-  { name: "Operating Systems and You: Become a Power User", issuer: "Coursera Google", year: "2024" },
-  { name: "Intro to Git and GitHub", issuer: "Coursera Google", year: "2024" },
+  { name: "Foundations of Project Management", issuer: "Coursera Google", year: "2025" },
+  { name: "Foundations of User Experience (UX) Design", issuer: "Coursera Google", year: "2025" },
+
   { name: "Technical Support Fundamentals", issuer: "Coursera Google", year: "2024" },
+  { name: "Operating Systems and You: Become a Power User", issuer: "Coursera Google", year: "2024" },
+  { name: "The Bits and Bytes of Computer Networking", issuer: "Coursera Google", year: "2024" },
+  { name: "Intro to Git and GitHub", issuer: "Coursera Google", year: "2024" },
 ];
+
 
 export const education: Ieducation[] = [{
   university: "Higher Institute of Mathematics and Computer Science Monastir",
