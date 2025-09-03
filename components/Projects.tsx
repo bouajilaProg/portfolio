@@ -72,9 +72,6 @@ export default function Projects() {
               onClick={() => setFilter(domain)}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 * index }}
             >
               {domain}
               {domain === "All" && (
