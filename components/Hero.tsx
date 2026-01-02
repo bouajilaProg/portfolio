@@ -138,12 +138,12 @@ export default function Hero() {
                 <div className="text-sm">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">5+</div>
-                <div className="text-sm">Projects Completed</div>
+                <div className="text-2xl font-bold text-white">6+</div>
+                <div className="text-sm">Projects Developed</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">1+</div>
-                <div className="text-sm">Clients Served</div>
+                <div className="text-2xl font-bold text-white">2</div>
+                <div className="text-sm">Clients & Partners</div>
               </div>
             </motion.div>
           </motion.div>
