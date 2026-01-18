@@ -25,7 +25,7 @@ export function Hero() {
             </div>
 
             <div className="flex-1 space-y-1">
-              <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{profile.name}</h1>
+              <h1 className="text-xl md:text-3xl font-bold tracking-tight">{profile.name}</h1>
               <p className="text-slate-500 dark:text-slate-400 font-medium">{profile.title}</p>
             </div>
           </div>
