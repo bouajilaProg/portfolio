@@ -7,28 +7,31 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="pt-16 pb-12 border-b border-slate-100 dark:border-slate-900">
+    <section className="pt-24 pb-12 border-b border-slate-100 dark:border-slate-900">
       <FadeIn>
-        <div className="flex flex-col md:flex-row gap-8 md:items-center">
-          <div className="relative shrink-0">
-            <div className="p-1 rounded-full border border-slate-200 dark:border-slate-800">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-4 ring-slate-50 dark:ring-slate-900">
-                <img
-                  src={"/profile-pic.png"}
-                  alt="Profile Picture"
-                  className="w-full h-full object-cover"
-                />
+        <div className="w-full flex flex-col gap-6">
+
+          <div className="flex items-center gap-5 md:gap-8 w-full">
+            <div className="relative shrink-0">
+              <div className="p-1 rounded-full border border-slate-200 dark:border-slate-800">
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-4 ring-slate-50 dark:ring-slate-900">
+                  <img
+                    src={"/profile-pic.png"}
+                    alt="Profile Picture"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="space-y-4">
-            <div className="space-y-1">
+            <div className="flex-1 space-y-1">
               <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{profile.name}</h1>
               <p className="text-slate-500 dark:text-slate-400 font-medium">{profile.title}</p>
             </div>
+          </div>
 
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-lg text-sm">
+          <div className="space-y-4 w-full">
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm w-full">
               {profile.bio}
             </p>
 
