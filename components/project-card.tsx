@@ -12,9 +12,9 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <FadeIn>
-      <div className="group space-y-6">
+      <div className="group space-y-4">
         {project.image ? (
-          <div className="aspect-[16/8] bg-slate-50 dark:bg-slate-900/40 rounded-sm border border-slate-100 dark:border-slate-900 overflow-hidden transition-opacity">
+          <div className="aspect-video bg-slate-50 dark:bg-slate-900/40 rounded border border-slate-100 dark:border-slate-900 overflow-hidden">
             <img
               src={"/projectImages/" + project.image}
               alt={`${project.title} preview`}
@@ -22,34 +22,32 @@ export function ProjectCard({ project }: ProjectCardProps) {
             />
           </div>
         ) : null}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="flex items-center justify-between gap-4">
-            <h3 className="text-2xl font-bold tracking-tight italic">
-              {project.title}
-            </h3>
-            <div className="flex gap-2">
+            <h3 className="text-xl font-bold tracking-tight">{project.title}</h3>
+            <div className="flex gap-1.5">
               {project.github && (
                 <IconButton href={project.github} label="Source Code">
-                  <Github size={16} />
+                  <Github size={14} />
                 </IconButton>
               )}
               {project.demo && (
                 <IconButton href={project.demo} label="Visit Website">
-                  <ExternalLink size={16} />
+                  <ExternalLink size={14} />
                 </IconButton>
               )}
             </div>
           </div>
 
-          <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-wrap gap-1.5">
             {project.tech.map((tech) => (
               <span
                 key={tech}
-                className="text-[10px] font-bold border border-slate-200 dark:border-slate-800 px-2 py-0.5 rounded text-slate-400 dark:text-slate-500 uppercase tracking-tight"
+                className="text-[9px] font-bold border border-slate-200 dark:border-slate-800 px-2 py-0.5 rounded text-slate-500 uppercase tracking-tight"
               >
                 {tech}
               </span>

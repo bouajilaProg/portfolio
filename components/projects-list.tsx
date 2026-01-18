@@ -12,17 +12,17 @@ export function ProjectsList() {
 
   return (
     <>
-      <div className="space-y-32">
+      <div className="space-y-16">
         {featuredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
 
       <FadeIn>
-        <div className="pt-12 flex justify-center">
+        <div className="pt-8 flex justify-center">
           <Link
             href="/projects"
-            className="text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-slate-950 dark:hover:text-white transition-colors"
+            className="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-950 dark:hover:text-white transition-colors"
           >
             View All Projects
           </Link>
