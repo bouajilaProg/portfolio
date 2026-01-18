@@ -3,6 +3,7 @@
 import { Github, ExternalLink } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { Project } from "@/lib/data";
+import { IconButton } from "@/components/icon-button";
 
 interface ProjectCardProps {
   project: Project;
@@ -28,20 +29,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </h3>
             <div className="flex gap-2">
               {project.github && (
-                <a
-                  href={project.github}
-                  className="p-2 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all text-slate-500 hover:text-slate-950 dark:hover:text-white"
-                >
+                <IconButton href={project.github} label="Source Code">
                   <Github size={16} />
-                </a>
+                </IconButton>
               )}
               {project.demo && (
-                <a
-                  href={project.demo}
-                  className="p-2 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all text-slate-500 hover:text-slate-950 dark:hover:text-white"
-                >
+                <IconButton href={project.demo} label="Visit Website">
                   <ExternalLink size={16} />
-                </a>
+                </IconButton>
               )}
             </div>
           </div>

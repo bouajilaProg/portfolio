@@ -57,8 +57,8 @@ export function Footer() {
               <a href={profile.socialLinks.github} className="hover:text-slate-950 dark:hover:text-white transition-colors">GitHub</a>
             </div>
 
-            <div className="text-[9px] font-mono text-slate-300 dark:text-slate-800 uppercase tracking-widest">
-              Last Updated Jan 2026
+            <div className="text-[9px] font-mono text-slate-300 dark:text-slate-400 uppercase tracking-widest">
+              made by {profile.name} • {new Date().getFullYear()}
             </div>
           </div>
         </div>

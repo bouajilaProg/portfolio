@@ -55,6 +55,28 @@ export const experience: Experience[] = [
 ];
 
 /*
+ * Education Data
+ */
+
+export interface Education {
+  school: string;
+  degree: string;
+  date: string;
+  description: string;
+  highlights: string[];
+}
+
+export const education: Education[] = [
+  {
+    school: "Institute of Sciences and Computer ISIMM",
+    degree: "Computer Science",
+    date: "2020 — Present",
+    description: "Focusing on software engineering, algorithms, and distributed systems.",
+    highlights: ["GPA: 3.8/4.0", "Dean's List", "President of Robotics Club"]
+  }
+];
+
+/*
  * Projects Data
 */
 

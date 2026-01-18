@@ -10,10 +10,10 @@ export function Navigation() {
           Portfolio 2026
         </Link>
         <div className="flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-          <Link href="#experience" className="hover:text-blue-600 transition-colors">Experience</Link>
-          <Link href="#work" className="hover:text-blue-600 transition-colors">Work</Link>
-          <Link href="/projects" className="hover:text-blue-600 transition-colors">Projects</Link>
-          <Link href="#contact" className="hover:text-blue-600 transition-colors">Contact</Link>
+          <Link href="/#experience" className="hover:text-blue-600 transition-colors">Experience</Link>
+          <Link href="/#education" className="hover:text-blue-600 transition-colors">Education</Link>
+          <Link href="/#work" className="hover:text-blue-600 transition-colors">Work</Link>
+          <Link href="/#contact" className="hover:text-blue-600 transition-colors">Contact</Link>
         </div>
       </div>
     </nav>
