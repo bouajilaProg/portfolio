@@ -14,17 +14,24 @@
 }
 
 @theme {
-  /* This maps your custom CSS variables to Tailwind utility classes like bg-background */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: Arial, Helvetica, sans-serif;
 }
 
 @layer base {
+  html {
+    /* Enables the smooth sliding behavior */
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
     @apply antialiased;
-    /* Use @apply for tailwind utilities in v4 */
+  }
+
+  section[id] {
+    @apply scroll-mt-80;
   }
 }
