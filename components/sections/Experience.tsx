@@ -5,7 +5,7 @@ import { experience } from "@/lib/data";
 
 export function Experience() {
   return (
-    <>
+    <section id="experience" className="py-24 px-6 max-w-3xl mx-auto border-t border-slate-100 dark:border-slate-900">
       <FadeIn>
         <h2 className="text-xs uppercase tracking-[0.2em] text-slate-400 font-bold mb-12">Experience</h2>
       </FadeIn>
@@ -30,6 +30,6 @@ export function Experience() {
           </FadeIn>
         ))}
       </div>
-    </>
+    </section>
   );
 }
