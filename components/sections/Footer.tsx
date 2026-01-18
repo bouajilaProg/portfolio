@@ -53,7 +53,6 @@ export function Footer() {
 
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-slate-50 dark:border-slate-900/50 gap-6">
             <div className="flex gap-10 text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">
-              <a href={profile.socialLinks.twitter} className="hover:text-slate-950 dark:hover:text-white transition-colors">Twitter</a>
               <a href={profile.socialLinks.linkedin} className="hover:text-slate-950 dark:hover:text-white transition-colors">LinkedIn</a>
               <a href={profile.socialLinks.github} className="hover:text-slate-950 dark:hover:text-white transition-colors">GitHub</a>
             </div>

@@ -1,5 +1,3 @@
-import { Github, ExternalLink } from "lucide-react";
-
 /*
  * Profile Data
 */
@@ -10,7 +8,6 @@ export interface Profile {
   bio: string;
   email: string;
   socialLinks: {
-    twitter: string;
     linkedin: string;
     github: string;
   };
