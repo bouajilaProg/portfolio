@@ -11,7 +11,7 @@ export function Experience() {
       </FadeIn>
       <div className="space-y-16">
         {experience.map((job, i) => (
-          <FadeIn key={i} delay={i * 0.05}>
+          <FadeIn key={i} delay={0.1 + i * 0.12}>
             <div className="flex flex-col md:flex-row gap-2 md:gap-12">
               <span className="text-sm font-mono text-slate-400 min-w-[120px] pt-1">{job.date}</span>
               <div className="flex-1">
