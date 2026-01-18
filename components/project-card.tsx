@@ -13,9 +13,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <FadeIn>
       <div className="group space-y-6">
         {project.image ? (
-          <div className="aspect-[16/8] bg-slate-50 dark:bg-slate-900/40 rounded-sm border border-slate-100 dark:border-slate-900 overflow-hidden transition-opacity group-hover:opacity-90">
+          <div className="aspect-[16/8] bg-slate-50 dark:bg-slate-900/40 rounded-sm border border-slate-100 dark:border-slate-900 overflow-hidden transition-opacity">
             <img
-              src={project.image}
+              src={"/projectImages/" + project.image}
               alt={`${project.title} preview`}
               className="w-full h-full object-cover"
             />

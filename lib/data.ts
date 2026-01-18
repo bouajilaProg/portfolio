@@ -1,24 +1,8 @@
 import { Github, ExternalLink } from "lucide-react";
 
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  tech: string[];
-  github?: string;
-  demo?: string;
-  image?: string;
-  featured: boolean;
-  rank: number;
-}
-
-export interface Experience {
-  role: string;
-  company: string;
-  date: string;
-  description: string;
-  skills: string[];
-}
+/*
+ * Profile Data
+*/
 
 export interface Profile {
   name: string;
@@ -33,17 +17,29 @@ export interface Profile {
 }
 
 export const profile: Profile = {
-  name: "Your Name",
-  title: "Product Engineer & Interface Designer",
+  name: "Mohamed Yessine Bouajila",
+  title: "Full-Stack Developer & Product Manager",
   bio: "Building accessible, high-performance web applications with a focus on clean code and user-centric motion. Currently scaling systems at TechCorp.",
   email: "hello@yourname.com",
   socialLinks: {
-    twitter: "#",
     linkedin: "#",
     github: "#"
   }
 };
 
+
+
+/*
+ * Experience Data
+*/
+
+export interface Experience {
+  role: string;
+  company: string;
+  date: string;
+  description: string;
+  skills: string[];
+}
 export const experience: Experience[] = [
   {
     role: "Senior Product Engineer",
@@ -61,6 +57,23 @@ export const experience: Experience[] = [
   }
 ];
 
+/*
+ * Projects Data
+*/
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  tech: string[];
+  github?: string;
+  demo?: string;
+  image?: string;
+  featured: boolean;
+  rank: number;
+}
+
+
 export const projects: Project[] = [
   {
     id: "greenboard",
@@ -69,7 +82,7 @@ export const projects: Project[] = [
     tech: ["Next.js", "Resend Email API", "Tailwind", "React"],
     github: undefined,
     demo: "https://green-board-hazel.vercel.app",
-    image: "/images/greenboard.png",
+    image: "greenboard.png",
     featured: true,
     rank: 1
   },
@@ -80,7 +93,7 @@ export const projects: Project[] = [
     tech: ["Python", "Markdown", "CLI Tools", "PDF Generation"],
     github: "https://github.com/bouajilaProg/CodeDown",
     demo: undefined,
-    image: "/images/codedown.png",
+    image: "codedown.png",
     featured: true,
     rank: 2
   },
@@ -111,8 +124,8 @@ export const projects: Project[] = [
     tech: ["React", "Express", "AI", "NLP"],
     github: "https://github.com/bouajilaProg/GoodTalk",
     demo: undefined,
-    image: "/images/goodtalk.png",
-    featured: true,
+    image: "/goodtalk.png",
+    featured: false,
     rank: 5
   },
   {
