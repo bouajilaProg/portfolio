@@ -29,18 +29,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <footer className="pt-40 pb-12 px-6 max-w-3xl mx-auto border-t border-slate-100 dark:border-slate-900">
-        <FadeIn>
-          <div className="text-center">
-            <a
-              href="#contact"
-              className="text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-slate-950 dark:hover:text-white transition-colors"
-            >
-              Get in Touch
-            </a>
-          </div>
-        </FadeIn>
-      </footer>
     </main>
   );
 }
