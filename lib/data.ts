@@ -19,8 +19,8 @@ export const profile: Profile = {
   bio: "Building accessible, high-performance web applications with a focus on clean code and user-centric motion. Currently scaling systems at TechCorp.",
   email: "hello@yourname.com",
   socialLinks: {
-    linkedin: "#",
-    github: "#"
+    linkedin: "https://www.linkedin.com/in/bouajila-mohamed-yessine/",
+    github: "https://github.com/bouajilaProg"
   }
 };
 
@@ -90,7 +90,6 @@ export const projects: Project[] = [
     tech: ["Python", "Markdown", "CLI Tools", "PDF Generation"],
     github: "https://github.com/bouajilaProg/CodeDown",
     demo: undefined,
-    image: "codedown.png",
     featured: true,
     rank: 2
   },
@@ -121,7 +120,6 @@ export const projects: Project[] = [
     tech: ["React", "Express", "AI", "NLP"],
     github: "https://github.com/bouajilaProg/GoodTalk",
     demo: undefined,
-    image: "/goodtalk.png",
     featured: false,
     rank: 5
   },
