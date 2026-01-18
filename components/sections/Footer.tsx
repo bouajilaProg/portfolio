@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FadeIn } from "@/components/ui/fade-in";
-import { Github, Mail, Check, Copy } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 import { profile } from "@/lib/data";
 
 export function Footer() {
@@ -15,17 +15,19 @@ export function Footer() {
   };
 
   return (
-
     <footer id="contact" className="pt-40 pb-12 px-6 max-w-3xl mx-auto border-t border-slate-100 dark:border-slate-900">
       <FadeIn>
         <div className="flex flex-col gap-16">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
             <h2 className="text-4xl font-bold tracking-tighter">Reach out.</h2>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
               <button
                 onClick={handleCopy}
-                className={`h-11 px-4 rounded-full border border-slate-200 dark:border-slate-800 flex items-center gap-2 transition-all ${copied ? 'bg-green-50 border-green-200 dark:bg-green-500/10 dark:border-green-500/20' : 'hover:bg-slate-50 dark:hover:bg-slate-900'}`}
+                className={`relative h-11 w-full sm:w-auto px-6 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center gap-2 transition-all ${copied
+                  ? 'bg-green-50 border-green-200 dark:bg-green-500/10 dark:border-green-500/20'
+                  : 'hover:bg-slate-50 dark:hover:bg-slate-900'
+                  }`}
               >
                 <span className={`text-[11px] font-bold uppercase tracking-widest ${copied ? 'text-green-600 dark:text-green-400' : 'text-slate-500'}`}>
                   {copied ? 'Copied' : 'Copy Email'}
@@ -36,15 +38,11 @@ export function Footer() {
                   <Copy size={14} className="text-slate-400" />
                 )}
 
-                {copied && (
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] font-bold text-green-600 uppercase tracking-widest animate-in fade-in slide-in-from-bottom-1">
-                    Success
-                  </div>
-                )}
               </button>
+
               <a
                 href={`mailto:${profile.email}`}
-                className="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full text-sm font-bold hover:bg-blue-600 dark:hover:bg-blue-600 dark:hover:text-white transition-all shadow-lg shadow-blue-500/10"
+                className="w-full sm:w-auto px-8 py-3 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full text-sm font-bold hover:bg-blue-600 dark:hover:bg-blue-600 dark:hover:text-white transition-all shadow-lg shadow-blue-500/10 text-center"
               >
                 Email Me
               </a>
