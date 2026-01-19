@@ -1,7 +1,7 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/fade-in";
-import { experience } from "@/lib/data";
+import { experiences } from "@/lib/data";
 
 export function Experience() {
   return (
@@ -10,7 +10,7 @@ export function Experience() {
         <h2 className="text-sm uppercase tracking-[0.2em] text-slate-200 font-bold mb-6">Experience</h2>
       </FadeIn>
       <div className="space-y-12">
-        {experience.map((job, i) => (
+        {experiences.map((job, i) => (
           <FadeIn key={i} delay={0.1 + i * 0.1}>
             <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2" >
 

@@ -1,7 +1,6 @@
-/*
- * Profile Data
-*/
-
+/**
+ * Unified Profile Data
+ */
 export interface Profile {
   name: string;
   title: string;
@@ -16,20 +15,17 @@ export interface Profile {
 export const profile: Profile = {
   name: "Mohamed Yessine Bouajila",
   title: "Full-Stack Developer & Product Manager",
-  bio: "Building accessible, high-performance web applications with a focus on clean code and user-centric motion. Currently scaling systems at TechCorp.",
-  email: "hello@yourname.com",
+  bio: "Hi, I'm yessine from Tunisia. I'm an inventor at heart who enjoys building practical tools and web applications. I’m passionate about new technologies, open-source software, and finding creative ways to solve real-world problems through code.",
+  email: "bouajilamedyessine@gmail.com",
   socialLinks: {
     linkedin: "https://www.linkedin.com/in/bouajila-mohamed-yessine/",
-    github: "https://github.com/bouajilaProg"
-  }
+    github: "https://github.com/bouajilaProg",
+  },
 };
 
-
-
-/*
+/**
  * Experience Data
-*/
-
+ */
 export interface Experience {
   role: string;
   company: string;
@@ -37,27 +33,20 @@ export interface Experience {
   description: string;
   skills: string[];
 }
-export const experience: Experience[] = [
+
+export const experiences: Experience[] = [
   {
-    role: "Senior Product Engineer",
-    company: "TechCorp",
+    role: "Full-Stack Developer",
+    company: "GreenBoard",
     date: "2023 — Present",
     description: "Architected a high-traffic e-commerce storefront using React 19 and Next.js, achieving a 98/100 Lighthouse score.",
-    skills: ["Next.js", "TypeScript", "Node.js", "AWS"]
+    skills: ["Next.js", "TypeScript", "Node.js", "AWS"],
   },
-  {
-    role: "Frontend Developer",
-    company: "DesignHub",
-    date: "2021 — 2023",
-    description: "Developed a design system used by 50+ developers. Focused on accessibility and interaction design.",
-    skills: ["React", "Tailwind CSS", "Framer Motion"]
-  }
 ];
 
-/*
+/**
  * Education Data
  */
-
 export interface Education {
   school: string;
   degree: string;
@@ -65,21 +54,39 @@ export interface Education {
   description: string;
   highlights: string[];
 }
-
 export const education: Education[] = [
   {
-    school: "Institute of Sciences and Computer ISIMM",
-    degree: "Computer Science",
-    date: "2020 — Present",
-    description: "Focusing on software engineering, algorithms, and distributed systems.",
-    highlights: ["GPA: 3.8/4.0", "Dean's List", "President of Robotics Club"]
-  }
+    school: "Institute of Sciences and Computer (ISIMM)",
+    degree: "Master's in Computer Science",
+    date: "2025 — Present",
+    description: "Specializing in advanced software engineering, distributed systems, and architectural patterns.",
+    highlights: [],
+  },
+  {
+    school: "Higher Institute of Mathematics & Computer Science (ISIMM)",
+    degree: "Bachelor of Science in Computer Science",
+    date: "2022 — 2025",
+    description: "Foundational study of software engineering, algorithms, databases, and networking.",
+    highlights: [
+      "president of the Development Club",
+      "Data Structures and Algorithms",
+    ],
+  },
+  {
+    school: "Habib Thameur High School",
+    degree: "Baccalaureate in Computer Science",
+    date: "2022",
+    description: "Initial focus on mathematics and computer science fundamentals.",
+    highlights: [
+      "Completed with strong results",
+      "Game Developer"
+    ],
+  },
 ];
 
-/*
+/**
  * Projects Data
-*/
-
+ */
 export interface Project {
   id: string;
   title: string;
@@ -92,18 +99,16 @@ export interface Project {
   rank: number;
 }
 
-
 export const projects: Project[] = [
   {
     id: "greenboard",
     title: "GreenBoard",
-    description: "A website for selling personalized PCBs. Users can upload their own PCB Gerber files. This is a production project, not a demo.",
+    description: "A production-ready platform for selling personalized PCBs. Supports user-uploaded Gerber files.",
     tech: ["Next.js", "Resend Email API", "Tailwind", "React"],
-    github: undefined,
-    demo: "https://green-board-hazel.vercel.app",
+    demo: "https://greenboard.tn",
     image: "greenboard.png",
     featured: true,
-    rank: 1
+    rank: 1,
   },
   {
     id: "codedown",
@@ -111,48 +116,43 @@ export const projects: Project[] = [
     description: "A CLI tool to convert Markdown files into beautiful, syntax-highlighted PDFs.",
     tech: ["Python", "Markdown", "CLI Tools", "PDF Generation"],
     github: "https://github.com/bouajilaProg/CodeDown",
-    demo: undefined,
     featured: true,
-    rank: 2
+    rank: 2,
   },
   {
     id: "cooldocs",
     title: "Cool Docs",
-    description: "Offline desktop docs manager for competitive programmers.",
+    description: "Offline desktop documentation manager tailored for competitive programmers.",
     tech: ["Rust", "Tauri", "XML", "CSS"],
     github: "https://github.com/bouajilaProg/cool-docs",
-    demo: undefined,
     featured: false,
-    rank: 3
+    rank: 3,
   },
   {
     id: "shead",
     title: "shead",
-    description: "Enhanced `read` command replacement for shell scripting.",
+    description: "An enhanced and modernized replacement for the standard shell 'read' command.",
     tech: ["Rust", "Shell"],
     github: "https://github.com/bouajilaProg/shead",
-    demo: undefined,
     featured: false,
-    rank: 4
+    rank: 4,
   },
   {
     id: "goodtalk",
     title: "Good Talk",
-    description: "AI-powered safe chat application.",
+    description: "AI-powered chat application focused on safety and natural language processing.",
     tech: ["React", "Express", "AI", "NLP"],
     github: "https://github.com/bouajilaProg/GoodTalk",
-    demo: undefined,
     featured: false,
-    rank: 5
+    rank: 5,
   },
   {
     id: "cri",
     title: "CRI Website",
-    description: "Full-stack platform for ISIMM Robotics Club.",
+    description: "The full-stack community platform for the ISIMM Robotics Club.",
     tech: ["React", "Express", "PostgreSQL"],
     github: "https://github.com/bouajilaProg/CRI-website",
-    demo: undefined,
     featured: false,
-    rank: 6
-  }
+    rank: 6,
+  },
 ];
