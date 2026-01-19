@@ -22,10 +22,10 @@ export default function ProjectsPage() {
 
       <section className="py-12 max-w-3xl mx-auto">
         <div className="space-y-0">
-          {sortedProjects.map((project, index) => (<>
+          {sortedProjects.map((project, index) => (<div key={project.id}>
             {index != 0 && <Separator variant="component" />}
             <ProjectCard key={project.id} project={project} />
-          </>
+          </div>
           ))}
         </div>
       </section>

@@ -15,10 +15,10 @@ export function ProjectsList() {
     <>
       <div className="space-y-16">
         {featuredProjects.map((project, index) => (
-          <>
-            {index != 0 && <Separator variant="component" />}
-            <ProjectCard key={project.id} project={project} />
-          </>
+          <div key={project.id}>
+            {index !== 0 && <Separator variant="component" />}
+            <ProjectCard project={project} />
+          </div>
         ))}
       </div>
 
