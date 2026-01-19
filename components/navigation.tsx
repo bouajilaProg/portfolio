@@ -12,9 +12,8 @@ export function Navigation() {
 
         {/* Added 'hidden' for mobile and 'md:flex' for desktop */}
         <div className="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-          <Link href="/#experience" className="hover:text-blue-600 transition-colors">Experience</Link>
-          <Link href="/#education" className="hover:text-blue-600 transition-colors">Education</Link>
           <Link href="/#work" className="hover:text-blue-600 transition-colors">Work</Link>
+          <Link href="/#education" className="hover:text-blue-600 transition-colors">Education</Link>
           <Link href="/#contact" className="hover:text-blue-600 transition-colors">Contact</Link>
         </div>
       </div>
