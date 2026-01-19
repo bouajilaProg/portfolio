@@ -22,10 +22,6 @@
 }
 
 @layer base {
-  html {
-    /* Enables the smooth sliding behavior */
-    scroll-behavior: smooth;
-  }
 
   body {
     background-color: var(--background);
