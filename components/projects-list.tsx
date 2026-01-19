@@ -4,6 +4,7 @@ import Link from "next/link";
 import { projects } from "@/lib/data";
 import { ProjectCard } from "./project-card";
 import { FadeIn } from "@/components/ui/fade-in";
+import Separator from "./ui/Separator";
 
 export function ProjectsList() {
   const featuredProjects = projects
@@ -13,8 +14,11 @@ export function ProjectsList() {
   return (
     <>
       <div className="space-y-16">
-        {featuredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {featuredProjects.map((project, index) => (
+          <>
+            {index != 0 && <Separator variant="component" />}
+            <ProjectCard key={project.id} project={project} />
+          </>
         ))}
       </div>
 

@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="pt-24 pb-12 border-b border-slate-100 dark:border-slate-900">
+    <section className="pt-24 pb-12">
       <FadeIn>
         <div className="w-full flex flex-col gap-6">
 
@@ -40,7 +40,7 @@ export function Hero() {
                 href={"mailto:" + profile.email}
                 className="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-50 text-slate-50 dark:text-slate-900 px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-all"
               >
-                Let's talk
+                Let&apos;s talk
                 <ArrowRight className="w-4 h-4" />
               </Link>
 

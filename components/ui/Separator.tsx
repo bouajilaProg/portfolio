@@ -28,7 +28,7 @@ const Separator = ({
     <div
       role="separator"
       className={`
-        bg-current opacity-20 rounded-full 
+         opacity-50 rounded-full bg-slate-200 dark:bg-slate-700 
         ${variants[variant]} 
         ${spaceClass} 
         ${className}

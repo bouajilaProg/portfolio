@@ -15,7 +15,7 @@ export function Footer() {
   };
 
   return (
-    <footer id="contact" className="pt-40 pb-12 px-6 max-w-3xl mx-auto border-t border-slate-100 dark:border-slate-900">
+    <footer id="contact" className="pt-40 pb-12 px-6 max-w-3xl mx-auto  border-slate-100 dark:border-slate-900">
       <FadeIn>
         <div className="flex flex-col gap-16">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">

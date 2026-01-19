@@ -5,7 +5,7 @@ import { education } from "@/lib/data";
 
 export function Education() {
   return (
-    <section id="education" className="py-10 border-b border-slate-100 dark:border-slate-900">
+    <section id="education">
       <FadeIn>
         <h2 className="text-sm uppercase tracking-[0.2em] text-slate-200 font-bold mb-6">Education</h2>
       </FadeIn>
