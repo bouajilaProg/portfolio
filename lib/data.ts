@@ -15,7 +15,7 @@ export interface Profile {
 export const profile: Profile = {
   name: "Mohamed Yessine Bouajila",
   title: "Full-Stack Developer & Product Manager",
-  bio: "Hi, I'm yessine from Tunisia. I'm an inventor at heart who enjoys building practical tools and web applications. I’m passionate about new technologies, open-source software, and finding creative ways to solve real-world problems through code.",
+  bio: "Hi, I'm yessine from Tunisia and I enjoys building practical tools and web applications. I’m passionate about new technologies, open-source software, and finding creative ways to solve real-world problems through code.",
   email: "bouajilamedyessine@gmail.com",
   socialLinks: {
     linkedin: "https://www.linkedin.com/in/bouajila-mohamed-yessine/",
