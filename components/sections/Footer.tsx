@@ -15,9 +15,9 @@ export function Footer() {
   };
 
   return (
-    <footer id="contact" className="pt-40 pb-12 px-6 max-w-3xl mx-auto  border-slate-100 dark:border-slate-900">
+    <footer id="contact" className="pt-20 pb-6 px-6 max-w-3xl mx-auto  border-slate-100 dark:border-slate-900">
       <FadeIn>
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col ">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
             <h2 className="text-4xl font-bold tracking-tighter">Reach out.</h2>
 
@@ -49,7 +49,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-slate-50 dark:border-slate-900/50 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-slate-50 dark:border-slate-900/50 gap-6">
             <div className="flex gap-10 text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">
               <a href={profile.socialLinks.linkedin} className="hover:text-slate-950 dark:hover:text-white transition-colors">LinkedIn</a>
               <a href={profile.socialLinks.github} className="hover:text-slate-950 dark:hover:text-white transition-colors">GitHub</a>
