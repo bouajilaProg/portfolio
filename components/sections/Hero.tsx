@@ -7,62 +7,69 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="pt-24 pb-12">
+    <section className="pt-24 pb-12 ">
       <FadeIn>
-        <div className="w-full flex flex-col gap-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex flex-col gap-10">
 
-          <div className="flex items-center gap-5 md:gap-8 w-full">
-            <div className="relative shrink-0">
-              <div className="p-1 rounded-full border border-slate-200 dark:border-slate-800">
-                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-4 ring-slate-50 dark:ring-slate-900">
+            {/* Identity Group */}
+            <div className="flex items-center gap-5 md:gap-6">
+              <div className="shrink-0">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm">
                   <img
-                    src={"/profile-pic.png"}
-                    alt="Profile Picture"
+                    src="/profile-pic.png"
+                    alt={profile.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
-            </div>
 
-            <div className="flex-1 space-y-1">
-              <h1 className="text-xl md:text-3xl font-bold tracking-tight">{profile.name}</h1>
-              <p className="text-slate-500 dark:text-slate-400 font-medium">{profile.title}</p>
-            </div>
-          </div>
-
-          <div className="space-y-4 w-full">
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm w-full">
-              {profile.bio}
-            </p>
-
-            <div className="flex items-center gap-4">
-              <Link
-                href={"mailto:" + profile.email}
-                className="inline-flex items-center gap-2 bg-slate-900 dark:bg-slate-50 text-slate-50 dark:text-slate-900 px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-all"
-              >
-                Let&apos;s talk
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-
-              <div className="flex items-center gap-3">
-                <a
-                  href={profile.socialLinks.linkedin}
-                  target="_blank"
-                  className="text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href={profile.socialLinks.github}
-                  target="_blank"
-                  className="text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
-                  aria-label="GitHub"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
+              <div className="space-y-1">
+                <h1 className="text-2xl md:text-3xl font-bold tracking-tighter text-slate-900 dark:text-slate-50">
+                  {profile.name}
+                </h1>
+                {/* Matches your footer's uppercase tracking style */}
+                <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+                  {profile.title}
+                </p>
               </div>
             </div>
+
+            {/* Bio Group */}
+            <div className="space-y-8">
+              <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed ">
+                {profile.bio}
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <Link
+                  href={`mailto:${profile.email}`}
+                  className="w-full sm:w-auto px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full text-[12px] font-bold uppercase tracking-wider hover:bg-blue-600 dark:hover:bg-blue-600 dark:hover:text-white transition-all text-center flex items-center justify-center gap-2"
+                >
+                  Let&apos;s talk
+                  <ArrowRight size={14} />
+                </Link>
+
+                {/* Social Links matching footer's text-link style */}
+                <div className="flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 py-2">
+                  <a
+                    href={profile.socialLinks.linkedin}
+                    target="_blank"
+                    className="hover:text-slate-950 dark:hover:text-white transition-colors"
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    href={profile.socialLinks.github}
+                    target="_blank"
+                    className="hover:text-slate-950 dark:hover:text-white transition-colors"
+                  >
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </FadeIn>
