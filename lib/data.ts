@@ -18,7 +18,7 @@ export const profile: Profile = {
   bio: "Hi, I'm yessine from Tunisia and I enjoys building practical tools and web applications. I’m passionate about new technologies, open-source software, and finding creative ways to solve real-world problems through code.",
   email: "bouajilamedyessine@gmail.com",
   socialLinks: {
-    linkedin: "https://www.linkedin.com/in/bouajila-mohamed-yessine/",
+    linkedin: "https://www.linkedin.com/in/mohamed-yessine-bouajila/",
     github: "https://github.com/bouajilaProg",
   },
 };
