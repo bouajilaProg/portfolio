@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/sections/Footer";
-import Separator from "@/components/ui/Separator";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,7 +23,6 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-slate-100 selection:bg-blue-600 selection:text-white font-sans`}
       >
-        <Navigation />
         <main className="min-h-dvh max-w-3xl mx-auto px-6">{children}</main>
         <Footer />
       </body>
