@@ -56,7 +56,7 @@ export interface Education {
 }
 export const education: Education[] = [
   {
-    school: "Institute of Sciences and Computer (ISIMM)",
+    school: "Higher Institute of Mathematics & Computer Science (ISIMM)",
     degree: "Master's in Computer Science",
     date: "2025 — Present",
     description: "Specializing in advanced software engineering, distributed systems, and architectural patterns.",
