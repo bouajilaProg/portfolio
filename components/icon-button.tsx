@@ -30,7 +30,7 @@ export function IconButton({ href, label, children }: IconButtonProps) {
 
       <div
         role="tooltip"
-        className={`absolute bottom-full mb-2 px-2 py-1 rounded text-[9px] font-bold uppercase tracking-widest whitespace-nowrap pointer-events-none z-50 transition-all
+        className={`hidden md:block absolute bottom-full mb-2 px-2 py-1 rounded text-[9px] font-bold uppercase tracking-widest whitespace-nowrap pointer-events-none z-50 transition-all
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"}
           bg-white dark:bg-black text-slate-500 dark:text-zinc-400 border border-slate-200 dark:border-zinc-800
         `}
