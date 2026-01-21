@@ -1,6 +1,3 @@
-/**
- * Unified Profile Data
- */
 export interface Profile {
   name: string;
   title: string;
@@ -15,7 +12,7 @@ export interface Profile {
 export const profile: Profile = {
   name: "Mohamed Yessine Bouajila",
   title: "Full-Stack Developer & Product Manager",
-  bio: "Hi, I'm yessine from Tunisia and I enjoys building practical tools and web applications. I’m passionate about new technologies, open-source software, and finding creative ways to solve real-world problems through code.",
+  bio: "Hi, I'm yessine from Tunisia and I enjoys building practical tools and web applications. I'm passionate about new technologies, open-source software, and finding creative ways to solve real-world problems through code.",
   email: "bouajilamedyessine@gmail.com",
   socialLinks: {
     linkedin: "https://www.linkedin.com/in/mohamed-yessine-bouajila/",
@@ -23,9 +20,6 @@ export const profile: Profile = {
   },
 };
 
-/**
- * Experience Data
- */
 export interface Experience {
   role: string;
   company: string;
@@ -44,9 +38,6 @@ export const experiences: Experience[] = [
   },
 ];
 
-/**
- * Education Data
- */
 export interface Education {
   school: string;
   degree: string;
@@ -84,9 +75,6 @@ export const education: Education[] = [
   },
 ];
 
-/**
- * Projects Data
- */
 export interface Project {
   id: string;
   title: string;
