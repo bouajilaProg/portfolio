@@ -1,7 +1,5 @@
-"use client";
-
-import { FadeIn } from "@/components/ui/fade-in";
-import { education } from "@/lib/data";
+import { FadeIn } from "../ui/FadeIn";
+import { education } from "../../lib/data";
 
 export function Education() {
   return (
@@ -14,12 +12,10 @@ export function Education() {
           <FadeIn key={i} delay={0.1 + i * 0.1}>
             <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2">
 
-              {/* Education Date */}
               <span className="text-sm font-mono text-slate-400 pt-1">
                 {edu.date}
               </span>
 
-              {/* Education Details */}
               <div>
                 <h3 className="text-base font-bold mb-0.5">{edu.school}</h3>
                 <p className="text-sm font-medium text-blue-600 mb-3 uppercase tracking-wide">

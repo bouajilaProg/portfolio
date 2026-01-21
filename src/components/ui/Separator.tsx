@@ -2,7 +2,6 @@ import React from 'react';
 
 interface SeparatorProps {
   variant?: 'component' | 'section';
-  /** Vertical margin scale (Tailwind spacing units e.g., 4, 8, 12, 16) */
   space?: number;
   className?: string;
 }
@@ -13,10 +12,7 @@ const Separator = ({
   className = ""
 }: SeparatorProps) => {
 
-  // Default spacing based on variant if no specific space is provided
   const defaultSpace = variant === 'section' ? 'my-16' : 'my-8';
-
-  // If 'space' prop is provided, we use tailwind's 'my-{n}'
   const spaceClass = space !== undefined ? `my-${space}` : defaultSpace;
 
   const variants = {

@@ -1,9 +1,7 @@
-"use client";
-
 import { Github, ExternalLink } from "lucide-react";
-import { FadeIn } from "@/components/ui/fade-in";
-import { Project } from "@/lib/data";
-import { IconButton } from "@/components/icon-button";
+import { FadeIn } from "../ui/FadeIn";
+import type { Project } from "../../lib/data";
+import { IconButton } from "../ui/IconButton";
 
 interface ProjectCardProps {
   project: Project;

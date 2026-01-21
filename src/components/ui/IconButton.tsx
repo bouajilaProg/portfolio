@@ -1,6 +1,5 @@
-"use client";
-
-import { ReactNode, useState } from "react";
+import { useState } from "react";
+import type { ReactNode } from "react";
 
 interface IconButtonProps {
   href: string;
@@ -22,6 +21,7 @@ export function IconButton({ href, label, children }: IconButtonProps) {
       <a
         href={href}
         target="_blank"
+        rel="noopener noreferrer"
         className="flex items-center justify-center w-full h-full rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-900 transition-all"
         aria-label={label}
       >

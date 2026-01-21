@@ -1,9 +1,7 @@
-"use client";
-
 import { useState } from "react";
-import { FadeIn } from "@/components/ui/fade-in";
+import { FadeIn } from "../ui/FadeIn";
 import { Check, Copy } from "lucide-react";
-import { profile } from "@/lib/data";
+import { profile } from "../../lib/data";
 
 export function Footer() {
   const [copied, setCopied] = useState(false);

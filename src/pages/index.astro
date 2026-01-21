@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Hero } from "../components/sections/Hero";
+import { Education } from "../components/sections/Education";
+import { Work } from "../components/sections/Work";
+import Separator from "../components/ui/Separator";
+import { Footer } from "../components/sections/Footer";
+
+const title = "Mohamed Yessine Bouajila - Portfolio";
+const description = "Full-Stack Developer & Product Manager";
+---
+
+<Layout title={title} description={description}>
+  <main class="min-h-dvh max-w-3xl mx-auto px-6">
+    <Hero client:load />
+    <Work client:load />
+    <Separator variant="section" />
+    <Education client:load />
+  </main>
+  <Footer client:load />
+</Layout>
