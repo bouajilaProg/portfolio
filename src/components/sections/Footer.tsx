@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FadeIn } from "../ui/FadeIn";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, Mail, Github, Linkedin } from "lucide-react"; // Added Mail
 import { profile } from "../../lib/data";
 
 export function Footer() {
@@ -13,48 +13,73 @@ export function Footer() {
   };
 
   return (
-    <footer id="contact" className="pt-20 pb-6 px-6 max-w-3xl mx-auto  border-slate-100 dark:border-slate-900">
+    <footer id="contact" className="pt-24 pb-6 px-6 max-w-3xl mx-auto">
       <FadeIn>
-        <div className="flex flex-col ">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <h2 className="text-4xl font-bold tracking-tighter">Reach out.</h2>
+        <div className="flex flex-col gap-6">
+          {/* Top Section: CTA */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="space-y-2">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
+                Reach out.
+              </h2>
+
+            </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+              {/* Secondary/Outline Style (Influenced by Hero Socials) */}
               <button
                 onClick={handleCopy}
-                className={`relative h-11 w-full sm:w-auto px-6 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center gap-2 transition-all ${copied
-                  ? 'bg-green-50 border-green-200 dark:bg-green-500/10 dark:border-green-500/20'
-                  : 'hover:bg-slate-50 dark:hover:bg-slate-900'
-                  }`}
+                className="inline-flex h-11 w-full sm:w-auto items-center justify-center rounded-md border border-slate-200 bg-white px-6 text-sm font-medium shadow-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50 gap-2"
               >
-                <span className={`text-[11px] font-bold uppercase tracking-widest ${copied ? 'text-green-600 dark:text-green-400' : 'text-slate-500'}`}>
-                  {copied ? 'Copied' : 'Copy Email'}
-                </span>
                 {copied ? (
-                  <Check size={14} className="text-green-600 dark:text-green-400" />
+                  <>
+                    <Check size={16} className="text-green-600 dark:text-green-400" />
+                    <span className="text-green-600 dark:text-green-400">Copied</span>
+                  </>
                 ) : (
-                  <Copy size={14} className="text-slate-400" />
+                  <>
+                    <Copy size={16} className="text-slate-500" />
+                    <span>Copy Email</span>
+                  </>
                 )}
-
               </button>
 
+              {/* Primary Style (Influenced by Hero "Let's Talk") */}
               <a
                 href={`mailto:${profile.email}`}
-                className="w-full sm:w-auto px-8 py-3 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full text-sm font-bold hover:bg-blue-600 dark:hover:bg-blue-600 dark:hover:text-white transition-all shadow-lg shadow-blue-500/10 text-center"
+                className="inline-flex h-11 w-full sm:w-auto items-center justify-center rounded-md bg-slate-900 px-8 text-sm font-medium text-slate-50 shadow transition-colors hover:bg-slate-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 gap-2"
               >
+                <Mail size={16} />
                 Email Me
               </a>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-slate-50 dark:border-slate-900/50 gap-6">
-            <div className="flex gap-10 text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">
-              <a href={profile.socialLinks.linkedin} className="hover:text-slate-950 dark:hover:text-white transition-colors">LinkedIn</a>
-              <a href={profile.socialLinks.github} className="hover:text-slate-950 dark:hover:text-white transition-colors">GitHub</a>
+          {/* Bottom Section: Links & Copyright */}
+          <div className="flex flex-col md:flex-row justify-between items-center dark:border-slate-800/60 gap-6">
+            <div className="flex items-center gap-6">
+              <a
+                href={profile.socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-500 hover:text-slate-900 dark:hover:text-slate-50 transition-colors flex items-center gap-2 text-xs font-medium uppercase tracking-wider"
+              >
+                <Linkedin size={14} />
+                LinkedIn
+              </a>
+              <a
+                href={profile.socialLinks.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-500 hover:text-slate-900 dark:hover:text-slate-50 transition-colors flex items-center gap-2 text-xs font-medium uppercase tracking-wider"
+              >
+                <Github size={14} />
+                GitHub
+              </a>
             </div>
 
-            <div className="text-[9px] font-mono text-slate-300 dark:text-slate-400 uppercase tracking-widest">
-              made by {profile.name} • {new Date().getFullYear()}
+            <div className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-3">
+              © {new Date().getFullYear()} • {profile.name}
             </div>
           </div>
         </div>
@@ -62,3 +87,4 @@ export function Footer() {
     </footer>
   );
 }
+
