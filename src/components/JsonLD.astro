@@ -1,0 +1,97 @@
+---
+import { profile } from "../lib/data";
+interface Person {
+  "@type": "Person";
+  name: string;
+  url: string;
+  jobTitle: string;
+  description: string;
+  sameAs: string[];
+  image?: string;
+  email?: string;
+}
+
+interface WebSite {
+  "@type": "WebSite";
+  name: string;
+  url: string;
+  description: string;
+  author: Person;
+}
+
+interface BreadcrumbItem {
+  "@type": "ListItem";
+  position: number;
+  name: string;
+  item: string;
+}
+
+interface BreadcrumbList {
+  "@type": "BreadcrumbList";
+  itemListElement: BreadcrumbItem[];
+}
+
+interface Props {
+  type?: 'person' | 'website' | 'breadcrumb' | 'all';
+  breadcrumbs?: { name: string; url: string }[];
+}
+
+const { type = 'all', breadcrumbs } = Astro.props;
+
+const siteUrl = Astro.site || 'https://bouajilaprog.com';
+
+// Person Schema
+const personSchema: Person = {
+  "@type": "Person",
+  name: profile.name,
+  url: siteUrl.toString(),
+  jobTitle: profile.title,
+  description: profile.bio,
+  sameAs: [
+    profile.socialLinks.github,
+    profile.socialLinks.linkedin,
+    // Add other social links if available in your data
+  ],
+  image: `${siteUrl}/profile.jpg`,
+  email: profile.email
+};
+
+// Website Schema
+const websiteSchema: WebSite = {
+  "@type": "WebSite",
+  name: `${profile.name} - Portfolio`,
+  url: siteUrl.toString(),
+  description: "Full-Stack Developer & Product Manager Portfolio",
+  author: personSchema
+};
+
+// Breadcrumb Schema (if breadcrumbs are provided)
+const breadcrumbSchema: BreadcrumbList | null = breadcrumbs ? {
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbs.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: new URL(item.url, siteUrl).href
+  }))
+} : null;
+
+// Combine schemas based on type
+const schemas = [];
+if (type === 'person' || type === 'all') {
+  schemas.push(personSchema);
+}
+if (type === 'website' || type === 'all') {
+  schemas.push(websiteSchema);
+}
+if (breadcrumbSchema && (type === 'breadcrumb' || type === 'all')) {
+  schemas.push(breadcrumbSchema);
+}
+
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@graph": schemas
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />

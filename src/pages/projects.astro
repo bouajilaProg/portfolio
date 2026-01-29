@@ -8,9 +8,13 @@ const sortedProjects = [...projects].sort((a, b) => a.rank - b.rank);
 
 const title = "Projects - Mohamed Yessine Bouajila";
 const description = "A collection of my work, showcasing my expertise in building accessible, high-performance web applications.";
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Projects", url: "/projects" }
+];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} breadcrumbs={breadcrumbs}>
   <main class="min-h-dvh max-w-3xl mx-auto px-6">
     <div class="pt-12">
       <a 

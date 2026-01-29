@@ -1,12 +1,17 @@
 ---
 import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import JsonLD from "../components/JsonLD.astro";
 
 interface Props {
   title: string;
   description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  breadcrumbs?: { name: string; url: string }[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, image, type, breadcrumbs } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,8 +21,17 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    
+    <SEO 
+      title={title} 
+      description={description} 
+      image={image} 
+      type={type} 
+    />
+    
+    <JsonLD 
+      breadcrumbs={breadcrumbs} 
+    />
   </head>
   <body class="antialiased bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-slate-100 selection:bg-blue-600 selection:text-white font-sans">
     <slot />
