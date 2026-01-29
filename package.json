@@ -3,8 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "scripts": {
-
-  "dev": "astro dev --host 0.0.0.0 --port 1600",
+    "dev": "astro dev --host 0.0.0.0 --port 1600",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -12,6 +11,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/react": "^4.4.0",
+    "@astrojs/sitemap": "^3.7.0",
     "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.9",
     "@types/react-dom": "^19.2.3",
