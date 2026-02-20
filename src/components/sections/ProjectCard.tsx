@@ -14,9 +14,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {project.image ? (
           <div className="aspect-video bg-slate-50 dark:bg-slate-900/40 rounded border border-slate-100 dark:border-slate-900 overflow-hidden">
             <img
-              src={"/projectImages/" + project.image}
+              src={`/projectImages/${project.id.toLowerCase().replace(" ", "")}/${project.image}`}
               alt={`${project.title} preview`}
-              className="w-full h-full object-cover"
+              /* Changed object-cover to object-contain */
+              className="w-full h-full object-contain"
             />
           </div>
         ) : null}
