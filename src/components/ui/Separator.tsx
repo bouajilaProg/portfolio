@@ -1,4 +1,4 @@
-import React from 'react';
+import { motion } from 'motion/react';
 
 interface SeparatorProps {
   variant?: 'component' | 'section';
@@ -21,10 +21,18 @@ const Separator = ({
   };
 
   return (
-    <div
+    <motion.div
       role="separator"
+      initial={{ opacity: 0, scaleX: 0 }}
+      whileInView={{ opacity: 0.5, scaleX: 1 }}
+      viewport={{ once: true, margin: "-24px" }}
+      transition={{
+        duration: 0.6,
+        delay: 0.1,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       className={`
-         opacity-50 rounded-full bg-slate-200 dark:bg-slate-700 
+        rounded-full bg-slate-200 dark:bg-slate-700 origin-left
         ${variants[variant]} 
         ${spaceClass} 
         ${className}

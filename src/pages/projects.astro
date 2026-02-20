@@ -39,7 +39,7 @@ const breadcrumbs = [
       <div class="space-y-16">
         {sortedProjects.map((project, index) => (
           <div>
-            {index !== 0 && <Separator variant="component" />}
+            {index !== 0 && <Separator variant="component" client:load />}
             {/* We use client:load if there are interactive elements (like tooltips or framer-motion) 
                or just let it render if it's purely for layout.
             */}
