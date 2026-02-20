@@ -89,6 +89,16 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "autoresume",
+    title: "AutoResume",
+    description: "A data-driven resume manager that generates LaTeX-quality PDFs from a single source of truth using Typst.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Typst", "Zod"],
+    github: "https://github.com/bouajilaProg/auto-resume",
+    featured: true,
+    rank: 1,
+    image: "homepage.png",
+  },
+  {
     id: "greenboard",
     title: "GreenBoard",
     description: "A production-ready platform for selling personalized PCBs. Supports user-uploaded Gerber files.",
@@ -96,7 +106,7 @@ export const projects: Project[] = [
     demo: "https://greenboard.tn",
     image: "greenboard.png",
     featured: true,
-    rank: 1,
+    rank: 2,
   },
   {
     id: "codedown",
@@ -105,7 +115,7 @@ export const projects: Project[] = [
     tech: ["Python", "Markdown", "CLI Tools", "PDF Generation"],
     github: "https://github.com/bouajilaProg/CodeDown",
     featured: true,
-    rank: 2,
+    rank: 3,
   },
   {
     id: "cooldocs",
@@ -114,7 +124,7 @@ export const projects: Project[] = [
     tech: ["Rust", "Tauri", "XML", "CSS"],
     github: "https://github.com/bouajilaProg/cool-docs",
     featured: false,
-    rank: 3,
+    rank: 4,
   },
   {
     id: "shead",
@@ -123,7 +133,7 @@ export const projects: Project[] = [
     tech: ["Rust", "Shell"],
     github: "https://github.com/bouajilaProg/shead",
     featured: false,
-    rank: 4,
+    rank: 5,
   },
   {
     id: "goodtalk",
@@ -132,7 +142,7 @@ export const projects: Project[] = [
     tech: ["React", "Express", "AI", "NLP"],
     github: "https://github.com/bouajilaProg/GoodTalk",
     featured: false,
-    rank: 5,
+    rank: 6,
   },
   {
     id: "cri",
@@ -141,6 +151,6 @@ export const projects: Project[] = [
     tech: ["React", "Express", "PostgreSQL"],
     github: "https://github.com/bouajilaProg/CRI-website",
     featured: false,
-    rank: 6,
+    rank: 7,
   },
 ];
