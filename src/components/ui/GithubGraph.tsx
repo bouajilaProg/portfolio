@@ -583,7 +583,7 @@ export const GithubCalendar = ({
   return (
     <section className={cn("pb-12", className)}>
       <FadeIn>
-        <h2 className="text-sm uppercase tracking-[0.2em] text-slate-200 font-bold mb-6">Open Source</h2>
+        <h2 className="text-sm uppercase tracking-[0.2em] text-slate-600 dark:text-slate-200 font-bold mb-6">Open Source</h2>
       </FadeIn>
       <FadeIn delay={0.2}>
         <ContributionGraph data={data.contributions} blockSize={11} blockMargin={3} blockRadius={2} fontSize={10}>
