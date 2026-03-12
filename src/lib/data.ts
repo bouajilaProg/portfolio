@@ -1,3 +1,4 @@
+import { type LinkData } from "./linkTypes";
 export interface Profile {
   name: string;
   title: string;
@@ -80,77 +81,82 @@ export interface Project {
   title: string;
   description: string;
   tech: string[];
-  github?: string;
-  demo?: string;
+  links: LinkData[];
   image?: string;
   featured: boolean;
   rank: number;
 }
 
-export const projects: Project[] = [
-  {
+export const projects: Project[] = [{
     id: "autoresume",
     title: "AutoResume",
     description: "A data-driven resume manager that generates LaTeX-quality PDFs from a single source of truth using Typst.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Typst", "Zod"],
-    github: "https://github.com/bouajilaProg/auto-resume",
     featured: true,
     rank: 1,
+    links: [
+      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/auto-resume" }
+    ],
     image: "homepage.png",
-  },
-  {
+  },{
     id: "greenboard",
     title: "GreenBoard",
     description: "A production-ready platform for selling personalized PCBs. Supports user-uploaded Gerber files.",
     tech: ["Next.js", "Resend Email API", "Tailwind", "React"],
-    demo: "https://greenboard.tn",
+    links: [
+      { name: "Demo", type: "website", href: "https://greenboard.tn" }
+    ],
     image: "greenboard.png",
     featured: true,
     rank: 2,
-  },
-  {
+  },{
     id: "codedown",
     title: "CodeDown",
     description: "A CLI tool to convert Markdown files into beautiful, syntax-highlighted PDFs.",
     tech: ["Python", "Markdown", "CLI Tools", "PDF Generation"],
-    github: "https://github.com/bouajilaProg/CodeDown",
+    links: [
+      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/CodeDown" }
+    ],
     featured: true,
     rank: 3,
-  },
-  {
+  },{
     id: "cooldocs",
     title: "Cool Docs",
     description: "Offline desktop documentation manager tailored for competitive programmers.",
     tech: ["Rust", "Tauri", "XML", "CSS"],
-    github: "https://github.com/bouajilaProg/cool-docs",
+    links: [
+      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/cool-docs" }
+    ],
     featured: false,
     rank: 4,
-  },
-  {
+  },{
     id: "shead",
     title: "shead",
     description: "An enhanced and modernized replacement for the standard shell 'read' command.",
     tech: ["Rust", "Shell"],
-    github: "https://github.com/bouajilaProg/shead",
+    links: [
+      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/shead" }
+    ],
     featured: false,
     rank: 5,
-  },
-  {
+  },{
     id: "goodtalk",
     title: "Good Talk",
     description: "AI-powered chat application focused on safety and natural language processing.",
     tech: ["React", "Express", "AI", "NLP"],
-    github: "https://github.com/bouajilaProg/GoodTalk",
+    links: [
+      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/GoodTalk" }
+    ],
     featured: false,
     rank: 6,
-  },
-  {
+  },{
     id: "cri",
     title: "CRI Website",
     description: "The full-stack community platform for the ISIMM Robotics Club.",
     tech: ["React", "Express", "PostgreSQL"],
-    github: "https://github.com/bouajilaProg/CRI-website",
+    links: [
+      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/CRI-website" }
+    ],
     featured: false,
     rank: 7,
-  },
-];
+  }];

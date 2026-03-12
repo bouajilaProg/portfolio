@@ -1,18 +1,19 @@
 import { FadeIn } from "../ui/FadeIn";
 import { profile } from "../../lib/data";
-import { Github, Linkedin, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { type LinkData, getIconForType } from "../../lib/linkTypes";
 
 export function Hero() {
-  const socialLinks = [
+  const socialLinks: LinkData[] = [
     {
       name: "LinkedIn",
+      type: "linkedin",
       href: profile.socialLinks.linkedin,
-      icon: <Linkedin className="h-4 w-4" />
     },
     {
       name: "GitHub",
+      type: "github",
       href: profile.socialLinks.github,
-      icon: <Github className="h-4 w-4" />
     },
   ];
 
@@ -70,7 +71,7 @@ export function Hero() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium shadow-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50 gap-2"
                     >
-                      {link.icon}
+                      {getIconForType(link.type, "h-4 w-4")}
                       <span className="hidden sm:inline">{link.name}</span>
                     </a>
                   ))}
