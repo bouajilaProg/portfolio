@@ -1,6 +1,6 @@
-import { Github, Linkedin, Mail, Twitter, Globe, Link as LinkIcon } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, Globe, FileText, Link as LinkIcon } from "lucide-react";
 
-export type LinkType = "github" | "linkedin" | "mail" | "twitter" | "website" | "default";
+export type LinkType = "github" | "linkedin" | "mail" | "twitter" | "website" | "docs" | "default";
 
 export interface LinkData {
   name: string;
@@ -20,6 +20,8 @@ export const getIconForType = (type: LinkType, className?: string) => {
       return <Twitter className={className} />;
     case "website":
       return <Globe className={className} />;
+    case "docs":
+      return <FileText className={className} />;
     case "default":
     default:
       return <LinkIcon className={className} />;
