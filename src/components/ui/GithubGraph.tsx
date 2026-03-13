@@ -9,6 +9,8 @@ import {
   nextDay,
   parseISO,
   subWeeks,
+  startOfMonth,
+  endOfYear,
 } from 'date-fns'
 import {
   createContext,
@@ -24,6 +26,7 @@ import {
 import { cn } from '../../lib/utils'
 import { FadeIn } from './FadeIn'
 
+// --- Types ---
 export type Activity = {
   date: string
   count: number
@@ -47,29 +50,12 @@ type MonthLabel = {
   label: string
 }
 
-const DEFAULT_MONTH_LABELS = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-]
-
+const DEFAULT_MONTH_LABELS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const DEFAULT_LABELS: Labels = {
   months: DEFAULT_MONTH_LABELS,
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   totalCount: '{{count}} activities in {{year}}',
-  legend: {
-    less: 'Less',
-    more: 'More',
-  },
+  legend: { less: 'Less', more: 'More' },
 }
 
 type ContributionGraphContextType = {
@@ -89,160 +75,58 @@ type ContributionGraphContextType = {
   height: number
 }
 
-const ContributionGraphContext =
-  createContext<ContributionGraphContextType | null>(null)
+const ContributionGraphContext = createContext<ContributionGraphContextType | null>(null)
 
 const useContributionGraph = () => {
   const context = useContext(ContributionGraphContext)
-
-  if (!context) {
-    throw new Error(
-      'ContributionGraph components must be used within a ContributionGraph'
-    )
-  }
-
+  if (!context) throw new Error('ContributionGraph components must be used within a ContributionGraph')
   return context
 }
 
-const fillHoles = (activities: Activity[]): Activity[] => {
-  if (activities.length === 0) {
-    return []
-  }
-
-  // Sort activities by date to ensure correct date range
-  const sortedActivities = [...activities].sort((a, b) =>
-    a.date.localeCompare(b.date)
-  )
-
-  const calendar = new Map<string, Activity>(
-    activities.map((a) => [a.date, a])
-  )
-
-  const firstActivity = sortedActivities[0] as Activity
-  const lastActivity = sortedActivities.at(-1)
-
-  if (!lastActivity) {
-    return []
-  }
-
-  return eachDayOfInterval({
-    start: parseISO(firstActivity.date),
-    end: parseISO(lastActivity.date),
-  }).map((day) => {
+// --- Logic Helpers ---
+const fillHoles = (activities: Activity[], start: Date, end: Date): Activity[] => {
+  const calendar = new Map<string, Activity>(activities.map((a) => [a.date, a]))
+  return eachDayOfInterval({ start, end }).map((day) => {
     const date = formatISO(day, { representation: 'date' })
-
-    if (calendar.has(date)) {
-      return calendar.get(date) as Activity
-    }
-
-    return {
-      date,
-      count: 0,
-      level: 0,
-    }
+    return calendar.get(date) || { date, count: 0, level: 0 }
   })
 }
 
-const groupByWeeks = (
-  activities: Activity[],
-  weekStart: WeekDay = 0
-): Week[] => {
-  if (activities.length === 0) {
-    return []
-  }
+const groupByWeeks = (activities: Activity[], weekStart: WeekDay = 0, range: { start: Date; end: Date }): Week[] => {
+  const normalizedActivities = fillHoles(activities, range.start, range.end)
+  const firstDate = parseISO(normalizedActivities[0].date)
 
-  const normalizedActivities = fillHoles(activities)
-  const firstActivity = normalizedActivities[0] as Activity
-  const firstDate = parseISO(firstActivity.date)
-  const firstCalendarDate =
-    getDay(firstDate) === weekStart
-      ? firstDate
-      : subWeeks(nextDay(firstDate, weekStart), 1)
+  const firstCalendarDate = getDay(firstDate) === weekStart
+    ? firstDate
+    : subWeeks(nextDay(firstDate, weekStart), 1)
 
   const paddedActivities = [
-    ...(new Array(
-      differenceInCalendarDays(firstDate, firstCalendarDate)
-    ).fill(undefined) as Activity[]),
+    ...(new Array(differenceInCalendarDays(firstDate, firstCalendarDate)).fill(undefined) as Activity[]),
     ...normalizedActivities,
   ]
 
   const numberOfWeeks = Math.ceil(paddedActivities.length / 7)
-
-  return new Array(numberOfWeeks)
-    .fill(undefined)
-    .map((_, weekIndex) =>
-      paddedActivities.slice(weekIndex * 7, weekIndex * 7 + 7)
-    )
+  return new Array(numberOfWeeks).fill(undefined).map((_, i) => paddedActivities.slice(i * 7, i * 7 + 7))
 }
 
-const getMonthLabels = (
-  weeks: Week[],
-  monthNames: string[] = DEFAULT_MONTH_LABELS
-): MonthLabel[] => {
-  return weeks
-    .reduce<MonthLabel[]>((labels, week, weekIndex) => {
-      const firstActivity = week.find(
-        (activity) => activity !== undefined
-      )
+const getMonthLabels = (weeks: Week[], monthNames: string[] = DEFAULT_MONTH_LABELS): MonthLabel[] => {
+  let lastMonth = -1;
+  return weeks.reduce<MonthLabel[]>((labels, week, weekIndex) => {
+    const firstActivity = week.find((activity) => activity !== undefined)
+    if (!firstActivity) return labels
 
-      if (!firstActivity) {
-        throw new Error(
-          `Unexpected error: Week ${weekIndex + 1} is empty: [${week}].`
-        )
-      }
+    const date = parseISO(firstActivity.date)
+    const currentMonth = getMonth(date)
 
-      const month = monthNames[getMonth(parseISO(firstActivity.date))]
-
-      if (!month) {
-        const monthName = new Date(firstActivity.date).toLocaleString(
-          'en-US',
-          {
-            month: 'short',
-          }
-        )
-        throw new Error(
-          `Unexpected error: undefined month label for ${monthName}.`
-        )
-      }
-
-      const prevLabel = labels.at(-1)
-
-      if (weekIndex === 0 || !prevLabel || prevLabel.label !== month) {
-        return labels.concat({ weekIndex, label: month })
-      }
-
-      return labels
-    }, [])
-    .filter(({ weekIndex }, index, labels) => {
-      const minWeeks = 3
-
-      if (index === 0) {
-        return labels[1] && labels[1].weekIndex - weekIndex >= minWeeks
-      }
-
-      if (index === labels.length - 1) {
-        return weeks.slice(weekIndex).length >= minWeeks
-      }
-
-      return true
-    })
+    if (currentMonth !== lastMonth) {
+      lastMonth = currentMonth;
+      return labels.concat({ weekIndex, label: monthNames[currentMonth] })
+    }
+    return labels
+  }, [])
 }
 
-export type ContributionGraphProps = HTMLAttributes<HTMLDivElement> & {
-  data: Activity[]
-  blockMargin?: number
-  blockRadius?: number
-  blockSize?: number
-  fontSize?: number
-  labels?: Labels
-  maxLevel?: number
-  style?: CSSProperties
-  totalCount?: number
-  weekStart?: WeekDay
-  children: ReactNode
-  className?: string
-}
-
+// --- Components ---
 export const ContributionGraph = ({
   data,
   blockMargin = 4,
@@ -251,92 +135,44 @@ export const ContributionGraph = ({
   fontSize = 14,
   labels: labelsProp = undefined,
   maxLevel: maxLevelProp = 4,
-  style = {},
-  totalCount: totalCountProp = undefined,
   weekStart = 0,
   className,
+  children,
   ...props
 }: ContributionGraphProps) => {
   const maxLevel = Math.max(1, maxLevelProp)
-  const weeks = useMemo(
-    () => groupByWeeks(data, weekStart),
-    [data, weekStart]
-  )
-  const LABEL_MARGIN = 8
-
   const labels = { ...DEFAULT_LABELS, ...labelsProp }
-  const labelHeight = fontSize + LABEL_MARGIN
 
-  const year =
-    data.length > 0
-      ? getYear(parseISO(data[0].date))
-      : new Date().getFullYear()
+    const range = useMemo(() => {
+    const now = new Date();
+    const lastYear = now.getFullYear() - 1;
+    return {
+      start: new Date(lastYear, 11, 1), // Dec 1, Last Year
+      end: new Date(now.getFullYear(), 11, 31) // Dec 31, Current Year
+    };
+  }, []);
 
-  const totalCount =
-    typeof totalCountProp === 'number'
-      ? totalCountProp
-      : data.reduce((sum, activity) => sum + activity.count, 0)
+  const weeks = useMemo(() => groupByWeeks(data, weekStart, range), [data, weekStart, range])
+  const labelHeight = fontSize + 8
 
   const width = weeks.length * (blockSize + blockMargin) - blockMargin
   const height = labelHeight + (blockSize + blockMargin) * 7 - blockMargin
 
-  if (data.length === 0) {
-    return null
-  }
-
   return (
-    <ContributionGraphContext.Provider
-      value={{
-        data,
-        weeks,
-        blockMargin,
-        blockRadius,
-        blockSize,
-        fontSize,
-        labels,
-        labelHeight,
-        maxLevel,
-        totalCount,
-        weekStart,
-        year,
-        width,
-        height,
-      }}
-    >
-      <div
-        className={cn(
-          'flex w-full flex-col gap-3',
-          className
-        )}
-        style={{ fontSize, ...style }}
-        {...props}
-      />
+    <ContributionGraphContext.Provider value={{
+      data, weeks, blockMargin, blockRadius, blockSize, fontSize, labels, labelHeight, maxLevel,
+      totalCount: data ? data.reduce((sum, a) => sum + a.count, 0) : 0,
+      weekStart, year: getYear(range.end), width, height
+    }}>
+      <div className={cn('flex w-full flex-col gap-3', className)} style={{ fontSize }} {...props}>
+        {children}
+      </div>
     </ContributionGraphContext.Provider>
   )
 }
 
-export type ContributionGraphBlockProps = HTMLAttributes<SVGRectElement> & {
-  activity: Activity
-  dayIndex: number
-  weekIndex: number
-}
-
-export const ContributionGraphBlock = ({
-  activity,
-  dayIndex,
-  weekIndex,
-  className,
-  ...props
-}: ContributionGraphBlockProps) => {
-  const { blockSize, blockMargin, blockRadius, labelHeight, maxLevel } =
-    useContributionGraph()
-
-  if (activity.level < 0 || activity.level > maxLevel) {
-    throw new RangeError(
-      `Provided activity level ${activity.level} for ${activity.date} is out of range. It must be between 0 and ${maxLevel}.`
-    )
-  }
-
+export const ContributionGraphBlock = ({ activity, dayIndex, weekIndex, className, ...props }: ContributionGraphProps) => {
+  const { blockSize, blockMargin, blockRadius, labelHeight } = useContributionGraph()
   return (
     <rect
       className={cn(
@@ -347,12 +183,9 @@ export const ContributionGraphBlock = ({
         'data-[level="4"]:fill-[#216e39] dark:data-[level="4"]:fill-[#39d353]',
         className
       )}
-      data-count={activity.count}
-      data-date={activity.date}
       data-level={activity.level}
       height={blockSize}
       rx={blockRadius}
-      ry={blockRadius}
       width={blockSize}
       x={(blockSize + blockMargin) * weekIndex}
       y={labelHeight + (blockSize + blockMargin) * dayIndex}
@@ -361,247 +194,95 @@ export const ContributionGraphBlock = ({
   )
 }
 
-export type ContributionGraphCalendarProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  'children'
-> & {
-  hideMonthLabels?: boolean
-  className?: string
-  children: (props: {
-    activity: Activity
-    dayIndex: number
-    weekIndex: number
-  }) => ReactNode
-}
-
-export const ContributionGraphCalendar = ({
-  hideMonthLabels = false,
-  className,
-  children,
-  ...props
-}: ContributionGraphCalendarProps) => {
-  const { weeks, width, height, blockSize, blockMargin, labels } =
-    useContributionGraph()
-
-  const monthLabels = useMemo(
-    () => getMonthLabels(weeks, labels.months),
-    [weeks, labels.months]
-  )
+export const ContributionGraphCalendar = ({ hideMonthLabels = false, children }: ContributionGraphProps) => {
+  const { weeks, width, height, blockSize, blockMargin, labels } = useContributionGraph()
+  const monthLabels = useMemo(() => getMonthLabels(weeks, labels.months), [weeks, labels.months])
 
   return (
-    <div
-      className={cn(
-        'w-full overflow-visible',
-        className
-      )}
-      {...props}
-    >
-      <svg
-        className='block w-full h-auto overflow-visible'
-        viewBox={`0 0 ${width} ${height}`}
-      >
-        <title>Contribution Graph</title>
+    <div className='w-full overflow-visible'>
+      <svg className='block w-full h-auto overflow-visible' viewBox={`0 0 ${width} ${height}`}>
         {!hideMonthLabels && (
           <g className='fill-slate-400 dark:fill-slate-500 font-medium'>
             {monthLabels.map(({ label, weekIndex }) => (
-              <text
-                dominantBaseline='hanging'
-                key={weekIndex}
-                style={{ fontSize: 14 - 2 }}
-                x={(blockSize + blockMargin) * weekIndex}
-              >
+              <text dominantBaseline='hanging' key={weekIndex} style={{ fontSize: 10 }} x={(blockSize + blockMargin) * weekIndex}>
                 {label}
               </text>
             ))}
           </g>
         )}
-        {weeks.map((week, weekIndex) =>
-          week.map((activity, dayIndex) => {
-            if (!activity) {
-              return null
-            }
-
-            return (
-              <Fragment key={`${weekIndex}-${dayIndex}`}>
-                {children({ activity, dayIndex, weekIndex })}
-              </Fragment>
-            )
-          })
-        )}
+        {weeks.map((week, wIdx) => week.map((activity, dIdx) =>
+          activity && <Fragment key={`${wIdx}-${dIdx}`}>{children({ activity, dayIndex: dIdx, weekIndex: wIdx })}</Fragment>
+        ))}
       </svg>
     </div>
   )
 }
 
-export type ContributionGraphFooterProps = HTMLAttributes<HTMLDivElement>
-
-export const ContributionGraphFooter = ({
-  className,
-  ...props
-}: ContributionGraphFooterProps) => (
-  <div
-    className={cn(
-      'flex flex-wrap gap-1 whitespace-nowrap sm:gap-x-4',
-      className
-    )}
-    {...props}
-  />
+export const ContributionGraphFooter = ({ className, ...props }: ContributionGraphFooterProps) => (
+  <div className={cn('flex flex-wrap gap-1 whitespace-nowrap sm:gap-x-4', className)} {...props} />
 )
 
-export type ContributionGraphTotalCountProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  'children'
-> & {
-  children?: (props: { totalCount: number; year: number }) => ReactNode
-}
-
-export const ContributionGraphTotalCount = ({
-  className,
-  children,
-  ...props
-}: ContributionGraphTotalCountProps) => {
+export const ContributionGraphTotalCount = ({ className }: ContributionGraphProps) => {
   const { totalCount, year, labels } = useContributionGraph()
-
-  if (children) {
-    return <>{children({ totalCount, year })}</>
-  }
-
   return (
-    <div className={cn('text-muted-foreground', className)} {...props}>
-      {labels.totalCount
-        ? labels.totalCount
-          .replace('{{count}}', String(totalCount))
-          .replace('{{year}}', String(year))
-        : `${totalCount} activities in ${year}`}
+    <div className={cn('text-muted-foreground text-xs', className)}>
+      {labels.totalCount?.replace('{{count}}', String(totalCount)).replace('{{year}}', String(year))}
     </div>
   )
 }
 
-export type ContributionGraphLegendProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  'children'
-> & {
-  children?: (props: { level: number }) => ReactNode
-}
-
-export const ContributionGraphLegend = ({
-  className,
-  children,
-  ...props
-}: ContributionGraphLegendProps) => {
+export const ContributionGraphLegend = () => {
   const { labels, maxLevel, blockSize, blockRadius } = useContributionGraph()
-
   return (
-    <div
-      className={cn('ml-auto flex items-center gap-[3px]', className)}
-      {...props}
-    >
-      <span className='text-muted-foreground mr-1'>
-        {labels.legend?.less || 'Less'}
-      </span>
-      {new Array(maxLevel + 1).fill(undefined).map((_, level) =>
-        children ? (
-          <Fragment key={level}>{children({ level })}</Fragment>
-        ) : (
-          <svg height={blockSize} key={level} width={blockSize}>
-            <title>{`${level} contributions`}</title>
-            <rect
-              className={cn(
-                'dark:data-[level="0"]:fill-slate-800/50 data-[level="0"]:fill-slate-100',
-                'data-[level="1"]:fill-[#9be9a8] dark:data-[level="1"]:fill-[#0e4429]',
-                'data-[level="2"]:fill-[#40c463] dark:data-[level="2"]:fill-[#006d32]',
-                'data-[level="3"]:fill-[#30a14e] dark:data-[level="3"]:fill-[#26a641]',
-                'data-[level="4"]:fill-[#216e39] dark:data-[level="4"]:fill-[#39d353]'
-              )}
-              data-level={level}
-              height={blockSize}
-              rx={blockRadius}
-              ry={blockRadius}
-              width={blockSize}
-            />
-          </svg>
-        )
-      )}
-      <span className='text-muted-foreground ml-1'>
-        {labels.legend?.more || 'More'}
-      </span>
+    <div className='ml-auto flex items-center gap-[3px] text-xs text-muted-foreground'>
+      <span className="mr-1">{labels.legend?.less}</span>
+      {Array.from({ length: maxLevel + 1 }).map((_, l) => (
+        <svg key={l} width={blockSize} height={blockSize}>
+          <rect width={blockSize} height={blockSize} rx={blockRadius} data-level={l}
+            className={cn(
+              'dark:data-[level="0"]:fill-slate-800/50 data-[level="0"]:fill-slate-100',
+              'data-[level="1"]:fill-[#9be9a8] dark:data-[level="1"]:fill-[#0e4429]',
+              'data-[level="2"]:fill-[#40c463] dark:data-[level="2"]:fill-[#006d32]',
+              'data-[level="3"]:fill-[#30a14e] dark:data-[level="3"]:fill-[#26a641]',
+              'data-[level="4"]:fill-[#216e39] dark:data-[level="4"]:fill-[#39d353]'
+            )}
+          />
+        </svg>
+      ))}
+      <span className="ml-1">{labels.legend?.more}</span>
     </div>
   )
 }
 
-interface GithubCalendarProps {
-  username?: string;
-  year?: number | 'last';
-  className?: string;
-}
-
-export const GithubCalendar = ({
-  username = "bouajilaProg",
-  year = 'last',
-  className
-}: GithubCalendarProps) => {
-  const [data, setData] = useState<{ contributions: Activity[], total: Record<string, number> } | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+// --- Wrapper ---
+export const GithubCalendar = ({ username = "bouajilaProg", className }: ContributionGraphProps) => {
+  const [data, setData] = useState<Activity[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=${year}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch contributions');
-        }
-        const result = await response.json();
-        setData(result);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, [username, year]);
+    fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=all`)
+      .then(res => res.json())
+      .then(res => { setData(res.contributions); setLoading(false); })
+  }, [username])
 
-  if (loading) {
-    return (
-      <div className={cn("w-full h-32 flex items-center justify-center text-muted-foreground animate-pulse bg-muted/10 rounded-lg border border-dashed border-muted-foreground/20", className)}>
-        Loading GitHub contributions...
-      </div>
-    );
-  }
-
-  if (error || !data) {
-    return (
-      <div className={cn("w-full h-32 flex items-center justify-center text-destructive/50 text-sm border border-dashed border-destructive/20 rounded-lg", className)}>
-        {error || "Could not load contributions"}
-      </div>
-    );
-  }
+  if (loading) return <div className="w-full h-32 animate-pulse bg-muted/10 rounded-lg" />
 
   return (
     <section className={cn("pb-12", className)}>
       <FadeIn>
-        <h2 className="text-sm uppercase tracking-[0.2em] text-slate-600 dark:text-slate-200 font-bold mb-6">Open Source</h2>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-8">GitHub Activity</h2>
       </FadeIn>
       <FadeIn delay={0.2}>
-        <ContributionGraph data={data.contributions} blockSize={11} blockMargin={3} blockRadius={2} fontSize={10}>
+        <ContributionGraph data={data} blockSize={11} blockMargin={3} fontSize={10}>
           <ContributionGraphCalendar>
-            {({ activity, dayIndex, weekIndex }) => (
-              <ContributionGraphBlock
-                activity={activity}
-                dayIndex={dayIndex}
-                weekIndex={weekIndex}
-              />
-            )}
+            {(props: any) => <ContributionGraphBlock {...props} />}
           </ContributionGraphCalendar>
           <ContributionGraphFooter>
-            <ContributionGraphTotalCount className="text-xs text-slate-400" />
+            <ContributionGraphTotalCount />
             <ContributionGraphLegend />
           </ContributionGraphFooter>
         </ContributionGraph>
       </FadeIn>
     </section>
-  );
-};
+  )
+}
