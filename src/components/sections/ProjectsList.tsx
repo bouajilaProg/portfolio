@@ -13,7 +13,7 @@ export function ProjectsList() {
         {featuredProjects.map((project, index) => (
           <div key={project.id}>
             {index !== 0 && <Separator variant="component" />}
-            <ProjectCard project={project} />
+            <ProjectCard project={project} headingLevel="h3" />
           </div>
         ))}
       </div>

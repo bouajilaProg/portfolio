@@ -77,6 +77,7 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={link.name}
                     className="text-slate-500 hover:text-slate-900 dark:hover:text-slate-50 transition-colors flex items-center gap-2 text-xs font-medium uppercase tracking-wider"
                   >
                     {getIconForType(link.type, "w-3.5 h-3.5")}

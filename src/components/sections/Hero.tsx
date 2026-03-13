@@ -27,11 +27,22 @@ export function Hero() {
             <div className="flex items-center gap-5 md:gap-6">
               <div className="shrink-0">
                 <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-                  <img
-                    src="/profile-pic.png"
-                    alt={profile.name}
-                    className="w-full h-full object-cover"
-                  />
+                  <picture>
+                    <source
+                      srcSet="/profile-pic-80w.webp 80w, /profile-pic.webp 160w"
+                      sizes="(min-width: 768px) 80px, 64px"
+                      type="image/webp"
+                    />
+                    <img
+                      src="/profile-pic.webp"
+                      alt={profile.name}
+                      width={160}
+                      height={160}
+                      className="w-full h-full object-cover"
+                      loading="eager"
+                      fetchPriority="high"
+                    />
+                  </picture>
                 </div>
               </div>
 
@@ -69,6 +80,7 @@ export function Hero() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={link.name}
                       className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium shadow-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50 gap-2"
                     >
                       {getIconForType(link.type, "h-4 w-4")}

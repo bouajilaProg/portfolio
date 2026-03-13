@@ -22,7 +22,10 @@ const { title, description, image, type, breadcrumbs } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    
+
+    <!-- Preload LCP image -->
+    <link rel="preload" as="image" type="image/webp" href="/profile-pic.webp" />
+
     <SEO 
       title={title} 
       description={description} 
@@ -36,6 +39,6 @@ const { title, description, image, type, breadcrumbs } = Astro.props;
   </head>
   <body class="antialiased bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-slate-100 selection:bg-blue-600 selection:text-white font-sans">
     <slot />
-    <Footer client:load />
+    <Footer client:idle />
   </body>
 </html>

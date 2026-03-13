@@ -13,11 +13,11 @@ const description = "Full-Stack Developer & Product Manager";
 <Layout title={title} description={description}>
   <main class="min-h-dvh max-w-3xl mx-auto px-6">
     <Hero client:load />
-    <Work client:load />
-    <Separator variant="section" client:load />
-    <Education client:load />
-    <Separator variant="section" client:load />
-    <GithubCalendar client:load />
+    <Work client:visible />
+    <Separator variant="section" client:visible />
+    <Education client:visible />
+    <Separator variant="section" client:visible />
+    <GithubCalendar client:visible />
   </main>
   
 </Layout>

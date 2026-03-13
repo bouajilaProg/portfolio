@@ -38,8 +38,8 @@ const breadcrumbs = [
       <div class="space-y-16">
         {projects.map((project, index) => (
           <div>
-            {index !== 0 && <Separator variant="component" client:load />}
-            <ProjectCard project={project} client:load />
+            {index !== 0 && <Separator variant="component" client:visible />}
+            <ProjectCard project={project} headingLevel="h2" client:visible />
           </div>
         ))}
       </div>
