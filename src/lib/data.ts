@@ -88,75 +88,86 @@ export interface Project {
 }
 
 export const projects: Project[] = [{
-    id: "autoresume",
-    title: "AutoResume",
-    description: "A data-driven resume manager that generates LaTeX-quality PDFs from a single source of truth using Typst.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Typst", "Zod"],
-    featured: true,
-    rank: 1,
-    links: [
-      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/auto-resume" }
-    ],
-    image: "homepage.png",
-  },{
-    id: "greenboard",
-    title: "GreenBoard",
-    description: "A production-ready platform for selling personalized PCBs. Supports user-uploaded Gerber files.",
-    tech: ["Next.js", "Resend Email API", "Tailwind", "React"],
-    links: [
-      { name: "Demo", type: "website", href: "https://greenboard.tn" }
-    ],
-    image: "greenboard.png",
-    featured: true,
-    rank: 2,
-  },{
-    id: "codedown",
-    title: "CodeDown",
-    description: "A CLI tool to convert Markdown files into beautiful, syntax-highlighted PDFs.",
-    tech: ["Python", "Markdown", "CLI Tools", "PDF Generation"],
-    links: [
-      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/CodeDown" }
-    ],
-    featured: true,
-    rank: 3,
-  },{
-    id: "cooldocs",
-    title: "Cool Docs",
-    description: "Offline desktop documentation manager tailored for competitive programmers.",
-    tech: ["Rust", "Tauri", "XML", "CSS"],
-    links: [
-      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/cool-docs" }
-    ],
-    featured: false,
-    rank: 4,
-  },{
-    id: "shead",
-    title: "shead",
-    description: "An enhanced and modernized replacement for the standard shell 'read' command.",
-    tech: ["Rust", "Shell"],
-    links: [
-      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/shead" }
-    ],
-    featured: false,
-    rank: 5,
-  },{
-    id: "goodtalk",
-    title: "Good Talk",
-    description: "AI-powered chat application focused on safety and natural language processing.",
-    tech: ["React", "Express", "AI", "NLP"],
-    links: [
-      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/GoodTalk" }
-    ],
-    featured: false,
-    rank: 6,
-  },{
-    id: "cri",
-    title: "CRI Website",
-    description: "The full-stack community platform for the ISIMM Robotics Club.",
-    tech: ["React", "Express", "PostgreSQL"],
-    links: [
-      { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/CRI-website" }
-    ],
-    featured: false,
-    rank: 7,
-  }];
+  id: "autoresume",
+  title: "AutoResume",
+  description: "A data-driven resume manager that generates LaTeX-quality PDFs from a single source of truth using Typst.",
+  tech: ["Next.js", "TypeScript", "Tailwind CSS", "Typst", "Zod"],
+  featured: true,
+  rank: 1,
+  links: [
+    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/auto-resume" }
+  ],
+  image: "homepage.png",
+}, {
+  id: "greenboard",
+  title: "GreenBoard",
+  description: "A production-ready platform for selling personalized PCBs. Supports user-uploaded Gerber files.",
+  tech: ["Next.js", "Resend Email API", "Tailwind", "React"],
+  links: [
+    { name: "Demo", type: "website", href: "https://greenboard.tn" }
+  ],
+  image: "greenboard.png",
+  featured: true,
+  rank: 2,
+}, {
+  id: "codedown",
+  title: "CodeDown",
+  description: "A CLI tool to convert Markdown files into beautiful, syntax-highlighted PDFs.",
+  tech: ["Python", "Markdown", "CLI Tools", "PDF Generation"],
+  links: [
+    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/CodeDown" },
+    { name: "PyPI", type: "pypi", href: "https://pypi.org/project/codedown/" }
+  ],
+  featured: true,
+  rank: 3,
+}, {
+  id: "cooldocs",
+  title: "Cool Docs",
+  description: "Offline desktop documentation manager tailored for competitive programmers.",
+  tech: ["Rust", "Tauri", "XML", "CSS"],
+  links: [
+    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/cool-docs" }
+  ],
+  featured: false,
+  rank: 4,
+}, {
+  id: "shead",
+  title: "shead",
+  description: "An enhanced and modernized replacement for the standard shell 'read' command.",
+  tech: ["Rust", "Shell"],
+  links: [
+    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/shead" }
+  ],
+  featured: false,
+  rank: 5,
+}, {
+  id: "goodtalk",
+  title: "Good Talk",
+  description: "AI-powered chat application focused on safety and natural language processing.",
+  tech: ["React", "Express", "AI", "NLP"],
+  links: [
+    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/GoodTalk" }
+  ],
+  featured: false,
+  rank: 6,
+}, {
+  id: "cri",
+  title: "CRI Website",
+  description: "The full-stack community platform for the ISIMM Robotics Club.",
+  tech: ["React", "Express", "PostgreSQL"],
+  links: [
+    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/CRI-website" }
+  ],
+  featured: false,
+  rank: 7,
+}, {
+  id: "olivehealthai",
+  title: "Olive Health AI",
+  description: "A machine learning-powered system for predicting irrigation needs and stress levels in olive groves using satellite NDVI data and local temperature inputs.",
+  tech: ["Python", "FastAPI", "Machine Learning", "Google Earth Engine", "Sentinel-2", "Scikit-learn"],
+  links: [
+    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/Olive-Health-AI" }
+  ],
+  featured: false,
+  rank: 8,
+}];
