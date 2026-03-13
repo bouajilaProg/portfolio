@@ -1,10 +1,10 @@
 # Portfolio v2
 
-A minimal, animated personal portfolio built with Next.js 16, React 19, and Tailwind CSS 4.
+A minimal, animated personal portfolio built with astro 5, React 19, and Tailwind CSS 4.
 
 ## Tech Stack
 
-- Next.js 16 + React 19
+- Astro 5 + React 19
 - Tailwind CSS 4
 - motion/react for animations
 - clsx + tailwind-merge for class utilities
@@ -32,7 +32,11 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view.
+Open [http://localhost:1600](http://localhost:1600) to view (the dev server binds to port 1600 by default).
+
+Agenting
+
+- Developer/agent instructions live in `AGENTS.md` — follow those guidelines when making automated or agent-driven changes.
 
 ## Learn More
 
