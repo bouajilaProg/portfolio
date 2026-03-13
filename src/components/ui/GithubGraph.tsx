@@ -9,8 +9,6 @@ import {
   nextDay,
   parseISO,
   subWeeks,
-  startOfMonth,
-  endOfYear,
 } from 'date-fns'
 import {
   createContext,
@@ -155,9 +153,10 @@ export const ContributionGraph = ({
 
   const range = useMemo(() => {
     const now = new Date();
+    const lastYear = now.getFullYear() - 1;
     return {
-      start: startOfMonth(new Date(getYear(now) - 1, 11, 1)), // Dec 1, Last Year
-      end: endOfYear(now)                                     // Dec 31, Current Year
+      start: new Date(lastYear, 11, 1), // Dec 1, Last Year
+      end: new Date(now.getFullYear(), 11, 31) // Dec 31, Current Year
     };
   }, []);
 
@@ -170,7 +169,7 @@ export const ContributionGraph = ({
   return (
     <ContributionGraphContext.Provider value={{
       data, weeks, blockMargin, blockRadius, blockSize, fontSize, labels, labelHeight, maxLevel,
-      totalCount: data.reduce((sum: number, a: Activity) => sum + a.count, 0), // Fixed: Added types to reduce
+      totalCount: data ? data.reduce((sum, a) => sum + a.count, 0) : 0,
       weekStart, year: getYear(range.end), width, height
     }}>
       <div className={cn('flex w-full flex-col gap-3', className)} style={{ fontSize }} {...props}>
@@ -180,7 +179,14 @@ export const ContributionGraph = ({
   )
 }
 
-export const ContributionGraphBlock = ({ activity, dayIndex, weekIndex, className, ...props }: any) => {
+interface ContributionGraphBlockProps {
+  activity: Activity
+  dayIndex: number
+  weekIndex: number
+  className?: string
+}
+
+export const ContributionGraphBlock = ({ activity, dayIndex, weekIndex, className, ...props }: ContributionGraphBlockProps) => {
   const { blockSize, blockMargin, blockRadius, labelHeight } = useContributionGraph()
   return (
     <rect
@@ -203,7 +209,12 @@ export const ContributionGraphBlock = ({ activity, dayIndex, weekIndex, classNam
   )
 }
 
-export const ContributionGraphCalendar = ({ hideMonthLabels = false, children }: { hideMonthLabels?: boolean, children: (props: any) => React.ReactNode }) => {
+interface ContributionGraphCalendarProps {
+  hideMonthLabels?: boolean
+  children: (props: { activity: Activity, dayIndex: number, weekIndex: number }) => React.ReactNode
+}
+
+export const ContributionGraphCalendar = ({ hideMonthLabels = false, children }: ContributionGraphCalendarProps) => {
   const { weeks, width, height, blockSize, blockMargin, labels } = useContributionGraph()
   const monthLabels = useMemo(() => getMonthLabels(weeks, labels.months), [weeks, labels.months])
 
@@ -227,8 +238,15 @@ export const ContributionGraphCalendar = ({ hideMonthLabels = false, children }:
   )
 }
 
-export const ContributionGraphFooter = ({ className, ...props }: any) => (
-  <div className={cn('flex flex-wrap gap-1 whitespace-nowrap sm:gap-x-4', className)} {...props} />
+interface ContributionGraphFooterProps {
+  className?: string
+  children?: React.ReactNode
+}
+
+export const ContributionGraphFooter = ({ className, children, ...props }: ContributionGraphFooterProps) => (
+  <div className={cn('flex flex-wrap gap-1 whitespace-nowrap sm:gap-x-4', className)} {...props}>
+    {children}
+  </div>
 )
 
 export const ContributionGraphTotalCount = ({ className }: { className?: string }) => {
@@ -279,12 +297,12 @@ export const GithubCalendar = ({ username = "bouajilaProg", className }: { usern
   return (
     <section className={cn("pb-12", className)}>
       <FadeIn>
-        <h2 className="text-sm uppercase tracking-[0.2em] text-slate-600 dark:text-slate-200 font-bold mb-6">Open Source</h2>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-8">GitHub Activity</h2>
       </FadeIn>
       <FadeIn delay={0.2}>
         <ContributionGraph data={data} blockSize={11} blockMargin={3} fontSize={10}>
           <ContributionGraphCalendar>
-            {(props: any) => <ContributionGraphBlock {...props} />}
+            {(props) => <ContributionGraphBlock {...props} />}
           </ContributionGraphCalendar>
           <ContributionGraphFooter>
             <ContributionGraphTotalCount />
