@@ -6,7 +6,6 @@ import { ArrowLeft } from "lucide-react";
 import { ProjectCard } from "../components/sections/ProjectCard";
 // Import the React component
 
-const sortedProjects = [...projects].sort((a, b) => a.rank - b.rank);
 
 const title = "Projects - Mohamed Yessine Bouajila";
 const description = "A collection of my work, showcasing my expertise in building accessible, high-performance web applications.";
@@ -37,12 +36,9 @@ const breadcrumbs = [
 
     <section class="py-12">
       <div class="space-y-16">
-        {sortedProjects.map((project, index) => (
+        {projects.map((project, index) => (
           <div>
             {index !== 0 && <Separator variant="component" client:load />}
-            {/* We use client:load if there are interactive elements (like tooltips or framer-motion) 
-               or just let it render if it's purely for layout.
-            */}
             <ProjectCard project={project} client:load />
           </div>
         ))}

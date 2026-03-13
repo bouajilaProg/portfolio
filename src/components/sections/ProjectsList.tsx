@@ -5,9 +5,7 @@ import Separator from "../ui/Separator";
 import { ArrowRight } from "lucide-react";
 
 export function ProjectsList() {
-  const featuredProjects = projects
-    .filter((project) => project.featured)
-    .sort((a, b) => a.rank - b.rank);
+    const featuredProjects = projects.filter((project) => project.featured);
 
   return (
     <>

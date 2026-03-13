@@ -23,7 +23,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className="space-y-4">
           <div className="flex items-center justify-between gap-4">
             <h3 className="text-xl font-bold tracking-tight">{project.title}</h3>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-row-reverse">
               {project.links.map((link, idx) => (
                 <IconButton key={idx} href={link.href} label={link.name}>
                   {getIconForType(link.type, "size-4")}
