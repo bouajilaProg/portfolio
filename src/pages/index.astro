@@ -1,17 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Hero } from "../components/sections/Hero";
+import { Experience } from "../components/sections/Experience";
 import { Education } from "../components/sections/Education";
 import { Work } from "../components/sections/Work";
 import Separator from "../components/ui/Separator";
 import { GithubCalendar } from "../components/ui/GithubGraph";
-import { getEducation, getProfile, getProjects } from "../lib/data";
+import { getEducation, getExperiences, getProfile, getProjects } from "../lib/data";
 
 const title = "Mohamed Yessine Bouajila - Portfolio";
 const description = "Full-Stack Developer & Product Manager";
-const [profile, projects, education] = await Promise.all([
+const [profile, projects, experiences, education] = await Promise.all([
   getProfile(),
   getProjects(),
+  getExperiences(),
   getEducation(),
 ]);
 ---
@@ -20,6 +22,8 @@ const [profile, projects, education] = await Promise.all([
   <main class="min-h-dvh max-w-3xl mx-auto px-6">
     <Hero profile={profile} client:load />
     <Work projects={projects} client:visible />
+    <Separator variant="section" client:visible />
+    <Experience experiences={experiences} client:visible />
     <Separator variant="section" client:visible />
     <Education education={education} client:visible />
     <Separator variant="section" client:visible />
