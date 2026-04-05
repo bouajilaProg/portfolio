@@ -287,9 +287,15 @@ export const GithubCalendar = ({ username = "bouajilaProg", className }: { usern
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=all`)
-      .then(res => res.json())
-      .then(res => { setData(res.contributions); setLoading(false); })
+    fetch(`/api/github.json?username=${encodeURIComponent(username)}`)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res?.contributions) {
+          setData(res.contributions)
+        }
+        setLoading(false)
+      })
+      .catch(() => setLoading(false))
   }, [username])
 
   if (loading) return <div className="w-full h-32 animate-pulse bg-muted/10 rounded-lg" />
