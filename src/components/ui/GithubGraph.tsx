@@ -287,7 +287,7 @@ export const GithubCalendar = ({ username = "bouajilaProg", className }: { usern
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`/api/github.json?username=${encodeURIComponent(username)}`)
+    fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=all`)
       .then((res) => res.json())
       .then((res) => {
         if (res?.contributions) {
