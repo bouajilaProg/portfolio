@@ -194,6 +194,10 @@ const requestJson = async <T>(path: string, options: RequestInit = {}): Promise<
       // ignore JSON parse errors
     }
 
+    if (response.status === 401) {
+      errorMessage = `${errorMessage}. CMS token may be expired; set CMS_ACCESS_TOKEN to a fresh token.`;
+    }
+
     throw new Error(errorMessage);
   };
 
