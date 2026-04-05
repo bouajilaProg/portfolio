@@ -1,5 +1,6 @@
-import { FadeIn } from "../ui/FadeIn";
 import { type Education as EducationEntry } from "../../lib/data";
+import { normalizeTimelineDisplay } from "../../lib/timeline";
+import { FadeIn } from "../ui/FadeIn";
 
 interface EducationProps {
   education: EducationEntry[];
@@ -17,7 +18,7 @@ export function Education({ education }: EducationProps) {
             <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2">
 
               <span className="text-sm font-mono text-slate-400 pt-1">
-                {edu.date}
+                {normalizeTimelineDisplay(edu.date)}
               </span>
 
               <div>
