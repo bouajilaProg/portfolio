@@ -11,6 +11,21 @@ export default defineConfig({
   integrations: [react(), sitemap()],
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    resolve: {
+      dedupe: ['react', 'react-dom'],
+    },
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'motion', 'motion/react'],
+      exclude: ['@astrojs/react'],
+    },
+    ssr: {
+      noExternal: ['motion'],
+    },
+    build: {
+      commonjsOptions: {
+        include: [/motion/, /node_modules/],
+      },
+    },
   }
 });
