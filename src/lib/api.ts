@@ -173,11 +173,19 @@ const requestJson = async <T>(path: string, options: RequestInit = {}): Promise<
   }
 
   const fetchJson = async () => {
-    const response = await fetch(buildApiUrl(path), {
-      ...options,
-      headers,
-      credentials: "include",
-    });
+    const requestUrl = buildApiUrl(path);
+    let response: Response;
+
+    try {
+      response = await fetch(requestUrl, {
+        ...options,
+        headers,
+        credentials: "include",
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      throw new Error(`CMS request failed for ${requestUrl}: ${message}`);
+    }
 
     if (response.ok) {
       return (await response.json()) as T;

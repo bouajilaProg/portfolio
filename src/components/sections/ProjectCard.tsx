@@ -20,9 +20,9 @@ export function ProjectCard({ project, headingLevel = "h2" }: ProjectCardProps) 
             <img
               src={imageUrl}
               alt={`${project.title} preview`}
-              width={1900}
-              height={993}
-              className="w-full h-full object-contain"
+              width={1600}
+              height={900}
+              className="w-full h-full object-cover"
               loading="lazy"
               decoding="async"
             />

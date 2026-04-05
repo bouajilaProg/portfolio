@@ -26,9 +26,6 @@ const profile = profileProp ?? (await getProfile());
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Preload LCP image -->
-    <link rel="preload" as="image" type="image/webp" href="/profile-pic.webp" />
-
     <SEO 
       title={title} 
       description={description} 
