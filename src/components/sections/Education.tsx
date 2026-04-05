@@ -1,5 +1,5 @@
 import { type Education as EducationEntry } from "../../lib/data";
-import { normalizeTimelineDisplay } from "../../lib/timeline";
+import { normalizeTimelineLines } from "../../lib/timeline";
 import { FadeIn } from "../ui/FadeIn";
 
 interface EducationProps {
@@ -13,12 +13,22 @@ export function Education({ education }: EducationProps) {
         <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-8">Education</h2>
       </FadeIn>
       <div className="space-y-12">
-        {education.map((edu, i) => (
-          <FadeIn key={i} delay={0.1 + i * 0.1}>
+        {education.map((edu, i) => {
+          const timeline = normalizeTimelineLines(edu.date);
+          return (
+            <FadeIn key={i} delay={0.1 + i * 0.1}>
             <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2">
 
               <span className="text-sm font-mono text-slate-400 pt-1">
-                {normalizeTimelineDisplay(edu.date)}
+                <span className="flex flex-row md:flex-col">
+                  <span>{timeline.start}</span>
+                  {timeline.end ? (
+                    <>
+                      <span className="mx-1 md:hidden">-</span>
+                      <span className="md:block">{timeline.end}</span>
+                    </>
+                  ) : null}
+                </span>
               </span>
 
               <div>
@@ -41,8 +51,9 @@ export function Education({ education }: EducationProps) {
                 </div>
               </div>
             </div>
-          </FadeIn>
-        ))}
+            </FadeIn>
+          );
+        })}
       </div>
     </section>
   );

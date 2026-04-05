@@ -1,5 +1,5 @@
 import { type Experience as ExperienceEntry } from "../../lib/data";
-import { normalizeTimelineDisplay } from "../../lib/timeline";
+import { normalizeTimelineLines } from "../../lib/timeline";
 import { FadeIn } from "../ui/FadeIn";
 
 interface ExperienceProps {
@@ -15,11 +15,21 @@ export function Experience({ experiences }: ExperienceProps) {
         </h2>
       </FadeIn>
       <div className="space-y-12">
-        {experiences.map((exp, i) => (
-          <FadeIn key={i} delay={0.1 + i * 0.1}>
+        {experiences.map((exp, i) => {
+          const timeline = normalizeTimelineLines(exp.date);
+          return (
+            <FadeIn key={i} delay={0.1 + i * 0.1}>
             <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2">
               <span className="text-sm font-mono text-slate-400 pt-1">
-                {normalizeTimelineDisplay(exp.date)}
+                <span className="flex flex-row md:flex-col">
+                  <span>{timeline.start}</span>
+                  {timeline.end ? (
+                    <>
+                      <span className="mx-1 md:hidden">-</span>
+                      <span className="md:block">{timeline.end}</span>
+                    </>
+                  ) : null}
+                </span>
               </span>
 
               <div>
@@ -44,8 +54,9 @@ export function Experience({ experiences }: ExperienceProps) {
                 )}
               </div>
             </div>
-          </FadeIn>
-        ))}
+            </FadeIn>
+          );
+        })}
       </div>
     </section>
   );

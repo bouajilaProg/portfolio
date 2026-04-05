@@ -162,3 +162,32 @@ export function normalizeTimelineDisplay(dateString?: string | null): string {
   if (!dateString) return "";
   return formatTimeline(parseTimeline(dateString));
 }
+
+/**
+ * Parse and format a date string into separate lines (start/end)
+ */
+export function normalizeTimelineLines(dateString?: string | null): {
+  start: string;
+  end?: string;
+} {
+  if (!dateString) return { start: "" };
+  const timeline = parseTimeline(dateString);
+
+  if (timeline.isSingleYear) {
+    const start = timeline.startMonth
+      ? `${timeline.startMonth} ${timeline.startYear}`
+      : timeline.startYear;
+    return { start };
+  }
+
+  const start = timeline.startMonth
+    ? `${timeline.startMonth} ${timeline.startYear}`
+    : timeline.startYear;
+  const end = timeline.isPresent
+    ? "Present"
+    : timeline.endMonth
+      ? `${timeline.endMonth} ${timeline.endYear}`
+      : timeline.endYear;
+
+  return { start, end };
+}
