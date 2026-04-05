@@ -15,6 +15,24 @@ const apiBaseUrl = (() => {
   return url.endsWith("/") ? url.slice(0, -1) : url;
 })();
 
+type CacheEntry<T> = {
+  value: T;
+  expiresAt: number;
+  staleAt: number;
+  inflight?: Promise<T>;
+};
+
+const cacheStore = new Map<string, CacheEntry<unknown>>();
+
+const getCacheDurations = () => {
+  const ttlSeconds = Number(import.meta.env.CMS_CACHE_TTL_SECONDS ?? "300");
+  const staleSeconds = Number(import.meta.env.CMS_CACHE_STALE_SECONDS ?? "3600");
+  const ttlMs = Math.max(0, ttlSeconds) * 1000;
+  const staleMs = Math.max(ttlMs, Math.max(0, staleSeconds) * 1000);
+
+  return { ttlMs, staleMs };
+};
+
 /**
  * Get the access token from environment
  */
@@ -72,6 +90,74 @@ const withAuthHeaders = (headers: Headers) => {
   return headers;
 };
 
+const shouldCache = (options: RequestInit) => {
+  const method = (options.method ?? "GET").toUpperCase();
+  if (method !== "GET") {
+    return false;
+  }
+
+  if (options.cache === "no-store") {
+    return false;
+  }
+
+  return true;
+};
+
+const getCachedResponse = async <T>(key: string, fetcher: () => Promise<T>): Promise<T> => {
+  const { ttlMs, staleMs } = getCacheDurations();
+  if (ttlMs === 0) {
+    return fetcher();
+  }
+
+  const now = Date.now();
+  const existing = cacheStore.get(key) as CacheEntry<T> | undefined;
+
+  const storeFresh = async () => {
+    const value = await fetcher();
+    const updatedAt = Date.now();
+
+    cacheStore.set(key, {
+      value,
+      expiresAt: updatedAt + ttlMs,
+      staleAt: updatedAt + staleMs,
+    });
+
+    return value;
+  };
+
+  if (!existing) {
+    return storeFresh();
+  }
+
+  if (now < existing.expiresAt) {
+    return existing.value;
+  }
+
+  if (now < existing.staleAt) {
+    if (!existing.inflight) {
+      const inflight = storeFresh()
+        .catch(() => existing.value)
+        .finally(() => {
+          const current = cacheStore.get(key) as CacheEntry<T> | undefined;
+          if (current?.inflight === inflight) {
+            current.inflight = undefined;
+          }
+        });
+
+      existing.inflight = inflight;
+      cacheStore.set(key, existing);
+    }
+
+    return existing.value;
+  }
+
+  if (existing.inflight) {
+    return existing.inflight;
+  }
+
+  return storeFresh();
+};
+
 /**
  * Make authenticated JSON request to API
  */
@@ -86,28 +172,37 @@ const requestJson = async <T>(path: string, options: RequestInit = {}): Promise<
     headers.set("Content-Type", "application/json");
   }
 
-  const response = await fetch(buildApiUrl(path), {
-    ...options,
-    headers,
-    credentials: "include",
-  });
+  const fetchJson = async () => {
+    const response = await fetch(buildApiUrl(path), {
+      ...options,
+      headers,
+      credentials: "include",
+    });
 
-  if (response.ok) {
-    return (await response.json()) as T;
-  }
-
-  let errorMessage = `Request failed with status ${response.status}`;
-
-  try {
-    const errorPayload = (await response.json()) as { error?: string };
-    if (errorPayload?.error) {
-      errorMessage = errorPayload.error;
+    if (response.ok) {
+      return (await response.json()) as T;
     }
-  } catch {
-    // ignore JSON parse errors
+
+    let errorMessage = `Request failed with status ${response.status}`;
+
+    try {
+      const errorPayload = (await response.json()) as { error?: string };
+      if (errorPayload?.error) {
+        errorMessage = errorPayload.error;
+      }
+    } catch {
+      // ignore JSON parse errors
+    }
+
+    throw new Error(errorMessage);
+  };
+
+  if (!shouldCache(options)) {
+    return fetchJson();
   }
 
-  throw new Error(errorMessage);
+  const cacheKey = buildApiUrl(path);
+  return getCachedResponse<T>(cacheKey, fetchJson);
 };
 
 /**
