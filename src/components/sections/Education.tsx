@@ -1,7 +1,11 @@
 import { FadeIn } from "../ui/FadeIn";
-import { education } from "../../lib/data";
+import { type Education as EducationEntry } from "../../lib/data";
 
-export function Education() {
+interface EducationProps {
+  education: EducationEntry[];
+}
+
+export function Education({ education }: EducationProps) {
   return (
     <section id="education">
       <FadeIn>

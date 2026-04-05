@@ -9,31 +9,23 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, headingLevel = "h2" }: ProjectCardProps) {
-  const imageBase = `/projectImages/${project.id.toLowerCase().replace(" ", "")}`;
-  const imageName = project.image?.replace(/\.\w+$/, "");
+  const imageUrl = project.image;
   const Heading = headingLevel;
 
   return (
     <FadeIn>
       <div className="group space-y-5">
-        {project.image && imageName ? (
+        {imageUrl ? (
           <div className="aspect-video bg-slate-50 dark:bg-slate-900/40 rounded border border-slate-100 dark:border-slate-900 overflow-hidden">
-            <picture>
-              <source
-                srcSet={`${imageBase}/${imageName}-768w.webp 768w, ${imageBase}/${imageName}.webp 1900w`}
-                sizes="(max-width: 768px) 100vw, 768px"
-                type="image/webp"
-              />
-              <img
-                src={`${imageBase}/${imageName}.webp`}
-                alt={`${project.title} preview`}
-                width={1900}
-                height={993}
-                className="w-full h-full object-contain"
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
+            <img
+              src={imageUrl}
+              alt={`${project.title} preview`}
+              width={1900}
+              height={993}
+              className="w-full h-full object-contain"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         ) : null}
         <div className="space-y-4">

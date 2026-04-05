@@ -3,6 +3,7 @@ import "../styles/global.css";
 import SEO from "../components/SEO.astro";
 import JsonLD from "../components/JsonLD.astro";
 import { Footer } from "../components/sections/Footer";
+import { type Profile, getProfile } from "../lib/data";
 
 interface Props {
   title: string;
@@ -10,9 +11,11 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   breadcrumbs?: { name: string; url: string }[];
+  profile?: Profile;
 }
 
-const { title, description, image, type, breadcrumbs } = Astro.props;
+const { title, description, image, type, breadcrumbs, profile: profileProp } = Astro.props;
+const profile = profileProp ?? (await getProfile());
 ---
 
 <!doctype html>
@@ -29,16 +32,18 @@ const { title, description, image, type, breadcrumbs } = Astro.props;
     <SEO 
       title={title} 
       description={description} 
+      profile={profile}
       image={image} 
       type={type} 
     />
     
     <JsonLD 
       breadcrumbs={breadcrumbs} 
+      profile={profile}
     />
   </head>
   <body class="antialiased bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-slate-100 selection:bg-blue-600 selection:text-white font-sans">
     <slot />
-    <Footer client:idle />
+    <Footer profile={profile} client:idle />
   </body>
 </html>

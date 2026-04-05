@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { FadeIn } from "../ui/FadeIn";
 import { Check, Copy, Mail } from "lucide-react";
-import { profile } from "../../lib/data";
+import { type Profile } from "../../lib/data";
 import { type LinkData, getIconForType } from "../../lib/linkTypes";
+import { FadeIn } from "../ui/FadeIn";
 
-export function Footer() {
+interface FooterProps {
+  profile: Profile;
+}
+
+export function Footer({ profile }: FooterProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -14,17 +18,21 @@ export function Footer() {
   };
 
   const footerLinks: LinkData[] = [
-    {
-      name: "LinkedIn",
-      type: "linkedin",
-      href: profile.socialLinks.linkedin,
-    },
-    {
-      name: "GitHub",
-      type: "github",
-      href: profile.socialLinks.github,
-    },
-  ];
+    profile.linkedin
+      ? {
+          name: "LinkedIn",
+          type: "linkedin",
+          href: profile.linkedin,
+        }
+      : null,
+    profile.github
+      ? {
+          name: "GitHub",
+          type: "github",
+          href: profile.github,
+        }
+      : null,
+  ].filter(Boolean) as LinkData[];
 
   return (
     <FadeIn>

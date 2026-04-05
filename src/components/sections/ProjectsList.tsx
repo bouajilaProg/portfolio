@@ -1,11 +1,15 @@
-import { projects } from "../../lib/data";
+import { ArrowRight } from "lucide-react";
+import { type Project } from "../../lib/data";
 import { ProjectCard } from "./ProjectCard";
 import { FadeIn } from "../ui/FadeIn";
 import Separator from "../ui/Separator";
-import { ArrowRight } from "lucide-react";
 
-export function ProjectsList() {
-    const featuredProjects = projects.filter((project) => project.featured);
+interface ProjectsListProps {
+  projects: Project[];
+}
+
+export function ProjectsList({ projects }: ProjectsListProps) {
+  const featuredProjects = projects.filter((project) => project.featured);
 
   return (
     <>

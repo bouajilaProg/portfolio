@@ -1,21 +1,29 @@
-import { FadeIn } from "../ui/FadeIn";
-import { profile } from "../../lib/data";
 import { ArrowRight } from "lucide-react";
+import { type Profile } from "../../lib/data";
 import { type LinkData, getIconForType } from "../../lib/linkTypes";
+import { FadeIn } from "../ui/FadeIn";
 
-export function Hero() {
+interface HeroProps {
+  profile: Profile;
+}
+
+export function Hero({ profile }: HeroProps) {
   const socialLinks: LinkData[] = [
-    {
-      name: "LinkedIn",
-      type: "linkedin",
-      href: profile.socialLinks.linkedin,
-    },
-    {
-      name: "GitHub",
-      type: "github",
-      href: profile.socialLinks.github,
-    },
-  ];
+    profile.linkedin
+      ? {
+          name: "LinkedIn",
+          type: "linkedin",
+          href: profile.linkedin,
+        }
+      : null,
+    profile.github
+      ? {
+          name: "GitHub",
+          type: "github",
+          href: profile.github,
+        }
+      : null,
+  ].filter(Boolean) as LinkData[];
 
   return (
     <section className="pt-24 pb-12">

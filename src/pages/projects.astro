@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { projects } from "../lib/data";
-import Separator from "../components/ui/Separator";
 import { ArrowLeft } from "lucide-react";
 import { ProjectCard } from "../components/sections/ProjectCard";
+import Separator from "../components/ui/Separator";
+import Layout from "../layouts/Layout.astro";
+import { getProfile, getProjects } from "../lib/data";
 // Import the React component
 
 
@@ -13,9 +13,10 @@ const breadcrumbs = [
   { name: "Home", url: "/" },
   { name: "Projects", url: "/projects" }
 ];
+const [profile, projects] = await Promise.all([getProfile(), getProjects()]);
 ---
 
-<Layout title={title} description={description} breadcrumbs={breadcrumbs}>
+<Layout title={title} description={description} breadcrumbs={breadcrumbs} profile={profile}>
   <main class="min-h-dvh max-w-3xl mx-auto px-6">
     <div class="pt-12">
       <a 

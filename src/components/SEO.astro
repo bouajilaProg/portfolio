@@ -2,6 +2,9 @@
 interface Props {
   title: string;
   description: string;
+  profile: {
+    name: string;
+  };
   canonical?: string;
   image?: string;
   type?: 'website' | 'article';
@@ -9,11 +12,10 @@ interface Props {
   nofollow?: boolean;
 }
 
-import { profile } from "../lib/data";
-
 const {
   title,
   description,
+  profile,
   canonical = Astro.url.pathname,
   image = '/og-image.jpg',
   type = 'website',

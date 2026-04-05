@@ -1,5 +1,4 @@
 ---
-import { profile } from "../lib/data";
 interface Person {
   "@type": "Person";
   name: string;
@@ -34,9 +33,17 @@ interface BreadcrumbList {
 interface Props {
   type?: 'person' | 'website' | 'breadcrumb' | 'all';
   breadcrumbs?: { name: string; url: string }[];
+  profile: {
+    name: string;
+    title: string;
+    bio: string;
+    email: string;
+    linkedin: string | null;
+    github: string | null;
+  };
 }
 
-const { type = 'all', breadcrumbs } = Astro.props;
+const { type = 'all', breadcrumbs, profile } = Astro.props;
 
 const siteUrl = Astro.site || 'https://bouajilaprog.com';
 
@@ -48,10 +55,10 @@ const personSchema: Person = {
   jobTitle: profile.title,
   description: profile.bio,
   sameAs: [
-    profile.socialLinks.github,
-    profile.socialLinks.linkedin,
+    profile.github,
+    profile.linkedin,
     // Add other social links if available in your data
-  ],
+  ].filter(Boolean) as string[],
   image: `${siteUrl}/profile.jpg`,
   email: profile.email
 };

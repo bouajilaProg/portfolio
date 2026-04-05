@@ -1,27 +1,102 @@
-import { type LinkData } from "./linkTypes";
+import { type LinkData, type LinkType } from "./linkTypes";
+
+const apiBaseUrl = (() => {
+  const baseUrl = import.meta.env.CMS_API_BASE_URL ?? import.meta.env.PUBLIC_CMS_API_BASE_URL;
+
+  if (!baseUrl) {
+    return "/api";
+  }
+
+  const url = new URL("/api", baseUrl).toString();
+  return url.endsWith("/") ? url.slice(0, -1) : url;
+})();
+
+const getAccessToken = () =>
+  import.meta.env.CMS_ACCESS_TOKEN ?? import.meta.env.PUBLIC_CMS_ACCESS_TOKEN ?? "";
+
+const buildApiUrl = (path: string) => `${apiBaseUrl}${path}`;
+
+const isAbsoluteUrl = (value: string) => /^https?:\/\//i.test(value);
+
+const normalizeLinkType = (type: string): LinkType => {
+  const normalized = type.toLowerCase();
+  const supported: LinkType[] = [
+    "github",
+    "linkedin",
+    "mail",
+    "twitter",
+    "website",
+    "docs",
+    "pypi",
+    "default",
+  ];
+
+  return supported.includes(normalized as LinkType) ? (normalized as LinkType) : "default";
+};
+
+const mapLink = (link: ApiProjectLink): LinkData => ({
+  name: link.name,
+  type: normalizeLinkType(link.type),
+  href: link.href,
+});
+
+const withAuthHeaders = (headers: Headers) => {
+  const token = getAccessToken();
+
+  if (token && !headers.has("Authorization")) {
+    headers.set("Authorization", `Bearer ${token}`);
+  }
+
+  return headers;
+};
+
+const requestJson = async <T>(path: string, options: RequestInit = {}): Promise<T> => {
+  const headers = withAuthHeaders(new Headers(options.headers));
+
+  if (!headers.has("Accept")) {
+    headers.set("Accept", "application/json");
+  }
+
+  if (options.body && !headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/json");
+  }
+
+  const response = await fetch(buildApiUrl(path), {
+    ...options,
+    headers,
+    credentials: "include",
+  });
+
+  if (response.ok) {
+    return (await response.json()) as T;
+  }
+
+  let errorMessage = `Request failed with status ${response.status}`;
+
+  try {
+    const errorPayload = (await response.json()) as { error?: string };
+    if (errorPayload?.error) {
+      errorMessage = errorPayload.error;
+    }
+  } catch {
+    // ignore JSON parse errors
+  }
+
+  throw new Error(errorMessage);
+};
+
 export interface Profile {
+  id?: number;
   name: string;
   title: string;
   bio: string;
   email: string;
-  socialLinks: {
-    linkedin: string;
-    github: string;
-  };
+  linkedin: string | null;
+  github: string | null;
 }
 
-export const profile: Profile = {
-  name: "Mohamed Yessine Bouajila",
-  title: "Full-Stack Developer & Product Manager",
-  bio: "Hi, I'm yessine from Tunisia and I enjoys building practical tools and web applications. I'm passionate about new technologies, open-source software, and finding creative ways to solve real-world problems through code.",
-  email: "bouajilamedyessine@gmail.com",
-  socialLinks: {
-    linkedin: "https://www.linkedin.com/in/mohamed-yessine-bouajila/",
-    github: "https://github.com/bouajilaProg",
-  },
-};
-
 export interface Experience {
+  id?: number;
   role: string;
   company: string;
   date: string;
@@ -29,52 +104,14 @@ export interface Experience {
   skills: string[];
 }
 
-export const experiences: Experience[] = [
-  {
-    role: "Full-Stack Developer",
-    company: "GreenBoard",
-    date: "2023 — Present",
-    description: "Architected a high-traffic e-commerce storefront using React 19 and Next.js, achieving a 98/100 Lighthouse score.",
-    skills: ["Next.js", "TypeScript", "Node.js", "AWS"],
-  },
-];
-
 export interface Education {
+  id?: number;
   school: string;
   degree: string;
   date: string;
   description: string;
   highlights: string[];
 }
-export const education: Education[] = [
-  {
-    school: "Higher Institute of Mathematics & Computer Science (ISIMM)",
-    degree: "Master's in Computer Science",
-    date: "2025 — Present",
-    description: "Specializing in advanced software engineering, distributed systems, and architectural patterns.",
-    highlights: [],
-  },
-  {
-    school: "Higher Institute of Mathematics & Computer Science (ISIMM)",
-    degree: "Bachelor of Science in Computer Science",
-    date: "2022 — 2025",
-    description: "Foundational study of software engineering, algorithms, databases, and networking.",
-    highlights: [
-      "president of the Development Club",
-      "Data Structures and Algorithms",
-    ],
-  },
-  {
-    school: "Habib Thameur High School",
-    degree: "Baccalaureate in Computer Science",
-    date: "2022",
-    description: "Initial focus on mathematics and computer science fundamentals.",
-    highlights: [
-      "Completed with strong results",
-      "Game Developer"
-    ],
-  },
-];
 
 export interface Project {
   id: string;
@@ -82,92 +119,66 @@ export interface Project {
   description: string;
   tech: string[];
   links: LinkData[];
-  image?: string;
+  image: string | null;
   featured: boolean;
 }
 
-export const projects: Project[] = [{
-  id: "autoresume",
-  title: "AutoResume",
-  description: "A data-driven resume manager that generates LaTeX-quality PDFs from a single source of truth using Typst.",
-  tech: ["Next.js", "TypeScript", "Tailwind CSS", "Typst", "Zod"],
-  featured: true,
-  links: [
-    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/auto-resume" }
-  ],
-  image: "homepage.png",
-},
-{
-  id: "greenboard",
-  title: "GreenBoard",
-  description: "A production-ready platform for selling personalized PCBs. Supports user-uploaded Gerber files.",
-  tech: ["Next.js", "Resend Email API", "Tailwind", "React"],
-  links: [
-    { name: "Demo", type: "website", href: "https://greenboard.tn" }
-  ],
-  image: "greenboard.png",
-  featured: true,
-},
-{
-  id: "codedown",
-  title: "CodeDown",
-  description: "A CLI tool to convert Markdown files into beautiful, syntax-highlighted PDFs.",
-  tech: ["Python", "Markdown", "CLI Tools", "PDF Generation"],
-  links: [
-    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/CodeDown" },
-    { name: "PyPI", type: "pypi", href: "https://pypi.org/project/codedown/" },
-    { name: "Documentation", type: "docs", href: "https://bouajilaprog.github.io/CodeDown/" }
-  ],
-  featured: true,
-},
-{
-  id: "cooldocs",
-  title: "Cool Docs",
-  description: "Offline desktop documentation manager tailored for competitive programmers.",
-  tech: ["Rust", "Tauri", "XML", "CSS"],
-  links: [
-    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/cool-docs" }
-  ],
-  featured: false,
-},
-{
-  id: "olivehealthai",
-  title: "Olive Health AI",
-  description: "A machine learning-powered system for predicting irrigation needs and stress levels in olive groves using satellite NDVI data and local temperature inputs.",
-  tech: ["Python", "FastAPI", "Machine Learning", "Google Earth Engine", "Sentinel-2", "Scikit-learn"],
-  links: [
-    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/Olive-Health-AI" }
-  ],
-  featured: false,
-},
-{
-  id: "shead",
-  title: "shead",
-  description: "An enhanced and modernized replacement for the standard shell 'read' command.",
-  tech: ["Rust", "Shell"],
-  links: [
-    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/shead" }
-  ],
-  featured: false,
-},
-{
-  id: "goodtalk",
-  title: "Good Talk",
-  description: "AI-powered chat application focused on safety and natural language processing.",
-  tech: ["React", "Express", "AI", "NLP"],
-  links: [
-    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/GoodTalk" }
-  ],
-  featured: false,
-},
-{
-  id: "cri",
-  title: "CRI Website",
-  description: "The full-stack community platform for the ISIMM Robotics Club.",
-  tech: ["React", "Express", "PostgreSQL"],
-  links: [
-    { name: "GitHub", type: "github", href: "https://github.com/bouajilaProg/CRI-website" }
-  ],
-  featured: false,
-},
-];
+interface ApiProjectLink {
+  id?: number;
+  name: string;
+  type: string;
+  href: string;
+}
+
+interface ApiProject {
+  id: string;
+  title: string;
+  description: string;
+  tech: string[];
+  image: string | null;
+  featured: boolean;
+  links: ApiProjectLink[];
+}
+
+const getSignedMediaUrl = async (key: string) => {
+  if (isAbsoluteUrl(key)) {
+    return key;
+  }
+
+  const response = await requestJson<{ url: string }>("/media/sign", {
+    method: "POST",
+    body: JSON.stringify({ key }),
+  });
+
+  return response.url;
+};
+
+const mapProject = async (project: ApiProject): Promise<Project> => {
+  const image = project.image ? await getSignedMediaUrl(project.image) : null;
+
+  return {
+    id: project.id,
+    title: project.title,
+    description: project.description,
+    tech: project.tech,
+    image,
+    featured: project.featured,
+    links: project.links.map(mapLink),
+  };
+};
+
+export const getProfile = () => requestJson<Profile>("/profile");
+
+export const getProjects = async () => {
+  const projects = await requestJson<ApiProject[]>("/projects");
+  return Promise.all(projects.map((project) => mapProject(project)));
+};
+
+export const getProject = async (id: string) => {
+  const project = await requestJson<ApiProject>(`/projects/${id}`);
+  return mapProject(project);
+};
+
+export const getExperiences = () => requestJson<Experience[]>("/experiences");
+
+export const getEducation = () => requestJson<Education[]>("/education");
