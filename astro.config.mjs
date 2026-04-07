@@ -10,7 +10,12 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://bouajilaprog.com',
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    isr: {
+      expiration: 60 * 60 * 24 * 31,
+      bypassToken: process.env.REVALIDATE_BYPASS_TOKEN,
+    },
+  }),
   integrations: [react(), sitemap()],
 
   vite: {
