@@ -1,3 +1,5 @@
+import { clearApiCache } from "../../lib/api";
+
 export const prerender = false;
 
 const DEFAULT_PATHS = ["/", "/projects"];
@@ -109,6 +111,8 @@ export const POST = async ({ request }: { request: Request }) => {
 
   const paths = normalizePaths(payload?.paths?.length ? payload.paths : DEFAULT_PATHS);
   const origin = new URL(request.url).origin;
+
+  clearApiCache();
 
   const { revalidated, failures } = await revalidatePaths(origin, paths, bypassToken);
 
