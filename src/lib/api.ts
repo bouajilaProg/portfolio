@@ -24,6 +24,10 @@ type CacheEntry<T> = {
 
 const cacheStore = new Map<string, CacheEntry<unknown>>();
 
+export const clearApiCache = () => {
+  cacheStore.clear();
+};
+
 const getCacheDurations = () => {
   const ttlSeconds = Number(import.meta.env.CMS_CACHE_TTL_SECONDS ?? "300");
   const staleSeconds = Number(import.meta.env.CMS_CACHE_STALE_SECONDS ?? "3600");
