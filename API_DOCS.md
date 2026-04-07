@@ -364,7 +364,7 @@ Errors
 - 500 `{ "error": "Internal Server Error" }`
 
 ### POST /api/media/sign
-Generate a signed read URL for an existing R2 object key.
+Generate a public read URL for an existing R2 object key.
 
 Request JSON
 ```
