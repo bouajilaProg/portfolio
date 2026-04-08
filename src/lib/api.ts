@@ -54,6 +54,30 @@ const buildApiUrl = (path: string) => `${apiBaseUrl}${path}`;
 const isAbsoluteUrl = (value: string) => /^https?:\/\//i.test(value);
 
 /**
+ * Get the public base URL for R2 media files
+ */
+const getR2PublicBaseUrl = () =>
+  import.meta.env.R2_PUBLIC_BASE_URL ?? import.meta.env.PUBLIC_R2_PUBLIC_BASE_URL ?? "";
+
+/**
+ * Get public URL for media files stored in R2
+ */
+const getPublicMediaUrl = (key: string): string => {
+  if (isAbsoluteUrl(key)) {
+    return key;
+  }
+
+  const baseUrl = getR2PublicBaseUrl();
+  if (!baseUrl) {
+    console.error("R2_PUBLIC_BASE_URL is not configured");
+    return key;
+  }
+
+  const normalizedKey = key.startsWith("/") ? key.slice(1) : key;
+  return `${baseUrl.replace(/\/$/, "")}/${normalizedKey}`;
+};
+
+/**
  * Normalize link type to supported types
  */
 const normalizeLinkType = (type: string): LinkType => {
@@ -222,26 +246,10 @@ const requestJson = async <T>(path: string, options: RequestInit = {}): Promise<
 };
 
 /**
- * Get signed URL for media files
- */
-const getSignedMediaUrl = async (key: string) => {
-  if (isAbsoluteUrl(key)) {
-    return key;
-  }
-
-  const response = await requestJson<{ url: string }>("/media/sign", {
-    method: "POST",
-    body: JSON.stringify({ key }),
-  });
-
-  return response.url;
-};
-
-/**
  * Transform API project to frontend Project
  */
-const mapProject = async (project: ApiProject): Promise<Project> => {
-  const image = project.image ? await getSignedMediaUrl(project.image) : null;
+const mapProject = (project: ApiProject): Project => {
+  const image = project.image ? getPublicMediaUrl(project.image) : null;
 
   return {
     id: project.id,
@@ -264,7 +272,7 @@ export const getProfile = () => requestJson<Profile>("/profile");
  */
 export const getProjects = async () => {
   const projects = await requestJson<ApiProject[]>("/projects");
-  return Promise.all(projects.map((project) => mapProject(project)));
+  return projects.map((project) => mapProject(project));
 };
 
 /**
