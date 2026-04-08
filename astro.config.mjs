@@ -9,13 +9,8 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bouajilaprog.com',
-  output: 'server',
-  adapter: vercel({
-    isr: {
-      expiration: 60 * 60 * 24 * 31,
-      bypassToken: process.env.REVALIDATE_BYPASS_TOKEN,
-    },
-  }),
+  output: 'static',
+  adapter: vercel(),
   integrations: [react(), sitemap()],
 
   vite: {
