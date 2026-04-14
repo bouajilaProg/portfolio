@@ -1,7 +1,7 @@
 AGENTS
 
 Purpose
-- This document orients agentic coding assistants to work in this repository. It lists build / dev / CI commands, explains how to run a single test when tests are present, and documents code-style, naming, import, error-handling and commit conventions used across the codebase.
+- This document orients agentic coding assistants to work in this repository. It lists build / dev / CI commands, documents environment variables and architecture touchpoints, explains how to run a single test when tests are present, and captures code-style, naming, import, error-handling and commit conventions.
 
 Quick commands
 - Install: `pnpm install` (repo was developed with pnpm; `npm` also works but use pnpm to match CI)
@@ -10,11 +10,27 @@ Quick commands
 - Preview built site: `pnpm preview` (runs `astro preview`)
 - Run Astro CLI: `pnpm astro <command>`
 
+Architecture snapshot
+- Runtime: Astro static output (`output: static`) with React islands.
+- Main routes: `src/pages/index.astro` and `src/pages/projects.astro`.
+- Layout: `src/layouts/Layout.astro` injects shared SEO + JsonLD and footer.
+- CMS integration: `src/lib/api.ts` contains authenticated requests, cache behavior, and mapping logic.
+- Type layer: `src/lib/types.ts` contains canonical frontend/API shapes.
+- Compatibility exports: `src/lib/data.ts` re-exports API and types (prefer `src/lib/api.ts` + `src/lib/types.ts` for new code).
+- SEO: `src/components/SEO.astro` and `src/components/JsonLD.astro` handle metadata/schema.
+
+Environment variables
+- `CMS_API_BASE_URL` (or `PUBLIC_CMS_API_BASE_URL`) for API host.
+- `CMS_ACCESS_TOKEN` (or `PUBLIC_CMS_ACCESS_TOKEN`) for Bearer auth.
+- `CMS_CACHE_TTL_SECONDS` and `CMS_CACHE_STALE_SECONDS` for in-memory GET cache behavior.
+- `R2_PUBLIC_BASE_URL` (or `PUBLIC_R2_PUBLIC_BASE_URL`) for project media URL resolution.
+- Reference defaults in `.env.example`; do not commit local `.env*` files (except `.env.example`).
+
 CI
 - GitHub Actions: `.github/workflows/lighthouse.yml` runs `npm install` then `npm run build` and Lighthouse CI. Agents should not modify CI workflows without human approval.
 
 Testing
-- This repository does not include a test runner configuration by default. If tests are added, prefer one of the following test runners and patterns:
+- This repository does not currently include a test runner or `test` script in `package.json`. If tests are added, prefer one of the following test runners and patterns:
   - Vitest (recommended for Vite/Astro + TS): `pnpm add -D vitest @testing-library/react` and add `test` scripts.
   - Jest: `pnpm add -D jest @testing-library/react @types/jest` for a legacy setup.
 

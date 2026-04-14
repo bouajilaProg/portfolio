@@ -1,43 +1,69 @@
 # Portfolio v2
 
-A minimal, animated personal portfolio built with astro 5, React 19, and Tailwind CSS 4.
+A personal portfolio built with Astro 5, React 19, and Tailwind CSS 4, with content loaded from a CMS API.
 
 ## Tech Stack
 
 - Astro 5 + React 19
 - Tailwind CSS 4
 - motion/react for animations
-- clsx + tailwind-merge for class utilities
+- date-fns for timeline and contribution graph handling
+- clsx + tailwind-merge utilities
 
 ## Features
 
-- Single page scroll layout
-- Dark mode support
-- Fade-in animations (200ms, ease-out)
-- Blue accent color theme
-- Responsive design
+- CMS-backed profile, projects, experience, and education content
+- Single-page homepage plus dedicated `/projects` route
+- SEO component + JSON-LD schema output on every page
+- GitHub activity contribution graph section
+- Responsive layout with dark-mode-aware styling
+- Sitemap generation (`@astrojs/sitemap`)
 
-## Sections
+## Routes
 
-- **Hero** - Name, tagline, and CTA button
-- **Experience** - Work history in card grid format
-- **Work** - Project showcase with tech stack pills
-- **Contact** - Email and social links
-- **Footer** - Navigation and copyright
+- `/` - Hero, featured projects, experience, education, GitHub activity, footer/contact CTA
+- `/projects` - Full project listing with breadcrumbs and back navigation
 
 ## Getting Started
 
+1. Install dependencies
+
 ```bash
 pnpm install
+```
+
+2. Copy and configure environment variables
+
+```bash
+cp .env.example .env.local
+```
+
+3. Start the dev server
+
+```bash
 pnpm dev
 ```
 
-Open [http://localhost:1600](http://localhost:1600) to view (the dev server binds to port 1600 by default).
+Open [http://localhost:1600](http://localhost:1600).
 
-Agenting
+## Environment Variables
 
-- Developer/agent instructions live in `AGENTS.md` — follow those guidelines when making automated or agent-driven changes.
+- `CMS_API_BASE_URL` - CMS base URL (example: `http://localhost:3000/`)
+- `CMS_ACCESS_TOKEN` - bearer token used for authenticated CMS requests
+- `CMS_CACHE_TTL_SECONDS` - in-memory cache TTL for GET calls
+- `CMS_CACHE_STALE_SECONDS` - stale-while-revalidate cache window
+- `R2_PUBLIC_BASE_URL` - public base URL for media keys returned by the CMS
 
-## Learn More
+See `.env.example` for defaults.
 
-Check [PLAN.md](./PLAN.md) for implementation details and design constraints.
+## Scripts
+
+- `pnpm dev` - run Astro dev server on port 1600
+- `pnpm build` - generate static output
+- `pnpm preview` - preview the built site
+- `pnpm astro <command>` - run Astro CLI commands
+
+## Agenting
+
+- Developer/agent conventions live in `AGENTS.md`.
+- API contract and payload docs live in `API_DOCS.md`.
