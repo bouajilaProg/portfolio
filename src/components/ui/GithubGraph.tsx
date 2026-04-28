@@ -298,12 +298,27 @@ export const GithubCalendar = ({ username = "bouajilaProg", className }: { usern
       .catch(() => setLoading(false))
   }, [username])
 
-  if (loading) return <div className="w-full h-32 animate-pulse bg-muted/10 rounded-lg" />
+  if (loading) return (
+    <section className={cn("pb-12", className)}>
+      <FadeIn>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-2">GitHub Activity</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl text-sm md:text-base">
+          A visual record of my daily coding activity and open-source contributions over the past year.
+        </p>
+      </FadeIn>
+      <FadeIn delay={0.2}>
+        <div className="w-full h-[150px] animate-pulse bg-slate-200 dark:bg-slate-800 rounded-lg" />
+      </FadeIn>
+    </section>
+  )
 
   return (
     <section className={cn("pb-12", className)}>
       <FadeIn>
-        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-8">GitHub Activity</h2>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-2">GitHub Activity</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl text-sm md:text-base">
+          A visual record of my daily coding activity and open-source contributions over the past year.
+        </p>
       </FadeIn>
       <FadeIn delay={0.2}>
         <ContributionGraph data={data} blockSize={11} blockMargin={3} fontSize={10}>
