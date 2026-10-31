@@ -1,26 +1,74 @@
 ---
-import '../styles/global.css';
-
+import geistFont from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
+import "../styles/global.css";
+import ThemeToggle from "../components/ThemeToggle";
+import { profile } from "../data/portfolio.json";
 interface Props {
   title: string;
-  description: string;
+  description?: string;
 }
-
-const { title, description } = Astro.props;
+const { title, description = profile.bio } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="preload"
+      href={geistFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem("theme");
+        document.documentElement.dataset.theme =
+          theme ||
+          (matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+      } catch {
+        document.documentElement.dataset.theme = "light";
+      }
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute(
+          "content",
+          document.documentElement.dataset.theme === "dark"
+            ? "#070709"
+            : "#ffffff",
+        );
+    </script>
   </head>
-  <body class="min-h-dvh bg-slate-950 text-slate-100 antialiased">
-    <slot />
+  <body id="top">
+    <a href="#main" class="skip-link">
+      Skip to content
+    </a>
+    <div class="page-grid" aria-hidden="true"></div>
+    <header class="site-header">
+      <nav class="nav-inner" aria-label="Main navigation">
+        <a
+          class="site-logo"
+          href="#top"
+          aria-label={`${profile.name} — back to top`}
+        >
+          <span>{profile.name}</span>
+        </a>
+        <ThemeToggle client:load />
+      </nav>
+    </header>
+    <div class="site-shell">
+      <slot />
+    </div>
   </body>
 </html>
