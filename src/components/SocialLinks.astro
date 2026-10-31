@@ -1,0 +1,61 @@
+---
+import SocialIcon from "./SocialIcon.astro";
+import { profile } from "../data/portfolio.json";
+
+const location = "contact";
+const links = [
+  {
+    label: "GitHub",
+    href: profile.github,
+    external: true,
+    icon: "github" as const,
+  },
+  {
+    label: "LinkedIn",
+    href: profile.linkedin,
+    external: true,
+    icon: "linkedin" as const,
+  },
+  {
+    label: "Email",
+    href: `mailto:${profile.email}`,
+    external: false,
+    icon: "email" as const,
+  },
+];
+---
+
+<div class="social-links contact-socials" aria-label="Contact links">
+  {links.map(({ label, href, external, icon }) => (
+    <a
+      href={href}
+      aria-label={label}
+      aria-describedby={`${location}-${label.toLowerCase()}-tooltip`}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      data-social-link
+    >
+      <SocialIcon name={icon} />
+      <span
+        class="social-tooltip"
+        role="tooltip"
+        id={`${location}-${label.toLowerCase()}-tooltip`}
+      >
+        {label}
+      </span>
+    </a>
+  ))}
+</div>
+
+<script>
+  document
+    .querySelectorAll<HTMLElement>("[data-social-link]")
+    .forEach((link) => {
+      const reset = () => delete link.dataset.tooltipDismissed;
+      link.addEventListener("pointerenter", reset);
+      link.addEventListener("focus", reset);
+      link.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") link.dataset.tooltipDismissed = "true";
+      });
+    });
+</script>

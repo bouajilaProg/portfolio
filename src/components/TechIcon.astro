@@ -1,0 +1,121 @@
+---
+import {
+  siNextdotjs,
+  siResend,
+  siTailwindcss,
+  siReact,
+  siTypescript,
+  siTypst,
+  siZod,
+  siVercel,
+  siTurso,
+  siSqlite,
+  siDrizzle,
+  siCloudflare,
+  siGo,
+  siGithubactions,
+  siHtml5,
+  siCss,
+  siJavascript,
+  siPython,
+  siFastapi,
+  siGoogleearthengine,
+  siScikitlearn,
+  siMarkdown,
+  siGnubash,
+  siRust,
+  siTauri,
+  siXml,
+  siExpress,
+  siPostgresql,
+  siNodedotjs,
+  siGit,
+} from "simple-icons";
+import Icon from "./Icon.astro";
+interface Props {
+  name: string;
+}
+const { name } = Astro.props;
+const icons: Record<string, { path: string; hex: string }> = {
+  "node.js": siNodedotjs,
+  git: siGit,
+  "next.js": siNextdotjs,
+  nextjs: siNextdotjs,
+  "resend email api": siResend,
+  tailwind: siTailwindcss,
+  "tailwind css": siTailwindcss,
+  react: siReact,
+  typescript: siTypescript,
+  typst: siTypst,
+  zod: siZod,
+  vercel: siVercel,
+  turso: siTurso,
+  sqlite: siSqlite,
+  drizzle: siDrizzle,
+  "cloudflare r2": siCloudflare,
+  go: siGo,
+  "github-actions": siGithubactions,
+  html: siHtml5,
+  css: siCss,
+  javascript: siJavascript,
+  python: siPython,
+  fastapi: siFastapi,
+  "google earth engine": siGoogleearthengine,
+  "scikit-learn": siScikitlearn,
+  markdown: siMarkdown,
+  shell: siGnubash,
+  rust: siRust,
+  tauri: siTauri,
+  xml: siXml,
+  express: siExpress,
+  postgresql: siPostgresql,
+  siNodedotjs,
+  siGit,
+};
+const icon = icons[name.toLowerCase()];
+const darkBrand =
+  icon &&
+  parseInt(icon.hex.slice(0, 2), 16) * 0.2126 +
+    parseInt(icon.hex.slice(2, 4), 16) * 0.7152 +
+    parseInt(icon.hex.slice(4, 6), 16) * 0.0722 <
+    85;
+const color = icon && !darkBrand ? `#${icon.hex}` : "currentColor";
+const concepts: Record<
+  string,
+  "terminal" | "document" | "brain" | "satellite" | "wave"
+> = {
+  "cli tools": "terminal",
+  "pdf generation": "document",
+  "machine learning": "brain",
+  ai: "brain",
+  nlp: "brain",
+  "sentinel-2": "satellite",
+  wave: "wave",
+};
+---
+
+<span
+  class="tech-icon"
+  role="img"
+  aria-label={name}
+  title={name}
+  tabindex="0"
+  style={darkBrand ? undefined : { color }}
+>
+  {icon ? (
+    <svg
+      width="25"
+      height="25"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d={icon.path} />
+    </svg>
+  ) : (
+    <Icon name={concepts[name.toLowerCase()] ?? "code"} size={25} />
+  )}
+  <span class="tech-tooltip" aria-hidden="true">
+    {name}
+  </span>
+</span>

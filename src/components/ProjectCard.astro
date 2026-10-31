@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+import { Card } from '@/components/ui/card';
+import TechIcon from './TechIcon.astro';
+import { projects } from '../data/portfolio.json';
+interface Props { project: (typeof projects)[number]; }
+const { project } = Astro.props;
+---
+<Card className="project-card" role="article">
+  <div class="project-preview">
+    {project.image
+      ? <img src={project.image} alt={`${project.title} preview`} width="640" height="360" loading="lazy" />
+      : <div class="project-symbol"><Icon name="code" size={38} /><span>{project.title}</span></div>}
+  </div>
+  <div class="project-info">
+    <div class="project-heading">
+      <h3>{project.links[0] ? <a href={project.links[0].href} target="_blank" rel="noopener noreferrer">{project.title}</a> : project.title}</h3>
+      <div class="project-destinations">{project.links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${project.title}: ${link.name}`} title={link.name}><Icon name={/github|repo/i.test(link.name) ? 'github' : /doc/i.test(link.name) ? 'book' : /pypi/i.test(link.name) ? 'package' : 'globe'} size={19} /></a>)}</div>
+    </div>
+    <p>{project.description}</p>
+    <div class="project-technologies" aria-label={`${project.title} technologies`}>{project.tech.map(tech => <TechIcon name={tech} />)}</div>
+  </div>
+</Card>

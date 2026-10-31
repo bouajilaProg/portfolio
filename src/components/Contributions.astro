@@ -1,0 +1,101 @@
+---
+import { profile } from "../data/portfolio.json";
+const end = new Date();
+const start = new Date(end);
+start.setUTCDate(end.getUTCDate() - 364);
+start.setUTCDate(start.getUTCDate() - start.getUTCDay());
+const days = Array.from({ length: 371 }, (_, index) => {
+  const date = new Date(start);
+  date.setUTCDate(start.getUTCDate() + index);
+  return date.toISOString().slice(0, 10);
+});
+const months = Array.from({ length: 12 }, (_, i) => {
+  const date = new Date(
+    Date.UTC(end.getUTCFullYear(), end.getUTCMonth() - 11 + i, 1),
+  );
+  return date.toLocaleString("en", { month: "short", timeZone: "UTC" });
+});
+---
+
+<section
+  class="github-section"
+  aria-label="GitHub contributions"
+  data-username={profile.github.split("/").pop()}
+>
+  <div class="contribution-scroll">
+    <div class="contribution-inner">
+      <div class="activity-months" aria-hidden="true">
+        {months.map((month) => (
+          <span>{month}</span>
+        ))}
+      </div>
+      <div
+        class="activity-grid"
+        aria-label="GitHub contribution calendar"
+        aria-busy="true"
+      >
+        {days.map((date) => (
+          <span data-date={date} data-level="0" title={date}></span>
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="activity-footer">
+    <a
+      href={profile.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="activity-status"
+      aria-live="polite"
+    >
+      Loading contributions…
+    </a>
+    <span class="activity-legend" aria-hidden="true">
+      Less<i data-level="0"></i>
+      <i data-level="1"></i>
+      <i data-level="2"></i>
+      <i data-level="3"></i>
+      <i data-level="4"></i>More
+    </span>
+  </div>
+</section>
+<script>
+  const section = document.querySelector<HTMLElement>(".github-section");
+  const grid = section?.querySelector(".activity-grid");
+  const status = section?.querySelector(".activity-status");
+  if (section && grid && status) {
+    fetch(
+      `https://github-contributions-api.jogruber.de/v4/${encodeURIComponent(section.dataset.username || "")}?y=last`,
+      { signal: AbortSignal.timeout(8000) },
+    )
+      .then((response) => {
+        if (!response.ok) throw new Error("Unavailable");
+        return response.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data.contributions))
+          throw new Error("Invalid activity");
+        const days = new Map<string, { count: number; level: number }>(
+          data.contributions.map(
+            (day: { date: string; count: number; level: number }) => [
+              day.date,
+              day,
+            ],
+          ),
+        );
+        let total = 0;
+        grid.querySelectorAll<HTMLElement>("[data-date]").forEach((cell) => {
+          const day = days.get(cell.dataset.date || "");
+          cell.dataset.level = String(day?.level || 0);
+          cell.title = `${day?.count || 0} contributions on ${cell.dataset.date}`;
+          total += day?.count || 0;
+        });
+        const year = new Date().getFullYear();
+        status.textContent = `${total.toLocaleString()} contributions · ${year - 1}–${String(year).slice(-2)}`;
+      })
+      .catch(() => {
+        status.textContent = "View contributions on GitHub";
+      })
+      .finally(() => grid.setAttribute("aria-busy", "false"));
+  }
+</script>

@@ -1,0 +1,42 @@
+---
+import {
+  IconArrowUpRight, IconArrowUp, IconLayoutGrid, IconLayersIntersect,
+  IconMail, IconBriefcase, IconBook, IconCode, IconCopy,
+  IconBrandGithub, IconBrandLinkedin, IconWorld, IconMapPin,
+  IconFolder, IconCalendar, IconGitBranch, IconStar, IconTerminal2,
+  IconFileTypePdf, IconBrain, IconSatellite, IconWaveSine, IconPackage,
+} from '@tabler/icons-astro';
+
+const icons = {
+  arrow: IconArrowUpRight,
+  up: IconArrowUp,
+  grid: IconLayoutGrid,
+  layers: IconLayersIntersect,
+  mail: IconMail,
+  briefcase: IconBriefcase,
+  book: IconBook,
+  code: IconCode,
+  copy: IconCopy,
+  github: IconBrandGithub,
+  linkedin: IconBrandLinkedin,
+  globe: IconWorld,
+  pin: IconMapPin,
+  folder: IconFolder,
+  calendar: IconCalendar,
+  branch: IconGitBranch,
+  star: IconStar,
+  terminal: IconTerminal2,
+  document: IconFileTypePdf,
+  brain: IconBrain,
+  satellite: IconSatellite,
+  wave: IconWaveSine,
+  package: IconPackage,
+};
+interface Props {
+  name: keyof typeof icons;
+  size?: number;
+}
+const { name, size = 22 } = Astro.props;
+const PackIcon = icons[name];
+---
+<PackIcon size={size} stroke={1.75} aria-hidden="true" focusable="false" />
