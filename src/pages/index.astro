@@ -1,13 +1,220 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import SocialIcon from "../components/SocialIcon.astro";
+import TechIcon from "../components/TechIcon.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Contributions from "../components/Contributions.astro";
+import Contact from "../components/Contact.astro";
+import {
+  profile,
+  projects,
+  experience,
+  education,
+} from "../data/portfolio.json";
+const featured = projects.filter((project) => project.featured);
+const otherProjects = projects.filter((project) => !project.featured);
+const stack = [
+  "TypeScript",
+  "JavaScript",
+  "Python",
+  "go",
+  "Rust",
+  "React",
+  "Next.js",
+  "Tailwind CSS",
+  "Express",
+  "FastAPI",
+  "PostgreSQL",
+  "sqlite",
+  "drizzle",
+  "turso",
+  "vercel",
+  "cloudflare R2",
+  "Tauri",
+  "Typst",
+  "Zod",
+  "github-actions",
+];
 ---
 
-<Layout title="Portfolio v3" description="The starting point for my next portfolio.">
-  <main class="mx-auto flex min-h-dvh max-w-3xl flex-col justify-center px-6 py-24">
-    <p class="text-sm font-medium uppercase tracking-widest text-teal-400">Portfolio v3</p>
-    <h1 class="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">A fresh start.</h1>
-    <p class="mt-6 max-w-lg text-lg leading-relaxed text-slate-400">
-      Built with Astro and Tailwind CSS. Ready for the next version of my portfolio.
-    </p>
+<Layout title={`${profile.name} | ${profile.title}`}>
+  <main id="main" class="home-page">
+    <section id="about" class="profile-section" aria-labelledby="profile-name">
+      <div class="profile-header">
+        <img
+          class="avatar"
+          src="/images/profile.webp"
+          alt={profile.name}
+          width="64"
+          height="64"
+        />
+        <div>
+          <h1 id="profile-name">{profile.name}</h1>
+          <p class="profile-role">Product Manager | Full Stack Developer</p>
+        </div>
+      </div>
+      <div class="profile-details">
+        <div>
+          <span class="meta-label">Location</span>
+          <span class="meta-value">
+            <Icon name="pin" size={13} />
+            Tunisia
+          </span>
+        </div>
+        <div>
+          <span class="meta-label">Email</span>
+          <a class="meta-value" href={`mailto:${profile.email}`}>
+            <Icon name="mail" size={13} />
+            <span>{profile.email}</span>
+          </a>
+        </div>
+      </div>
+      <p class="bio">{profile.bio}</p>
+      <nav
+        class="social-links profile-socials"
+        aria-label="Profile social links"
+      >
+        <a
+          href={profile.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          aria-describedby="profile-linkedin-tooltip"
+          data-social-link
+        >
+          <SocialIcon name="linkedin" />
+          <span
+            id="profile-linkedin-tooltip"
+            class="social-tooltip"
+            role="tooltip"
+          >
+            LinkedIn
+          </span>
+        </a>
+        <a
+          href={profile.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          aria-describedby="profile-github-tooltip"
+          data-social-link
+        >
+          <SocialIcon name="github" />
+          <span
+            id="profile-github-tooltip"
+            class="social-tooltip"
+            role="tooltip"
+          >
+            GitHub
+          </span>
+        </a>
+        <a
+          href="#projects"
+          aria-label="Projects"
+          aria-describedby="profile-projects-tooltip"
+          data-social-link
+        >
+          <SocialIcon name="projects" />
+          <span
+            id="profile-projects-tooltip"
+            class="social-tooltip"
+            role="tooltip"
+          >
+            Projects
+          </span>
+        </a>
+        <a
+          href={`mailto:${profile.email}`}
+          aria-label="Email"
+          aria-describedby="profile-email-tooltip"
+          data-social-link
+        >
+          <SocialIcon name="email" />
+          <span
+            id="profile-email-tooltip"
+            class="social-tooltip"
+            role="tooltip"
+          >
+            Email
+          </span>
+        </a>
+      </nav>
+    </section>
+    <Contributions />
+    <section class="stack-section" aria-labelledby="stack-heading">
+      <h2 id="stack-heading">Tech Stack</h2>
+      <div class="tech-stack">
+        {stack.map((tech) => (
+          <TechIcon name={tech} />
+        ))}
+      </div>
+    </section>
+    <section
+      id="projects"
+      class="section-block"
+      aria-labelledby="projects-heading"
+    >
+      <div class="section-heading">
+        <h2 id="projects-heading">Featured Projects</h2>
+      </div>
+      <div class="projects-grid">
+        {featured.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+      <details class="project-archive">
+        <summary>
+          More projects <span>({otherProjects.length})</span>
+        </summary>
+        <div class="projects-grid">
+          {otherProjects.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+      </details>
+    </section>
+    <section class="section-block" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+      <div class="timeline-list">
+        {experience.map((entry) => (
+          <article class="timeline-entry">
+            <div class="timeline-heading">
+              <div class="entry-title">
+                <h3>{entry.title}</h3>
+                <span>·</span>
+                <span>{entry.subtitle}</span>
+              </div>
+              <span class="date-label">{entry.date}</span>
+            </div>
+            <p class="entry-description">{entry.description}</p>
+            <div class="entry-tech">
+              {entry.tags.map((tag) => (
+                <TechIcon name={tag} />
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+    <section class="section-block" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <div class="timeline-list">
+        {education.map((entry) => (
+          <article class="timeline-entry">
+            <div class="timeline-heading">
+              <h3>{entry.subtitle}</h3>
+              <span class="date-label">{entry.date}</span>
+            </div>
+            <p class="entry-subtitle">{entry.title}</p>
+            <p class="entry-description">{entry.description}</p>
+            {entry.tags.length > 0 && (
+              <p class="education-tags">{entry.tags.join(" · ")}</p>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+    <Contact />
   </main>
 </Layout>
