@@ -1,0 +1,233 @@
+{
+  "profile": {
+    "name": "Mohamed Yessine Bouajila",
+    "title": "Full-Stack Developer & Product Manager",
+    "bio": "Hi, I'm yessine from Tunisia and I enjoys building practical tools and web applications. I'm passionate about new technologies, open-source software, and finding creative ways to solve real-world problems through code.",
+    "email": "bouajilamedyessine@gmail.com",
+    "github": "https://github.com/bouajilaProg",
+    "linkedin": "https://www.linkedin.com/in/mohamed-yessine-bouajila/"
+  },
+  "projects": [
+    {
+      "id": "greenboard",
+      "title": "GreenBoard",
+      "description": "A platform for selling personalized PCBs. Supports user-uploaded Gerber files.",
+      "tech": ["Next.js", "Resend Email API", "Tailwind", "React"],
+      "image": "/images/greenboard.png",
+      "featured": true,
+      "links": [
+        {
+          "name": "Live",
+          "href": "https://greenboard.tn"
+        }
+      ]
+    },
+    {
+      "id": "autoresume",
+      "title": "AutoResume",
+      "description": "A data-driven resume manager that generates LaTeX-quality PDFs from a single source of truth using Typst.",
+      "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Typst", "Zod"],
+      "image": "/images/autoresume.png",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "href": "https://github.com/bouajilaProg/auto-resume"
+        }
+      ]
+    },
+    {
+      "id": "bouajila-cms",
+      "title": "bouajila cms",
+      "description": "a custom CMS that powers my portfolio",
+      "tech": [
+        "vercel",
+        "nextjs",
+        "turso",
+        "sqlite",
+        "drizzle",
+        "typescript",
+        "cloudflare R2"
+      ],
+      "image": "/images/bouajila-cms.png",
+      "featured": true,
+      "links": []
+    },
+    {
+      "id": "gitview",
+      "title": "gitview",
+      "description": "Single-binary Git repository visualizer",
+      "tech": ["go", "github-actions", "tailwind", "html", "css", "javascript"],
+      "image": "/images/gitview.png",
+      "featured": false,
+      "links": [
+        {
+          "name": "Repo",
+          "href": "https://github.com/bouajilaProg/gitView.git"
+        }
+      ]
+    },
+    {
+      "id": "olive-health-ai",
+      "title": "Olive Health AI",
+      "description": "A machine learning-powered system for predicting irrigation needs and stress levels in olive groves using satellite NDVI data and local temperature inputs.",
+      "tech": [
+        "Python",
+        "FastAPI",
+        "Machine Learning",
+        "Google Earth Engine",
+        "Sentinel-2",
+        "Scikit-learn"
+      ],
+      "image": null,
+      "featured": false,
+      "links": [
+        {
+          "name": "GitHub",
+          "href": "https://github.com/bouajilaProg/Olive-Health-AI"
+        }
+      ]
+    },
+    {
+      "id": "codedown",
+      "title": "CodeDown",
+      "description": "A CLI tool to convert Markdown files into beautiful, syntax-highlighted PDFs.",
+      "tech": ["Python", "Markdown", "CLI Tools", "PDF Generation"],
+      "image": null,
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "href": "https://github.com/bouajilaProg/CodeDown"
+        },
+        {
+          "name": "PyPI",
+          "href": "https://pypi.org/project/codedown/"
+        },
+        {
+          "name": "Documentation",
+          "href": "https://bouajilaprog.github.io/CodeDown/"
+        }
+      ]
+    },
+    {
+      "id": "wave-core",
+      "title": "wave core",
+      "description": "A modular CLI tool powered by plugins",
+      "tech": ["go"],
+      "image": null,
+      "featured": false,
+      "links": [
+        {
+          "name": "repo",
+          "href": "https://github.com/Wave-cli/wave-core"
+        }
+      ]
+    },
+    {
+      "id": "wave-flow",
+      "title": "wave flow",
+      "description": "Flow plugin for Wave CLI - development workflow automation with lifecycle hooks",
+      "tech": ["go", "wave"],
+      "image": null,
+      "featured": false,
+      "links": [
+        {
+          "name": "Repo",
+          "href": "https://github.com/Wave-cli/flow"
+        }
+      ]
+    },
+    {
+      "id": "good-talk",
+      "title": "Good Talk",
+      "description": "AI-powered chat application focused on safety and natural language processing.",
+      "tech": ["React", "Express", "AI", "NLP"],
+      "image": null,
+      "featured": false,
+      "links": [
+        {
+          "name": "GitHub",
+          "href": "https://github.com/bouajilaProg/GoodTalk"
+        }
+      ]
+    },
+    {
+      "id": "cool-docs",
+      "title": "Cool Docs",
+      "description": "Offline desktop documentation manager tailored for competitive programmers.",
+      "tech": ["Rust", "Tauri", "XML", "CSS"],
+      "image": null,
+      "featured": false,
+      "links": [
+        {
+          "name": "GitHub",
+          "href": "https://github.com/bouajilaProg/cool-docs"
+        }
+      ]
+    },
+    {
+      "id": "shead",
+      "title": "shead",
+      "description": "An enhanced and modernized replacement for the standard shell 'read' command.",
+      "tech": ["Rust", "Shell"],
+      "image": null,
+      "featured": false,
+      "links": [
+        {
+          "name": "GitHub",
+          "href": "https://github.com/bouajilaProg/shead"
+        }
+      ]
+    },
+    {
+      "id": "cri-website",
+      "title": "CRI Website",
+      "description": "The full-stack community platform for the ISIMM Robotics Club.",
+      "tech": ["React", "Express", "PostgreSQL"],
+      "image": null,
+      "featured": false,
+      "links": [
+        {
+          "name": "GitHub",
+          "href": "https://github.com/bouajilaProg/CRI-website"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Full-Stack Developer",
+      "subtitle": "GreenBoard",
+      "date": "Nov 2025 - Dec 2025",
+      "description": "Architected a high-traffic e-commerce storefront using React 19 and Next.js, achieving a 98/100 Lighthouse score.",
+      "tags": ["Next.js", "TypeScript", "Node.js", "AWS"]
+    }
+  ],
+  "education": [
+    {
+      "title": "Higher Institute of Mathematics & Computer Science (ISIMM)",
+      "subtitle": "Master's in Computer Science",
+      "date": "2025 - Present",
+      "description": "Specializing in advanced software engineering, distributed systems, and architectural patterns.",
+      "tags": []
+    },
+    {
+      "title": "Higher Institute of Mathematics & Computer Science (ISIMM)",
+      "subtitle": "Bachelor of Science in Computer Science",
+      "date": "2022 - 2025",
+      "description": "Foundational study of software engineering, algorithms, databases, and networking.",
+      "tags": [
+        "president of the Development Club",
+        "Data Structures and Algorithms"
+      ]
+    },
+    {
+      "title": "Habib Thameur High School",
+      "subtitle": "Baccalaureate in Computer Science",
+      "date": "2022",
+      "description": "Initial focus on mathematics and computer science fundamentals.",
+      "tags": ["Completed with strong results", "Game Developer"]
+    }
+  ]
+}
