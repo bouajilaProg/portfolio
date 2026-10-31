@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T13:09:40.383028+00:00",
+  "title": "Design System: Yessine Portfolio",
+  "extensions": {
+    "shadows": [
+      {
+        "name": "technology-tooltip",
+        "value": "0 4px 8px rgba(0, 0, 0, 0.18)",
+        "purpose": "Separate hover/focus tooltips from content."
+      }
+    ],
+    "motion": [
+      {
+        "name": "icon-hover",
+        "value": "transform 0.15s ease-out",
+        "purpose": "Technology icon scale to 1.1."
+      },
+      {
+        "name": "card-border",
+        "value": "border-color 0.2s ease-out",
+        "purpose": "Quiet hover border emphasis."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation: none !important; transition: none !important",
+        "purpose": "Honor prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "shell-inset-max",
+        "value": "1023px"
+      },
+      {
+        "name": "contact-stack-max",
+        "value": "767px"
+      },
+      {
+        "name": "project-stack-max",
+        "value": "639px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Send button",
+      "kind": "button",
+      "refersTo": "button-send",
+      "description": "Full-width neutral contact action.",
+      "html": "<button class=\"ds-send\">Send Message \u2192</button>",
+      "css": ".ds-send{width:100%;padding:10px 16px;border:1px solid var(--input-line);border-radius:8px;background:var(--input);color:var(--text);font:500 14px Geist,Arial,sans-serif;cursor:pointer;transition:background .2s}.ds-send:hover{background:var(--hover)}.ds-send:focus-visible{outline:2px solid var(--muted);outline-offset:5px}"
+    },
+    {
+      "name": "Contact field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Neutral text field with stronger hover edge.",
+      "html": "<input class=\"ds-field\" aria-label=\"Full name\" placeholder=\"Full Name\">",
+      "css": ".ds-field{padding:10px 14px;border:1px solid var(--input-line);border-radius:8px;background:var(--input);color:var(--text);font:14px/1.5 Geist,Arial,sans-serif;transition:border-color .15s}.ds-field::placeholder{color:var(--muted)}.ds-field:hover{border-color:var(--muted)}.ds-field:focus-visible{outline:2px solid var(--muted);outline-offset:5px}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Single-page navbar containing only the existing logo and theme toggle.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#top\" aria-label=\"Back to top\"><img src=\"/favicon.svg\" alt=\"\" width=\"32\" height=\"32\"></a><button aria-label=\"Toggle theme\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5\"/></svg></button></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;height:64px}.ds-nav a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}.ds-nav button{border:0;background:transparent;color:var(--muted);cursor:pointer}.ds-nav a:focus-visible,.ds-nav button:focus-visible{outline:2px solid var(--muted);outline-offset:5px}"
+    },
+    {
+      "name": "Project card",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Preview-led bordered project container.",
+      "html": "<article class=\"ds-project\"><div class=\"ds-preview\">Project preview</div><div class=\"ds-info\"><h3><a href=\"#project\">Project title</a></h3><p>Project description from portfolio data.</p></div></article>",
+      "css": ".ds-project{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:12px;font-family:Geist,Arial,sans-serif;transition:border-color .2s ease-out}.ds-project:hover{border-color:var(--input-line)}.ds-preview{aspect-ratio:16/9;background:var(--hover);border-radius:11px 11px 0 0;border-bottom:1px solid var(--line);display:grid;place-items:center;color:var(--secondary)}.ds-info{padding:20px}.ds-info h3{margin:0 0 8px;font-size:16px;font-weight:500;letter-spacing:-.025em}.ds-info a{color:inherit;text-decoration:none}.ds-info a:hover{color:var(--text)}.ds-info a:focus-visible{outline:2px solid var(--muted);outline-offset:5px}.ds-info p{margin:0 0 20px;color:var(--secondary);font-size:14px;line-height:1.75}"
+    },
+    {
+      "name": "Technology tooltip",
+      "kind": "custom",
+      "description": "Source-colored technology mark with tooltip on hover or focus.",
+      "html": "<span class=\"ds-tech\" tabindex=\"0\" aria-label=\"Technology\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16\"/></svg><span class=\"ds-tooltip\">Technology</span></span>",
+      "css": ".ds-tech{position:relative;display:inline-flex;color:var(--text)}.ds-tech svg{transition:transform .15s ease-out}.ds-tech:hover svg{transform:scale(1.1)}.ds-tooltip{display:none;position:absolute;bottom:calc(100% + 14px);left:50%;transform:translateX(-50%);white-space:nowrap;background:#1e1e20;color:#f0f0f0;padding:6px 12px;border-radius:8px;font:500 12.5px Geist,Arial,sans-serif;box-shadow:0 4px 8px rgba(0,0,0,.18);pointer-events:none}.ds-tooltip:after{content:\"\";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1e1e20}.ds-tech:hover .ds-tooltip,.ds-tech:focus-visible .ds-tooltip{display:block}.ds-tech:focus-visible{outline:2px solid var(--muted);outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Copy the siddz.com reference",
+    "overview": "A compact monochrome developer portfolio following the explicit siddz.com copy request. Geist typography, a narrow centered column, faint background grid, and uppercase mono labels define the implemented identity. Existing portfolio content remains unchanged.",
+    "keyCharacteristics": [
+      "768px content measure",
+      "Light and dark neutral themes",
+      "Reference-required Geist and background grid",
+      "Colorful technology SVG marks"
+    ],
+    "rules": [],
+    "dos": [
+      "Preserve the reference composition and existing content.",
+      "Use semantic theme custom properties.",
+      "Retain focus, skip-link, and reduced-motion behavior."
+    ],
+    "donts": [
+      "Do not introduce an unrelated visual direction.",
+      "Do not replace the subtle grid or Geist typography.",
+      "Do not add heavy card shadows."
+    ]
+  }
+}
