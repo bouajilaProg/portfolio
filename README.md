@@ -1,69 +1,33 @@
-# Portfolio v2
+# Portfolio v3
 
-A personal portfolio built with Astro 5, React 19, and Tailwind CSS 4, with content loaded from a CMS API.
+A fresh portfolio starter using Astro 7, TypeScript, and Tailwind CSS 4 through the Tailwind Vite plugin. Pages are generated as static HTML.
 
-## Tech Stack
+## Development
 
-- Astro 5 + React 19
-- Tailwind CSS 4
-- motion/react for animations
-- date-fns for timeline and contribution graph handling
-- clsx + tailwind-merge utilities
+Use Node.js 22.23.4 or newer and pnpm 11.28.4.
 
-## Features
-
-- CMS-backed profile, projects, experience, and education content
-- Single-page homepage plus dedicated `/projects` route
-- SEO component + JSON-LD schema output on every page
-- GitHub activity contribution graph section
-- Responsive layout with dark-mode-aware styling
-- Sitemap generation (`@astrojs/sitemap`)
-
-## Routes
-
-- `/` - Hero, featured projects, experience, education, GitHub activity, footer/contact CTA
-- `/projects` - Full project listing with breadcrumbs and back navigation
-
-## Getting Started
-
-1. Install dependencies
-
-```bash
+```sh
 pnpm install
-```
-
-2. Copy and configure environment variables
-
-```bash
-cp .env.example .env.local
-```
-
-3. Start the dev server
-
-```bash
 pnpm dev
 ```
 
-Open [http://localhost:1600](http://localhost:1600).
+The development server runs at `http://localhost:1600`.
 
-## Environment Variables
+| Command | Purpose |
+| --- | --- |
+| `pnpm dev` | Start the development server |
+| `pnpm build` | Build the static site into `dist/` |
+| `pnpm preview` | Preview the production build on port 1600 |
 
-- `CMS_API_BASE_URL` - CMS base URL (example: `http://localhost:3000/`)
-- `CMS_ACCESS_TOKEN` - bearer token used for authenticated CMS requests
-- `CMS_CACHE_TTL_SECONDS` - in-memory cache TTL for GET calls
-- `CMS_CACHE_STALE_SECONDS` - stale-while-revalidate cache window
-- `R2_PUBLIC_BASE_URL` - public base URL for media keys returned by the CMS
+## Structure
 
-See `.env.example` for defaults.
+- `src/pages/`: Astro routes.
+- `src/layouts/Layout.astro`: Shared page shell and global stylesheet import.
+- `src/styles/global.css`: Tailwind entry point.
+- `public/`: Static assets.
 
-## Scripts
+## CMS integration later
 
-- `pnpm dev` - run Astro dev server on port 1600
-- `pnpm build` - generate static output
-- `pnpm preview` - preview the built site
-- `pnpm astro <command>` - run Astro CLI commands
+The starter has no CMS dependency or required environment variables. See [CMS_INTEGRATION.md](./CMS_INTEGRATION.md) for the reviewed v2 API contracts, media handling, caching behavior, and implementation checklist.
 
-## Agenting
-
-- Developer/agent conventions live in `AGENTS.md`.
-- API contract and payload docs live in `API_DOCS.md`.
+This branch starts v3 from the existing portfolio repository history. The existing Lighthouse workflow and configuration are retained; preview stays on port 1600 to match that configuration.

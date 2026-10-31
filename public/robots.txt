@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://bouajilaprog.com/sitemap-index.xml

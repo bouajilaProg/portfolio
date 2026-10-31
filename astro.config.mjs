@@ -1,34 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap'
-import vercel from '@astrojs/vercel';
 
-import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bouajilaprog.com',
-  output: 'static',
-  adapter: vercel(),
-  integrations: [react(), sitemap()],
-
+  server: { port: 1600 },
   vite: {
-    plugins: [tailwindcss()],
-    resolve: {
-      dedupe: ['react', 'react-dom'],
-    },
-    optimizeDeps: {
-      include: ['react', 'react-dom', 'motion', 'motion/react'],
-      exclude: ['@astrojs/react'],
-    },
-    ssr: {
-      noExternal: ['motion'],
-    },
-    build: {
-      commonjsOptions: {
-        include: [/motion/, /node_modules/],
-      },
-    },
+    plugins: [tailwindcss()]
   }
 });
