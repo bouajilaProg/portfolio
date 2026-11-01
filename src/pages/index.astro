@@ -12,8 +12,6 @@ import {
   experience,
   education,
 } from "../data/portfolio.json";
-const featured = projects.filter((project) => project.featured);
-const otherProjects = projects.filter((project) => !project.featured);
 
 ---
 
@@ -127,23 +125,13 @@ const otherProjects = projects.filter((project) => !project.featured);
       aria-labelledby="projects-heading"
     >
       <div class="section-heading">
-        <h2 id="projects-heading">Featured Projects</h2>
+        <h2 id="projects-heading">Projects</h2>
       </div>
       <div class="projects-grid">
-        {featured.map((project) => (
+        {projects.map((project) => (
           <ProjectCard project={project} />
         ))}
       </div>
-      <details class="project-archive">
-        <summary>
-          More projects <span>({otherProjects.length})</span>
-        </summary>
-        <div class="projects-grid">
-          {otherProjects.map((project) => (
-            <ProjectCard project={project} />
-          ))}
-        </div>
-      </details>
     </section>
     <section id="experience" class="section-block" aria-labelledby="experience-heading">
       <h2 id="experience-heading">Experience</h2>
