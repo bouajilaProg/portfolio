@@ -329,9 +329,52 @@ h1 {
 .profile-details {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 16px 32px;
-  margin: 40px 0 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin: 24px 0 28px;
+}
+.profile-contact-details,
+.profile-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.profile-contact-details .meta-value,
+.profile-socials a {
+  font-size: 13px;
+}
+.profile-contact-details .meta-value {
+  min-width: 0;
+}
+.profile-socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--secondary);
+  min-width: 0;
+}
+.profile-socials a > svg {
+  flex-shrink: 0;
+}
+.profile-socials a > span {
+  overflow-wrap: anywhere;
+}
+.profile-socials a:hover {
+  color: var(--text);
+}
+.profile-socials a {
+  transition: color 160ms ease-out;
+}
+.profile-separator {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+}
+.profile-contact-details svg {
+  flex-shrink: 0;
 }
 .meta-label {
   display: block;

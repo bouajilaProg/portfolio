@@ -32,91 +32,30 @@ import {
         </div>
       </div>
       <div class="profile-details">
-        <div>
-          <span class="meta-label">Location</span>
+        <div class="profile-contact-details">
           <span class="meta-value">
-            <Icon name="pin" size={13} />
+            <Icon name="pin" size={16} />
             Tunisia
           </span>
-        </div>
-        <div>
-          <span class="meta-label">Email</span>
+          <span class="profile-separator" aria-hidden="true">|</span>
           <a class="meta-value" href={`mailto:${profile.email}`}>
-            <Icon name="mail" size={13} />
+            <Icon name="mail" size={16} />
             <span>{profile.email}</span>
           </a>
         </div>
+        <nav class="profile-socials" aria-label="Profile social links">
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="bouajilaProg on GitHub">
+            <SocialIcon name="github" size={17} />
+            <span>{new URL(profile.github).pathname.split("/").filter(Boolean)[0]}</span>
+          </a>
+          <span class="profile-separator" aria-hidden="true">|</span>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${profile.name} on LinkedIn`}>
+            <SocialIcon name="linkedin" size={17} />
+            <span>{profile.name}</span>
+          </a>
+        </nav>
       </div>
       <p class="bio">{profile.bio}</p>
-      <nav
-        class="social-links profile-socials"
-        aria-label="Profile social links"
-      >
-        <a
-          href={profile.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          aria-describedby="profile-linkedin-tooltip"
-          data-social-link
-        >
-          <SocialIcon name="linkedin" />
-          <span
-            id="profile-linkedin-tooltip"
-            class="social-tooltip"
-            role="tooltip"
-          >
-            LinkedIn
-          </span>
-        </a>
-        <a
-          href={profile.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          aria-describedby="profile-github-tooltip"
-          data-social-link
-        >
-          <SocialIcon name="github" />
-          <span
-            id="profile-github-tooltip"
-            class="social-tooltip"
-            role="tooltip"
-          >
-            GitHub
-          </span>
-        </a>
-        <a
-          href="#projects"
-          aria-label="Projects"
-          aria-describedby="profile-projects-tooltip"
-          data-social-link
-        >
-          <SocialIcon name="projects" />
-          <span
-            id="profile-projects-tooltip"
-            class="social-tooltip"
-            role="tooltip"
-          >
-            Projects
-          </span>
-        </a>
-        <a
-          href={`mailto:${profile.email}`}
-          aria-label="Email"
-          aria-describedby="profile-email-tooltip"
-          data-social-link
-        >
-          <SocialIcon name="email" />
-          <span
-            id="profile-email-tooltip"
-            class="social-tooltip"
-            role="tooltip"
-          >
-            Email
-          </span>
-        </a>
-      </nav>
     </section>
     <Contributions />
     <section
