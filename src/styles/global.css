@@ -58,10 +58,10 @@
   --hover: rgba(0, 0, 0, 0.025);
   --grid: rgba(0, 0, 0, 0.025);
   --cell: #e4e4e7;
-  --level1: #d4d4d8;
-  --level2: #a1a1aa;
-  --level3: #71717a;
-  --level4: #52525b;
+  --level1: #bfdbfe;
+  --level2: #60a5fa;
+  --level3: #3b82f6;
+  --level4: #1d4ed8;
   font-synthesis: none;
   scrollbar-color: #aaa var(--bg);
 }
@@ -78,10 +78,10 @@
   --hover: rgba(255, 255, 255, 0.035);
   --grid: rgba(255, 255, 255, 0.022);
   --cell: #212124;
-  --level1: #3f3f46;
-  --level2: #71717a;
-  --level3: #a1a1aa;
-  --level4: #d4d4d8;
+  --level1: #1e3a8a;
+  --level2: #1d4ed8;
+  --level3: #3b82f6;
+  --level4: #93c5fd;
   scrollbar-color: #555 var(--bg);
 }
 * {
@@ -738,9 +738,9 @@ h2 {
   border-radius: 50%;
   background: #a1a1aa;
 }
-.timeline-entry:first-child:before {
-  background: #34d399;
-  outline: 4px solid rgba(52, 211, 153, 0.15);
+.timeline-entry[data-current="true"]:before {
+  background: #3b82f6;
+  outline: 4px solid rgba(59, 130, 246, 0.15);
 }
 .timeline-heading {
   display: flex;
@@ -959,24 +959,29 @@ h2 {
     width: 18px;
     height: 18px;
   }
-  .contribution-scroll {
-    margin-inline: -24px;
-  }
   .contribution-inner {
-    padding-inline: 24px;
-    min-width: 628px;
+    min-width: 0;
+  }
+  .activity-months {
+    padding-left: 0;
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+  .activity-grid {
+    gap: 2px;
   }
   .activity-footer {
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    gap: 12px;
+    font-size: 8px;
+    letter-spacing: 0;
+    gap: 8px;
   }
   .activity-legend {
-    gap: 3px;
+    gap: 2px;
+    flex-shrink: 0;
   }
   .activity-legend i {
-    width: 9px;
-    height: 9px;
+    width: 6px;
+    height: 6px;
   }
   .contact-section {
     margin-top: 80px;

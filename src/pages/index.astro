@@ -81,7 +81,7 @@ import {
       <h2 id="experience-heading">Experience</h2>
       <div class="timeline-list">
         {experience.map((entry) => (
-          <article class="timeline-entry">
+          <article class="timeline-entry" data-current={entry.date.includes("Present") ? "true" : undefined}>
             <div class="timeline-heading">
               <div class="entry-title">
                 <h3>{entry.title}</h3>
@@ -104,7 +104,7 @@ import {
       <h2 id="education-heading">Education</h2>
       <div class="timeline-list">
         {education.map((entry) => (
-          <article class="timeline-entry">
+          <article class="timeline-entry" data-current={entry.date.includes("Present") ? "true" : undefined}>
             <div class="timeline-heading">
               <h3>{entry.subtitle}</h3>
               <span class="date-label">{entry.date}</span>
