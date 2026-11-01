@@ -30,6 +30,14 @@
   font-display: swap;
 }
 @font-face {
+  font-family: Manrope;
+  src: url("@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2")
+    format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono.woff2") format("woff2");
   font-weight: 100 900;
@@ -166,53 +174,60 @@ textarea {
 .nav-inner {
   max-width: 768px;
   margin: auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
-  height: 64px;
+  column-gap: 24px;
+  height: 72px;
+}
+.nav-inner .site-logo {
+  justify-self: start;
 }
 .nav-section-links {
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin-left: auto;
-  padding-left: 24px;
+  gap: 16px;
 }
 .nav-section-links a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  color: var(--secondary);
+  font-family: Manrope, Geist, Arial, sans-serif;
   font-size: 12px;
+  color: var(--muted);
+  transition: color 160ms ease-out;
 }
 .nav-section-links a:hover {
   color: var(--text);
-  text-decoration: underline;
-  text-underline-offset: 4px;
+}
+.nav-inner .theme-toggle {
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 12px;
 }
 @media (max-width: 767px) {
+  .site-header {
+    padding-bottom: 8px;
+  }
   .nav-inner {
-    height: auto;
-    min-height: 64px;
-    flex-wrap: wrap;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    height: 64px;
+    column-gap: 16px;
   }
   .nav-section-links {
-    order: 3;
-    flex-basis: 100%;
-    justify-content: space-between;
-    gap: 8px;
-    padding-left: 0;
-  }
-  .nav-inner .theme-toggle {
-    margin-left: auto;
+    display: none;
   }
   html {
-    scroll-padding-top: 140px;
+    scroll-padding-top: 88px;
   }
   .site-shell .home-page {
-    padding-top: 152px;
+    padding-top: 112px;
   }
 }
+
 .site-logo {
   display: inline-flex;
   align-items: center;
@@ -221,8 +236,9 @@ textarea {
   min-height: 44px;
 }
 .site-logo span {
-  font-size: 14px;
-  font-weight: 600;
+  font-family: Manrope, Geist, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
   letter-spacing: -0.025em;
 }
 .project-archive {
@@ -260,8 +276,8 @@ textarea {
 .theme-toggle svg {
   transition: transform 0.25s;
 }
-.theme-toggle:hover svg {
-  transform: rotate(-12deg);
+.theme-toggle:hover {
+  color: var(--text);
 }
 .sun {
   display: none;
