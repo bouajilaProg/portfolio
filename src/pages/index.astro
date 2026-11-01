@@ -14,28 +14,7 @@ import {
 } from "../data/portfolio.json";
 const featured = projects.filter((project) => project.featured);
 const otherProjects = projects.filter((project) => !project.featured);
-const stack = [
-  "TypeScript",
-  "JavaScript",
-  "Python",
-  "go",
-  "Rust",
-  "React",
-  "Next.js",
-  "Tailwind CSS",
-  "Express",
-  "FastAPI",
-  "PostgreSQL",
-  "sqlite",
-  "drizzle",
-  "turso",
-  "vercel",
-  "cloudflare R2",
-  "Tauri",
-  "Typst",
-  "Zod",
-  "github-actions",
-];
+
 ---
 
 <Layout title={`${profile.name} | ${profile.title}`}>
@@ -142,14 +121,6 @@ const stack = [
       </nav>
     </section>
     <Contributions />
-    <section class="stack-section" aria-labelledby="stack-heading">
-      <h2 id="stack-heading">Tech Stack</h2>
-      <div class="tech-stack">
-        {stack.map((tech) => (
-          <TechIcon name={tech} />
-        ))}
-      </div>
-    </section>
     <section
       id="projects"
       class="section-block"
