@@ -1,7 +1,5 @@
 ---
 import SocialLinks from "./SocialLinks.astro";
-import ContactForm from "./ContactForm";
-import { profile } from "../data/portfolio.json";
 ---
 
 <section id="contact" class="contact-section" aria-labelledby="contact-heading">
@@ -10,6 +8,5 @@ import { profile } from "../data/portfolio.json";
     Feel free to reach out if you want to collaborate on a project, have a
     question, or just want to connect.
   </p>
-  <ContactForm email={profile.email} client:load />
   <SocialLinks />
 </section>

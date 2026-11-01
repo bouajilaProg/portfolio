@@ -869,12 +869,26 @@ h2 {
 }
 .contact-socials {
   justify-content: center;
-  gap: 28px;
-  margin-top: 28px;
+  gap: 12px;
+  margin-top: 24px;
   color: var(--text);
 }
 .contact-socials a {
-  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 12px;
+  opacity: 0.75;
+  transition: opacity 160ms ease-out;
+}
+.contact-socials a:hover,
+.contact-socials a:focus-visible {
+  opacity: 1;
+}
+.contact-socials svg {
+  width: 16px;
+  height: 16px;
 }
 .skip-link {
   position: fixed;
