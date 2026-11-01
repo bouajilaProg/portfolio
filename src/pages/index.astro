@@ -125,10 +125,13 @@ import {
       aria-labelledby="projects-heading"
     >
       <div class="section-heading">
-        <h2 id="projects-heading">Projects</h2>
+        <h2 id="projects-heading">Featured Projects</h2>
+        <a class="text-link" href="/projects/">
+          View all projects <Icon name="arrow" size={16} />
+        </a>
       </div>
       <div class="projects-grid">
-        {projects.map((project) => (
+        {projects.filter((project) => project.featured).map((project) => (
           <ProjectCard project={project} />
         ))}
       </div>

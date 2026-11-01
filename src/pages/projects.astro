@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { profile, projects } from "../data/portfolio.json";
+---
+
+<Layout title={`Projects | ${profile.name}`} description={`Explore ${profile.name}’s projects, from web applications to developer tools.`}>
+  <main id="main" class="home-page projects-page">
+    <header class="projects-intro">
+      <h1>Projects</h1>
+      <p>Web applications, developer tools, and experiments.</p>
+    </header>
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .projects-page {
+    padding-bottom: 96px;
+  }
+  .projects-intro {
+    margin-bottom: 32px;
+  }
+  .projects-intro p {
+    margin-top: 8px;
+    color: var(--secondary);
+    font-size: 14px;
+  }
+</style>
