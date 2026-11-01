@@ -40,7 +40,9 @@ import {
           <span class="profile-separator" aria-hidden="true">|</span>
           <a class="meta-value" href={`mailto:${profile.email}`}>
             <Icon name="mail" size={16} />
-            <span>{profile.email}</span>
+            <span class="profile-email-address">
+              <span class="email-fragment">{profile.email.split("@")[0]}</span><wbr /><span class="email-fragment email-domain">@{profile.email.split("@")[1]}</span>
+            </span>
           </a>
         </div>
         <nav class="profile-socials" aria-label="Profile social links">

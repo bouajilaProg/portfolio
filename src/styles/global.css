@@ -376,6 +376,31 @@ h1 {
 .profile-contact-details svg {
   flex-shrink: 0;
 }
+@media (max-width: 767px) {
+  .profile-details {
+    display: grid;
+    grid-template-columns: max-content max-content minmax(0, 1fr);
+    column-gap: 16px;
+    row-gap: 16px;
+    justify-content: normal;
+  }
+  .profile-contact-details,
+  .profile-socials {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: center;
+    column-gap: 16px;
+  }
+  .profile-details .meta-value,
+  .profile-socials a {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .profile-socials a {
+    min-height: 0;
+  }
+}
 .meta-label {
   display: block;
   font-size: 11px;
@@ -905,9 +930,6 @@ h2 {
   .profile-role {
     font-size: 14px;
   }
-  .profile-details {
-    gap: 16px 24px;
-  }
   .meta-label {
     font-size: 10px;
   }
@@ -1040,4 +1062,25 @@ h2 {
   transform: translateX(-50%);
   border: 5px solid transparent;
   border-top-color: #1e1e20;
+}
+
+.meta-value > .profile-email-address {
+  overflow-wrap: normal;
+}
+.profile-email-address .email-fragment {
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .profile-contact-details > a.meta-value {
+    gap: 6px;
+    font-size: 12px;
+  }
+  .profile-contact-details > a.meta-value > svg {
+    width: 14px;
+    height: 14px;
+  }
+  .profile-email-address .email-domain {
+    display: block;
+  }
 }
