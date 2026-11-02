@@ -175,7 +175,7 @@ textarea {
   max-width: 768px;
   margin: auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   column-gap: 24px;
   height: 72px;
@@ -184,6 +184,7 @@ textarea {
   justify-self: start;
 }
 .nav-section-links {
+  grid-column: 1;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -201,6 +202,7 @@ textarea {
   color: var(--text);
 }
 .nav-inner .theme-toggle {
+  grid-column: -2;
   justify-self: end;
   display: grid;
   place-items: center;
@@ -561,15 +563,15 @@ h2 {
 .tech-icon:hover > svg {
   transform: scale(1.1);
 }
-.tech-tooltip {
-  display: none;
+.tech-tooltip,
+.social-tooltip {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  bottom: calc(100% + 14px);
+  bottom: calc(100% + 16px);
   left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+  transform: translate(-50%, 4px);
+  z-index: 50;
   white-space: nowrap;
   background: #1e1e20;
   color: #f0f0f0;
@@ -578,24 +580,30 @@ h2 {
   font-family: Geist, Arial, sans-serif;
   font-size: 12.5px;
   font-weight: 500;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25),
+    0 2px 4px -1px rgba(0, 0, 0, 0.15);
   pointer-events: none;
-  transition: opacity 0.1s;
+  transition: opacity 100ms ease-out, transform 100ms ease-out,
+    visibility 0s linear 100ms;
 }
-.tech-tooltip:after {
+.tech-tooltip:after,
+.social-tooltip:after {
   content: "";
   position: absolute;
-  top: 100%;
+  top: calc(100% - 1px);
   left: 50%;
-  margin-left: -5px;
-  border: 5px solid transparent;
+  margin-left: -6px;
+  border: 6px solid transparent;
   border-top-color: #1e1e20;
 }
 .tech-icon:hover .tech-tooltip,
-.tech-icon:focus-visible .tech-tooltip {
-  display: block;
+.tech-icon:focus-visible .tech-tooltip,
+[data-social-link]:hover .social-tooltip,
+[data-social-link]:focus-visible .social-tooltip {
   visibility: visible;
   opacity: 1;
+  transform: translate(-50%, 0);
+  transition-delay: 0s;
 }
 .section-block {
   margin-top: 80px;
@@ -1017,6 +1025,10 @@ h2 {
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .tech-tooltip,
+  .social-tooltip {
+    transform: translateX(-50%);
+  }
   html {
     scroll-behavior: auto;
   }
@@ -1047,40 +1059,9 @@ h2 {
   height: 17px;
 }
 
-.social-tooltip {
-  display: none;
-  position: absolute;
-  bottom: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 50;
-  width: max-content;
-  white-space: nowrap;
-  pointer-events: none;
-  background: #1e1e20;
-  color: #f0f0f0;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-family: Geist, Arial, sans-serif;
-  font-size: 12.5px;
-  font-weight: 500;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
-}
-[data-social-link]:hover .social-tooltip,
-[data-social-link]:focus-visible .social-tooltip {
-  display: block;
-}
 [data-social-link][data-tooltip-dismissed] .social-tooltip {
-  display: none;
-}
-.social-tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: #1e1e20;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .meta-value > .profile-email-address {

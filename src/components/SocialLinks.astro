@@ -29,12 +29,12 @@ const links = [
     <a
       href={href}
       aria-label={label}
-      title={label}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
       data-social-link
     >
       <SocialIcon name={icon} />
+      <span class="social-tooltip" aria-hidden="true">{label}</span>
     </a>
   ))}
 </nav>

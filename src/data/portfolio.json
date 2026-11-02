@@ -246,21 +246,21 @@
       "subtitle": "ZertaLabs",
       "date": "Present",
       "description": "Building ZertaLabs, an independent software studio creating websites, e-commerce experiences, and web applications. Developing sales and client discovery skills alongside designing and building digital products.",
-      "tags": []
+      "tags": ["React", "Astro", "Tailwind CSS"]
     },
     {
       "title": "Full-Stack Web Developer",
       "subtitle": "Orange Digital Center",
       "date": "Jul 2026 - Sep 2026",
       "description": "Developed Orange Smart Batteries, an AI-powered platform that predicts telecom battery failures, monitors battery health, and automates maintenance operations.",
-      "tags": []
+      "tags": ["NestJS", "Angular", "Tailwind CSS"]
     },
     {
       "title": "Full-Stack Web Developer",
       "subtitle": "Fattouma Bourguiba Hospital",
       "date": "Jun 2026 · 1 month",
       "description": "Developed Sheryen, a blood donation platform that connects donors with blood centers and simplifies donation requests, donor management, and coordination.",
-      "tags": []
+      "tags": ["NestJS", "Tailwind CSS"]
     },
     {
       "title": "Full-Stack Developer",

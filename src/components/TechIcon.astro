@@ -1,5 +1,8 @@
 ---
 import {
+  siAstro,
+  siNestjs,
+  siAngular,
   siNextdotjs,
   siResend,
   siTailwindcss,
@@ -45,6 +48,9 @@ const icons: Record<string, { path: string; hex: string }> = {
   tailwind: siTailwindcss,
   "tailwind css": siTailwindcss,
   react: siReact,
+  astro: siAstro,
+  nestjs: siNestjs,
+  angular: siAngular,
   typescript: siTypescript,
   typst: siTypst,
   zod: siZod,
@@ -98,7 +104,6 @@ const concepts: Record<
   class="tech-icon"
   role="img"
   aria-label={name}
-  title={name}
   tabindex="0"
   style={darkBrand ? undefined : { color }}
 >
