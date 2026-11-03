@@ -35,21 +35,15 @@ const months = Array.from({ length: 12 }, (_, i) => {
         aria-busy="true"
       >
         {days.map((date) => (
-          <span data-date={date} data-level="0" title={date}></span>
+          <span data-date={date} data-level="0"></span>
         ))}
       </div>
     </div>
   </div>
   <div class="activity-footer">
-    <a
-      href={profile.github}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="activity-status"
-      aria-live="polite"
-    >
+    <span class="activity-status" aria-live="polite">
       Loading contributions…
-    </a>
+    </span>
     <span class="activity-legend" aria-hidden="true">
       Less<i data-level="0"></i>
       <i data-level="1"></i>
@@ -87,14 +81,13 @@ const months = Array.from({ length: 12 }, (_, i) => {
         grid.querySelectorAll<HTMLElement>("[data-date]").forEach((cell) => {
           const day = days.get(cell.dataset.date || "");
           cell.dataset.level = String(day?.level || 0);
-          cell.title = `${day?.count || 0} contributions on ${cell.dataset.date}`;
           total += day?.count || 0;
         });
         const year = new Date().getFullYear();
         status.textContent = `${total.toLocaleString()} contributions · ${year - 1}–${String(year).slice(-2)}`;
       })
       .catch(() => {
-        status.textContent = "View contributions on GitHub";
+        status.textContent = "Contributions unavailable";
       })
       .finally(() => grid.setAttribute("aria-busy", "false"));
   }

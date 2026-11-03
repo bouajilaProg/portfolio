@@ -515,10 +515,6 @@ h1 {
 [data-level="4"] {
   background: var(--level4) !important;
 }
-.activity-grid > span:hover {
-  outline: 1px solid var(--muted);
-  outline-offset: 1px;
-}
 .activity-footer {
   display: flex;
   justify-content: space-between;
