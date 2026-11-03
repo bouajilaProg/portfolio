@@ -65,6 +65,7 @@ const { title, description = profile.bio } = Astro.props;
     <div class="page-grid" aria-hidden="true"></div>
     <header class="site-header">
       <nav class="nav-inner" aria-label="Main navigation">
+        <a class="mobile-home-link" href="/" aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>Home</a>
         <div class="nav-section-links">
           <a href="/#about">About</a>
           <a href="/#projects">Projects</a>

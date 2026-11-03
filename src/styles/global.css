@@ -183,19 +183,25 @@ textarea {
 .nav-inner .site-logo {
   justify-self: start;
 }
+.mobile-home-link {
+  display: none;
+}
 .nav-section-links {
   grid-column: 1;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 .nav-section-links a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font-family: Manrope, Geist, Arial, sans-serif;
-  font-size: 12px;
-  color: var(--muted);
+  font-family: Geist, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--secondary);
   transition: color 160ms ease-out;
 }
 .nav-section-links a:hover {
@@ -221,6 +227,18 @@ textarea {
   }
   .nav-section-links {
     display: none;
+  }
+  .mobile-home-link {
+    display: inline-flex;
+    grid-column: 1;
+    justify-self: start;
+    align-items: center;
+    min-height: 44px;
+    font-family: Geist, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
   }
   html {
     scroll-padding-top: 88px;
