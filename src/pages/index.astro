@@ -19,13 +19,15 @@ import {
   <main id="main" class="home-page">
     <section id="about" class="profile-section" aria-labelledby="profile-name">
       <div class="profile-header">
-        <img
-          class="avatar"
-          src="/images/profile.webp"
-          alt={profile.name}
-          width="64"
-          height="64"
-        />
+        <div class="profile-avatar">
+          <img
+            class="avatar"
+            src="/images/profile.webp"
+            alt={profile.name}
+            width="64"
+            height="64"
+          />
+        </div>
         <div>
           <h1 id="profile-name">{profile.name}</h1>
           <p class="profile-role">Product Manager | Full Stack Developer</p>

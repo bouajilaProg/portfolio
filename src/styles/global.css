@@ -318,17 +318,22 @@ textarea {
   padding-top: 144px;
 }
 .profile-header {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: stretch;
   gap: 16px;
 }
+.profile-avatar {
+  position: relative;
+}
 .avatar {
-  width: 64px;
-  height: 64px;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 12px;
   object-fit: cover;
   border: 1px solid var(--input-line);
-  flex-shrink: 0;
 }
 .profile-header > div {
   min-width: 0;
@@ -1023,9 +1028,8 @@ h2 {
   .profile-header h1 {
     font-size: 24px;
   }
-  .avatar {
-    width: 60px;
-    height: 60px;
+  .profile-header {
+    grid-template-columns: 60px minmax(0, 1fr);
   }
   .profile-role {
     font-size: 14px;
