@@ -5,6 +5,15 @@ import TechIcon from './TechIcon.astro';
 import { projects } from '../data/portfolio.json';
 interface Props { project: (typeof projects)[number]; }
 const { project } = Astro.props;
+const destinations = project.links.map(link => {
+  const source = /github|repo/i.test(link.name);
+  const docs = /doc/i.test(link.name);
+  const packageLink = /pypi/i.test(link.name);
+  const icon: 'github' | 'book' | 'package' | 'globe' = source ? 'github' : docs ? 'book' : packageLink ? 'package' : 'globe';
+  const label = source ? 'Source code' : docs ? 'Documentation' : packageLink ? 'Python package' : 'Live website';
+  const tooltip = source || docs || packageLink ? label : link.href;
+  return { ...link, icon, label, tooltip };
+});
 ---
 <Card className="project-card" role="article">
   <div class="project-preview">
@@ -15,7 +24,14 @@ const { project } = Astro.props;
   <div class="project-info">
     <div class="project-heading">
       <h3>{project.links[0] ? <a href={project.links[0].href} target="_blank" rel="noopener noreferrer">{project.title}</a> : project.title}</h3>
-      <div class="project-destinations">{project.links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${project.title}: ${link.name}`} title={link.name}><Icon name={/github|repo/i.test(link.name) ? 'github' : /doc/i.test(link.name) ? 'book' : /pypi/i.test(link.name) ? 'package' : 'globe'} size={19} /></a>)}</div>
+      <div class="project-destinations">
+        {destinations.map(link => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${project.title}: ${link.label}`}>
+            <Icon name={link.icon} size={19} />
+            <span class="destination-tooltip" aria-hidden="true">{link.tooltip}</span>
+          </a>
+        ))}
+      </div>
     </div>
     <p>{project.description}</p>
     <div class="project-technologies" aria-label={`${project.title} technologies`}>{project.tech.map(tech => <TechIcon name={tech} />)}</div>

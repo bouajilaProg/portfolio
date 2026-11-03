@@ -585,7 +585,8 @@ h2 {
   transform: scale(1.1);
 }
 .tech-tooltip,
-.social-tooltip {
+.social-tooltip,
+.destination-tooltip {
   visibility: hidden;
   opacity: 0;
   position: absolute;
@@ -608,7 +609,8 @@ h2 {
     visibility 0s linear 100ms;
 }
 .tech-tooltip:after,
-.social-tooltip:after {
+.social-tooltip:after,
+.destination-tooltip:after {
   content: "";
   position: absolute;
   top: calc(100% - 1px);
@@ -620,7 +622,9 @@ h2 {
 .tech-icon:hover .tech-tooltip,
 .tech-icon:focus-visible .tech-tooltip,
 [data-social-link]:hover .social-tooltip,
-[data-social-link]:focus-visible .social-tooltip {
+[data-social-link]:focus-visible .social-tooltip,
+.project-destinations a:hover .destination-tooltip,
+.project-destinations a:focus-visible .destination-tooltip {
   visibility: visible;
   opacity: 1;
   transform: translate(-50%, 0);
@@ -754,7 +758,23 @@ h2 {
   padding-top: 2px;
 }
 .project-destinations a {
+  position: relative;
   display: inline-flex;
+}
+.destination-tooltip {
+  left: auto;
+  right: -8px;
+  transform: translateY(4px) scale(0.94);
+  transform-origin: bottom right;
+}
+.destination-tooltip:after {
+  left: auto;
+  right: 11px;
+  margin-left: 0;
+}
+.project-destinations a:hover .destination-tooltip,
+.project-destinations a:focus-visible .destination-tooltip {
+  transform: translateY(0);
 }
 .project-info > p {
   font-size: 14px;
@@ -1081,6 +1101,9 @@ h2 {
   .tech-tooltip,
   .social-tooltip {
     transform: translateX(-50%);
+  }
+  .destination-tooltip {
+    transform: none;
   }
   html {
     scroll-behavior: auto;
