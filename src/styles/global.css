@@ -573,7 +573,7 @@ h2 {
 .tech-icon > svg {
   width: 20px;
   height: 20px;
-  transition: transform 90ms ease-out;
+  transition: transform 100ms ease-out;
 }
 .tech-stack .tech-icon {
   cursor: pointer;
@@ -584,8 +584,7 @@ h2 {
 }
 .tech-icon:hover > svg,
 .tech-icon:focus-visible > svg {
-  transform: translateY(-2px) scale(1.18);
-  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(-2px) scale(1.1);
 }
 .tech-tooltip,
 .social-tooltip,
@@ -593,9 +592,9 @@ h2 {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  bottom: calc(100% + 16px);
+  bottom: calc(100% + 8px);
   left: 50%;
-  transform: translate(-50%, 4px) scale(0.94);
+  transform: translate(-50%, 4px);
   transform-origin: bottom center;
   z-index: 50;
   white-space: nowrap;
@@ -609,7 +608,7 @@ h2 {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25),
     0 2px 4px -1px rgba(0, 0, 0, 0.15);
   pointer-events: none;
-  transition: opacity 80ms ease-out, transform 100ms cubic-bezier(0.16, 1, 0.3, 1),
+  transition: opacity 100ms ease-out, transform 100ms ease-out,
     visibility 0s linear 100ms;
 }
 .tech-tooltip:after,
@@ -768,7 +767,7 @@ h2 {
 .destination-tooltip {
   left: auto;
   right: -8px;
-  transform: translateY(4px) scale(0.94);
+  transform: translateY(4px);
   transform-origin: bottom right;
 }
 .destination-tooltip:after {
@@ -971,15 +970,17 @@ h2 {
 .contact-socials a:focus-visible {
   color: var(--text);
 }
+.contact-socials .social-tooltip {
+  bottom: calc(100% + 2px);
+}
 .contact-socials svg {
   width: 16px;
   height: 16px;
-  transition: transform 90ms ease-out;
+  transition: transform 100ms ease-out;
 }
 .contact-socials a:hover > svg,
 .contact-socials a:focus-visible > svg {
-  transform: translateY(-2px) scale(1.18);
-  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(-2px) scale(1.1);
 }
 .skip-link {
   position: fixed;
