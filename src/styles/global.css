@@ -970,16 +970,17 @@ h2 {
 .contact-socials a:focus-visible {
   color: var(--text);
 }
-.contact-socials .social-tooltip {
-  bottom: calc(100% + 2px);
+.contact-socials .social-icon {
+  position: relative;
+  display: inline-flex;
 }
 .contact-socials svg {
   width: 16px;
   height: 16px;
   transition: transform 100ms ease-out;
 }
-.contact-socials a:hover > svg,
-.contact-socials a:focus-visible > svg {
+.contact-socials a:hover .social-icon > svg,
+.contact-socials a:focus-visible .social-icon > svg {
   transform: translateY(-2px) scale(1.1);
 }
 .skip-link {
@@ -1110,8 +1111,8 @@ h2 {
 @media (prefers-reduced-motion: reduce) {
   .tech-icon:hover > svg,
   .tech-icon:focus-visible > svg,
-  .contact-socials a:hover > svg,
-  .contact-socials a:focus-visible > svg {
+  .contact-socials a:hover .social-icon > svg,
+  .contact-socials a:focus-visible .social-icon > svg {
     transform: none;
   }
   .tech-tooltip,

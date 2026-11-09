@@ -33,8 +33,10 @@ const links = [
       rel={external ? "noopener noreferrer" : undefined}
       data-social-link
     >
-      <SocialIcon name={icon} />
-      <span class="social-tooltip" aria-hidden="true">{label}</span>
+      <span class="social-icon">
+        <SocialIcon name={icon} />
+        <span class="social-tooltip" aria-hidden="true">{label}</span>
+      </span>
     </a>
   ))}
 </nav>
