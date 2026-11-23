@@ -1,8 +1,8 @@
 {
   "profile": {
     "name": "Mohamed Yessine Bouajila",
-    "title": "Full-Stack Developer & Product Manager",
-    "bio": "Hi, I'm yessine from Tunisia and I enjoys building practical tools and web applications. I'm passionate about new technologies, open-source software, and finding creative ways to solve real-world problems through code.",
+    "title": "Founder & Full-Stack Developer",
+    "bio": "I'm Yessine, a founder and full-stack developer from Tunisia. I founded Appicate and ZertaLabs, where I build software, websites, and web applications. I enjoy open-source software and solving practical problems through code.",
     "email": "bouajila.med.yessine@gmail.com",
     "github": "https://github.com/bouajilaProg",
     "linkedin": "https://www.linkedin.com/in/mohamed-yessine-bouajila/"
@@ -18,7 +18,7 @@
         "Tailwind",
         "React"
       ],
-      "image": "/images/greenboard.png",
+      "image": "/images/greenboard-v2.png",
       "featured": true,
       "links": [
         {
@@ -242,25 +242,43 @@
   ],
   "experience": [
     {
-      "title": "Founder & Web Developer",
+      "title": "Founder",
       "subtitle": "ZertaLabs",
-      "date": "Present",
+      "date": "Nov 2026 - Present",
       "description": "Building ZertaLabs, an independent software studio creating websites, e-commerce experiences, and web applications. Developing sales and client discovery skills alongside designing and building digital products.",
-      "tags": ["React", "Astro", "Tailwind CSS"]
+      "tags": [
+        "React",
+        "Astro",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "title": "Founder",
+      "subtitle": "Appicate",
+      "date": "Jun 2026 - Present",
+      "description": "Building Appicate, a technology business focused on software engineering, artificial intelligence, and data solutions.",
+      "tags": []
     },
     {
       "title": "Full-Stack Web Developer",
       "subtitle": "Orange Digital Center",
       "date": "Jul 2026 - Sep 2026",
       "description": "Developed Orange Smart Batteries, an AI-powered platform that predicts telecom battery failures, monitors battery health, and automates maintenance operations.",
-      "tags": ["NestJS", "Angular", "Tailwind CSS"]
+      "tags": [
+        "NestJS",
+        "Angular",
+        "Tailwind CSS"
+      ]
     },
     {
       "title": "Full-Stack Web Developer",
       "subtitle": "Fattouma Bourguiba Hospital",
-      "date": "Jun 2026 · 1 month",
+      "date": "Jun 2026 \u00b7 1 month",
       "description": "Developed Sheryen, a blood donation platform that connects donors with blood centers and simplifies donation requests, donor management, and coordination.",
-      "tags": ["NestJS", "Tailwind CSS"]
+      "tags": [
+        "NestJS",
+        "Tailwind CSS"
+      ]
     },
     {
       "title": "Full-Stack Developer",

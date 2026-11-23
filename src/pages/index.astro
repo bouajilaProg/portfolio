@@ -13,6 +13,7 @@ import {
   education,
 } from "../data/portfolio.json";
 
+const updatedAt = new Date().toISOString();
 ---
 
 <Layout title={`${profile.name} | ${profile.title}`}>
@@ -29,8 +30,8 @@ import {
           />
         </div>
         <div>
-          <h1 id="profile-name">{profile.name}</h1>
-          <p class="profile-role">Product Manager | Full Stack Developer</p>
+          <h1 id="profile-name"><button class="profile-name-trigger" type="button" data-updated-at={updatedAt}>{profile.name}</button></h1>
+          <p class="profile-role">{profile.title}</p>
         </div>
       </div>
       <div class="profile-details">
@@ -123,3 +124,41 @@ import {
     <Contact />
   </main>
 </Layout>
+
+
+<script>
+  const nameTrigger = document.querySelector<HTMLButtonElement>(".profile-name-trigger");
+  let nameClicks = 0;
+
+  nameTrigger?.addEventListener("click", () => {
+    nameClicks += 1;
+    if (nameClicks === 5) {
+      nameClicks = 0;
+      const updatedAt = new Date(nameTrigger.dataset.updatedAt!);
+      const date = new Intl.DateTimeFormat("en-GB", {
+        dateStyle: "long",
+        timeStyle: "short",
+        timeZone: "Africa/Tunis",
+      }).format(updatedAt);
+      window.alert(`Last updated: ${date} (Tunisia time)`);
+    }
+  });
+</script>
+
+<style>
+  .profile-name-trigger {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+  }
+
+  .profile-name-trigger:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+</style>
