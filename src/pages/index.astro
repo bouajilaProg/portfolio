@@ -86,11 +86,7 @@ const updatedAt = new Date().toISOString();
         {experience.map((entry) => (
           <article class="timeline-entry" data-current={entry.date.includes("Present") ? "true" : undefined}>
             <div class="timeline-heading">
-              <div class="entry-title">
-                <h3>{entry.title}</h3>
-                <span>·</span>
-                <span>{entry.subtitle}</span>
-              </div>
+              <h3 class="entry-title">{entry.title}<span class="entry-organization"> · {entry.subtitle}</span></h3>
               <span class="date-label">{entry.date}</span>
             </div>
             <p class="entry-description">{entry.description}</p>
@@ -109,10 +105,9 @@ const updatedAt = new Date().toISOString();
         {education.map((entry) => (
           <article class="timeline-entry" data-current={entry.date.includes("Present") ? "true" : undefined}>
             <div class="timeline-heading">
-              <h3>{entry.subtitle}</h3>
+              <h3 class="entry-title">{entry.subtitle}<span class="entry-organization"> · {entry.title}</span></h3>
               <span class="date-label">{entry.date}</span>
             </div>
-            <p class="entry-subtitle">{entry.title}</p>
             <p class="entry-description">{entry.description}</p>
             {entry.tags.length > 0 && (
               <p class="education-tags">{entry.tags.join(" · ")}</p>

@@ -815,22 +815,18 @@ h2 {
 }
 .timeline-heading {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 16px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 .entry-title {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
+  overflow-wrap: anywhere;
 }
 .timeline-heading h3 {
   font-size: 15px;
   letter-spacing: -0.025em;
 }
-.entry-title > span {
+.entry-organization {
   font-size: 13.5px;
   color: var(--secondary);
 }
@@ -850,11 +846,6 @@ h2 {
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 16px;
-}
-.entry-subtitle {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 4px;
 }
 .education-tags {
   font-size: 12px;
@@ -1085,11 +1076,8 @@ h2 {
   .date-label {
     font-size: 11px;
   }
-  .entry-title > span {
+  .entry-organization {
     font-size: 12.5px;
-  }
-  .timeline-heading {
-    gap: 8px;
   }
   .entry-description {
     font-size: 13.5px;
