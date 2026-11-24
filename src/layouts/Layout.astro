@@ -83,3 +83,59 @@ const { title, description = profile.bio } = Astro.props;
     </div>
   </body>
 </html>
+
+
+<script>
+  const tooltipSelector = ".tech-icon, [data-social-link], .project-destinations a";
+  const triggers = () => document.querySelectorAll<HTMLElement>(tooltipSelector);
+
+  function dismissTooltips(except?: HTMLElement) {
+    triggers().forEach((trigger) => {
+      if (trigger === except) return;
+      trigger.removeAttribute("data-tooltip-open");
+      trigger.setAttribute("data-tooltip-dismissed", "");
+      if (document.activeElement === trigger) trigger.blur();
+    });
+  }
+
+  document.addEventListener("pointerdown", (event) => {
+    const trigger = event.target instanceof Element
+      ? event.target.closest<HTMLElement>(tooltipSelector)
+      : null;
+    dismissTooltips(trigger ?? undefined);
+    if (!trigger) return;
+    if (event.pointerType === "touch" || event.pointerType === "pen") {
+      if (trigger.hasAttribute("data-tooltip-open")) {
+        dismissTooltips();
+      } else {
+        trigger.removeAttribute("data-tooltip-dismissed");
+        trigger.setAttribute("data-tooltip-open", "");
+      }
+    } else {
+      trigger.removeAttribute("data-tooltip-dismissed");
+    }
+  });
+
+  document.addEventListener("pointerover", (event) => {
+    if (event.pointerType !== "mouse") return;
+    if (event.target instanceof Element) {
+      event.target.closest(tooltipSelector)?.removeAttribute("data-tooltip-dismissed");
+    }
+  });
+
+  document.addEventListener("focusin", (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    if (event.target.matches(`${tooltipSelector}`) && event.target.matches(":focus-visible")) {
+      dismissTooltips(event.target);
+      event.target.removeAttribute("data-tooltip-dismissed");
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") dismissTooltips();
+  });
+
+  document.addEventListener("scroll", () => {
+    if (document.querySelector("[data-tooltip-open]")) dismissTooltips();
+  }, { passive: true, capture: true });
+</script>

@@ -622,11 +622,11 @@ h2 {
   border: 6px solid transparent;
   border-top-color: #1e1e20;
 }
-.tech-icon:hover .tech-tooltip,
+[data-tooltip-open] .tech-tooltip,
+[data-tooltip-open] .social-tooltip,
+[data-tooltip-open] .destination-tooltip,
 .tech-icon:focus-visible .tech-tooltip,
-[data-social-link]:hover .social-tooltip,
 [data-social-link]:focus-visible .social-tooltip,
-.project-destinations a:hover .destination-tooltip,
 .project-destinations a:focus-visible .destination-tooltip {
   visibility: visible;
   opacity: 1;
@@ -762,7 +762,7 @@ h2 {
   right: 11px;
   margin-left: 0;
 }
-.project-destinations a:hover .destination-tooltip,
+.project-destinations a[data-tooltip-open] .destination-tooltip,
 .project-destinations a:focus-visible .destination-tooltip {
   transform: translateY(0);
 }
@@ -1127,7 +1127,23 @@ h2 {
   height: 17px;
 }
 
-[data-social-link][data-tooltip-dismissed] .social-tooltip {
+@media (hover: hover) and (pointer: fine) {
+  .tech-icon:hover .tech-tooltip,
+  [data-social-link]:hover .social-tooltip,
+  .project-destinations a:hover .destination-tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 0);
+    transition-delay: 0s;
+  }
+  .project-destinations a:hover .destination-tooltip {
+    transform: translateY(0);
+  }
+}
+
+.tech-icon[data-tooltip-dismissed] .tech-tooltip,
+[data-social-link][data-tooltip-dismissed] .social-tooltip,
+.project-destinations a[data-tooltip-dismissed] .destination-tooltip {
   visibility: hidden;
   opacity: 0;
 }
