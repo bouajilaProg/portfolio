@@ -2,7 +2,7 @@
 import geistFont from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
 import manropeFont from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
 import "../styles/global.css";
-import ThemeToggle from "../components/ThemeToggle";
+import ThemeToggle from "../components/ThemeToggle.astro";
 import { profile } from "../data/portfolio.json";
 interface Props {
   title: string;
@@ -75,7 +75,7 @@ const { title, description = profile.bio } = Astro.props;
           <a href="/#education">Education</a>
           <a href="/#contact">Contact</a>
         </div>
-        <ThemeToggle client:load />
+        <ThemeToggle />
       </nav>
     </header>
     <div class="site-shell">

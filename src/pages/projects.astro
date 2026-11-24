@@ -11,8 +11,8 @@ import { profile, projects } from "../data/portfolio.json";
       <p>Web applications, developer tools, and experiments.</p>
     </header>
     <div class="projects-grid">
-      {projects.map((project) => (
-        <ProjectCard project={project} />
+      {projects.map((project, index) => (
+        <ProjectCard project={project} headingLevel="h2" priority={index < 2} />
       ))}
     </div>
   </main>

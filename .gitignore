@@ -27,3 +27,6 @@ pnpm-debug.log*
 # Impeccable downloaded engine and local cache
 .agents/skills/impeccable/scripts/bin/
 .impeccable/cache/
+
+# Local Lighthouse reports
+.lighthouseci/

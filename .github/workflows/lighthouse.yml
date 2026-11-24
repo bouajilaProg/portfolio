@@ -1,20 +1,37 @@
 name: CI
 on: [push]
+permissions:
+  contents: read
 jobs:
   lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 24.x
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 24.x
-      - name: npm install, build
+          cache: pnpm
+      - name: Install and build
         run: |
-          npm install
-          npm run build
-      - name: run Lighthouse CI
-        run: |
-          npm install -g @lhci/cli@0.15.x
-          lhci autorun
+          pnpm install --frozen-lockfile
+          pnpm build
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.15.1
+      - name: Collect Lighthouse reports
+        id: collect
+        run: lhci collect --config=.lighthouserc.json
+      - name: Check Lighthouse budgets
+        run: lhci assert --config=.lighthouserc.json
+      - name: Upload public Lighthouse reports
+        if: always() && steps.collect.outcome == 'success'
+        run: lhci upload --config=.lighthouserc.json
+      - name: Save audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/
+          include-hidden-files: true
+          if-no-files-found: ignore

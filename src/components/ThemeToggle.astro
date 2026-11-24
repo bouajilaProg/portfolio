@@ -1,0 +1,53 @@
+<button type="button" class="theme-toggle" data-slot="button" aria-label="Switch to dark theme" title="Toggle theme">
+      <svg
+        class="moon"
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+      </svg>
+      <svg
+        class="sun"
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
+      </svg>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
+  function updateLabel() {
+    button?.setAttribute("aria-label", `Switch to ${document.documentElement.dataset.theme === "dark" ? "light" : "dark"} theme`);
+  }
+  updateLabel();
+  button?.addEventListener("click", () => {
+    const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#070709" : "#ffffff");
+    try { localStorage.setItem("theme", theme); } catch { /* Storage may be unavailable. */ }
+    updateLabel();
+  });
+  window.addEventListener("storage", (event) => {
+    if (event.key !== "theme") return;
+    const theme = event.newValue === "dark" || event.newValue === "light"
+      ? event.newValue : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#070709" : "#ffffff");
+    updateLabel();
+  });
+</script>

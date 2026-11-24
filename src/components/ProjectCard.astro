@@ -1,10 +1,19 @@
 ---
 import Icon from './Icon.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { Card } from '@/components/ui/card';
 import TechIcon from './TechIcon.astro';
 import { projects } from '../data/portfolio.json';
-interface Props { project: (typeof projects)[number]; }
-const { project } = Astro.props;
+interface Props {
+  project: (typeof projects)[number];
+  headingLevel?: 'h2' | 'h3';
+  priority?: boolean;
+}
+const { project, headingLevel: Heading = 'h3', priority = false } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/projects/*', { eager: true });
+const image = project.image ? images[`../assets/projects/${project.image.split('/').pop()}`]?.default : undefined;
+if (project.image && !image) throw new Error(`Missing project image: ${project.image}`);
 const destinations = project.links.map(link => {
   const source = /github|repo/i.test(link.name);
   const docs = /doc/i.test(link.name);
@@ -16,14 +25,17 @@ const destinations = project.links.map(link => {
 });
 ---
 <Card className="project-card" role="article">
-  {project.image && (
+  {image && (
     <div class="project-preview">
-      <img src={project.image} alt={`${project.title} preview`} width="640" height="360" loading="lazy" />
+      <Image src={image} alt={`${project.title} preview`} width={640} height={360}
+        widths={[320, 480, 640]} sizes="(max-width: 639px) calc(100vw - 48px), (max-width: 1023px) calc((100vw - 64px) / 2), 375px"
+        fit="cover" position="top" format="webp" quality={80}
+        loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} />
     </div>
   )}
   <div class="project-info">
     <div class="project-heading">
-      <h3>{project.links[0] ? <a href={project.links[0].href} target="_blank" rel="noopener noreferrer">{project.title}</a> : project.title}</h3>
+      <Heading>{project.links[0] ? <a href={project.links[0].href} target="_blank" rel="noopener noreferrer">{project.title}</a> : project.title}</Heading>
       <div class="project-destinations">
         {destinations.map(link => (
           <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${project.title}: ${link.label}`}>
@@ -34,6 +46,6 @@ const destinations = project.links.map(link => {
       </div>
     </div>
     <p>{project.description}</p>
-    <div class="project-technologies" aria-label={`${project.title} technologies`}>{project.tech.map(tech => <TechIcon name={tech} />)}</div>
+    <div class="project-technologies" role="group" aria-label={`${project.title} technologies`}>{project.tech.map(tech => <TechIcon name={tech} />)}</div>
   </div>
 </Card>
