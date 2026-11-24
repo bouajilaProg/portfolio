@@ -723,19 +723,6 @@ h2 {
   object-fit: cover;
   object-position: top;
 }
-.project-symbol {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 24px;
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--secondary);
-  letter-spacing: -0.025em;
-}
-.project-symbol span {
-  overflow-wrap: anywhere;
-}
 .project-info {
   padding: 20px;
   display: flex;
